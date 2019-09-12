@@ -3,19 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		092288E6BBFE568505805798 /* Pods_IRPlayerUIShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EE9BA5188753C6213BE5BA /* Pods_IRPlayerUIShell.framework */; };
 		B55E010A232A93B900B42820 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0109232A93B900B42820 /* AppDelegate.m */; };
 		B55E010D232A93B900B42820 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E010C232A93B900B42820 /* ViewController.m */; };
 		B55E0110232A93B900B42820 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B55E010E232A93B900B42820 /* Main.storyboard */; };
 		B55E0112232A93BA00B42820 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B55E0111232A93BA00B42820 /* Assets.xcassets */; };
 		B55E0115232A93BA00B42820 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B55E0113232A93BA00B42820 /* LaunchScreen.storyboard */; };
 		B55E0118232A93BA00B42820 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0117232A93BA00B42820 /* main.m */; };
+		B55E0121232A96C100B42820 /* google-help-vr.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B55E011E232A96C000B42820 /* google-help-vr.mp4 */; };
+		B55E0122232A96C100B42820 /* i-see-fire.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B55E011F232A96C000B42820 /* i-see-fire.mp4 */; };
+		B55E0123232A96C100B42820 /* fisheye-demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B55E0120232A96C000B42820 /* fisheye-demo.mp4 */; };
+		B55E0127232A96D300B42820 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B55E0125232A96D300B42820 /* PlayerViewController.xib */; };
+		B55E0128232A96D300B42820 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0126232A96D300B42820 /* PlayerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04EE9BA5188753C6213BE5BA /* Pods_IRPlayerUIShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IRPlayerUIShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23824126AF5DCEB76FDA5F5A /* Pods-IRPlayerUIShell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IRPlayerUIShell.release.xcconfig"; path = "Target Support Files/Pods-IRPlayerUIShell/Pods-IRPlayerUIShell.release.xcconfig"; sourceTree = "<group>"; };
+		416AD5BE05EB3469D3855D4D /* Pods-IRPlayerUIShell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IRPlayerUIShell.debug.xcconfig"; path = "Target Support Files/Pods-IRPlayerUIShell/Pods-IRPlayerUIShell.debug.xcconfig"; sourceTree = "<group>"; };
 		B55E0105232A93B900B42820 /* IRPlayerUIShell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IRPlayerUIShell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B55E0108232A93B900B42820 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B55E0109232A93B900B42820 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -26,6 +35,12 @@
 		B55E0114232A93BA00B42820 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B55E0116232A93BA00B42820 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B55E0117232A93BA00B42820 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B55E011E232A96C000B42820 /* google-help-vr.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "google-help-vr.mp4"; sourceTree = "<group>"; };
+		B55E011F232A96C000B42820 /* i-see-fire.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "i-see-fire.mp4"; sourceTree = "<group>"; };
+		B55E0120232A96C000B42820 /* fisheye-demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fisheye-demo.mp4"; sourceTree = "<group>"; };
+		B55E0124232A96D300B42820 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		B55E0125232A96D300B42820 /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
+		B55E0126232A96D300B42820 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +48,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				092288E6BBFE568505805798 /* Pods_IRPlayerUIShell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		841EA225F6A4CC026B544437 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				416AD5BE05EB3469D3855D4D /* Pods-IRPlayerUIShell.debug.xcconfig */,
+				23824126AF5DCEB76FDA5F5A /* Pods-IRPlayerUIShell.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		89D21A5C876A73DEA0086FE0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04EE9BA5188753C6213BE5BA /* Pods_IRPlayerUIShell.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B55E00FC232A93B800B42820 = {
 			isa = PBXGroup;
 			children = (
 				B55E0107232A93B900B42820 /* IRPlayerUIShell */,
 				B55E0106232A93B900B42820 /* Products */,
+				841EA225F6A4CC026B544437 /* Pods */,
+				89D21A5C876A73DEA0086FE0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,10 +93,16 @@
 		B55E0107232A93B900B42820 /* IRPlayerUIShell */ = {
 			isa = PBXGroup;
 			children = (
+				B55E0120232A96C000B42820 /* fisheye-demo.mp4 */,
+				B55E011E232A96C000B42820 /* google-help-vr.mp4 */,
+				B55E011F232A96C000B42820 /* i-see-fire.mp4 */,
 				B55E0108232A93B900B42820 /* AppDelegate.h */,
 				B55E0109232A93B900B42820 /* AppDelegate.m */,
 				B55E010B232A93B900B42820 /* ViewController.h */,
 				B55E010C232A93B900B42820 /* ViewController.m */,
+				B55E0124232A96D300B42820 /* PlayerViewController.h */,
+				B55E0126232A96D300B42820 /* PlayerViewController.m */,
+				B55E0125232A96D300B42820 /* PlayerViewController.xib */,
 				B55E010E232A93B900B42820 /* Main.storyboard */,
 				B55E0111232A93BA00B42820 /* Assets.xcassets */,
 				B55E0113232A93BA00B42820 /* LaunchScreen.storyboard */,
@@ -78,9 +119,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B55E011B232A93BA00B42820 /* Build configuration list for PBXNativeTarget "IRPlayerUIShell" */;
 			buildPhases = (
+				B9B421CBBB5EB57D0EA21BE3 /* [CP] Check Pods Manifest.lock */,
 				B55E0101232A93B900B42820 /* Sources */,
 				B55E0102232A93B900B42820 /* Frameworks */,
 				B55E0103232A93B900B42820 /* Resources */,
+				142B9D54C4D5DF5B1C7E66BF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,12 +172,58 @@
 			buildActionMask = 2147483647;
 			files = (
 				B55E0115232A93BA00B42820 /* LaunchScreen.storyboard in Resources */,
+				B55E0127232A96D300B42820 /* PlayerViewController.xib in Resources */,
+				B55E0121232A96C100B42820 /* google-help-vr.mp4 in Resources */,
+				B55E0123232A96C100B42820 /* fisheye-demo.mp4 in Resources */,
 				B55E0112232A93BA00B42820 /* Assets.xcassets in Resources */,
 				B55E0110232A93B900B42820 /* Main.storyboard in Resources */,
+				B55E0122232A96C100B42820 /* i-see-fire.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		142B9D54C4D5DF5B1C7E66BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IRPlayerUIShell/Pods-IRPlayerUIShell-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IRPlayerUIShell/Pods-IRPlayerUIShell-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IRPlayerUIShell/Pods-IRPlayerUIShell-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9B421CBBB5EB57D0EA21BE3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IRPlayerUIShell-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B55E0101232A93B900B42820 /* Sources */ = {
@@ -142,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B55E010D232A93B900B42820 /* ViewController.m in Sources */,
+				B55E0128232A96D300B42820 /* PlayerViewController.m in Sources */,
 				B55E0118232A93BA00B42820 /* main.m in Sources */,
 				B55E010A232A93B900B42820 /* AppDelegate.m in Sources */,
 			);
@@ -283,9 +373,11 @@
 		};
 		B55E011C232A93BA00B42820 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 416AD5BE05EB3469D3855D4D /* Pods-IRPlayerUIShell.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = IRPlayerUIShell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -299,9 +391,11 @@
 		};
 		B55E011D232A93BA00B42820 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23824126AF5DCEB76FDA5F5A /* Pods-IRPlayerUIShell.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T6VV6T753H;
 				INFOPLIST_FILE = IRPlayerUIShell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

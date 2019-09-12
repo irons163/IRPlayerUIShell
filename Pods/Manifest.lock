@@ -1,0 +1,18 @@
+PODS:
+  - IRPlayer (0.1.0):
+    - IRPlayer/FFMpegLib (= 0.1.0)
+  - IRPlayer/FFMpegLib (0.1.0)
+
+DEPENDENCIES:
+  - IRPlayer
+
+SPEC REPOS:
+  trunk:
+    - IRPlayer
+
+SPEC CHECKSUMS:
+  IRPlayer: b9f9324724e2d66545242385989aa2f8b5ce7da8
+
+PODFILE CHECKSUM: 55a39ec99fd1f675f2c61200e9193a9b2d3ec937
+
+COCOAPODS: 1.8.0.beta.2
