@@ -8,6 +8,9 @@
 
 #import "PlayerViewController.h"
 #import <IRPlayer/IRPlayer.h>
+#import "IRViewWraper.h"
+#import "IRRTSPPlayer.h"
+#import "IRPlayerViewController.h"
 
 @interface PlayerViewController ()
 
@@ -76,8 +79,14 @@
             [self.player replaceVideoWithURL:fisheyeVideo videoType:IRVideoTypeFisheye];
             break;
         case DemoType_FFmpeg_Fisheye_Hardware_Modes_Selection:
-            self.player.decoder = [IRPlayerDecoder FFmpegDecoder];
-            [self.player replaceVideoWithURL:fisheyeVideo videoType:IRVideoTypeFisheye];
+//            self.player.decoder = [IRPlayerDecoder FFmpegDecoder];
+//            [self.player replaceVideoWithURL:fisheyeVideo videoType:IRVideoTypeFisheye];
+        {
+//            IRRTSPPlayer *player = [IRRTSPPlayer new];
+//            [player play];
+//            IRPlayerViewController *vc = [IRPlayerViewController new];
+//            [self presentViewController:vc];
+        }
             break;
     }
 }

@@ -12,12 +12,17 @@
 #import "IRPLFImage.h"
 #import "IRPlayerTrack.h"
 #import "IRPlayerDecoder.h"
+#import "IRFFVideoInput.h"
+
+@class IRGLRenderMode;
 
 // video type
 typedef NS_ENUM(NSUInteger, IRVideoType) {
     IRVideoTypeNormal,  // normal
     IRVideoTypeVR,      // virtual reality
     IRVideoTypeFisheye,
+    IRVideoTypePano,
+    IRVideoTypeCustom,
 };
 
 // player state
@@ -54,6 +59,7 @@ typedef NS_ENUM(NSUInteger, IRPlayerBackgroundMode) {
 
 #pragma mark - IRPlayerImp
 
+@class IRPlayerImp;
 @class IRError;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -65,23 +71,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)player;
 
-@property (nonatomic, strong) IRPlayerDecoder * decoder;      // default is [IRPlayerDecoder defaultDecoder]
+@property (nonatomic, strong) IRPlayerDecoder *decoder;      // default is [IRPlayerDecoder defaultDecoder]
 
-@property (nonatomic, copy, readonly) NSURL * contentURL;
+@property (nonatomic, copy, readonly) NSURL *contentURL;
+@property (nonatomic, strong, readonly) IRFFVideoInput *videoInput;
 @property (nonatomic, assign, readonly) IRVideoType videoType;
 
-@property (nonatomic, strong, readonly, nullable) IRError * error;
+@property (nonatomic, strong, readonly, nullable) IRError *error;
 
 - (void)replaceEmpty;
 - (void)replaceVideoWithURL:(nullable NSURL *)contentURL;
 - (void)replaceVideoWithURL:(nullable NSURL *)contentURL videoType:(IRVideoType)videoType;
+- (void)replaceVideoWithInput:(nullable IRFFVideoInput *)videoInput videoType:(IRVideoType)videoType;
 
 // preview
 @property (nonatomic, assign) IRDisplayMode displayMode;
-@property (nonatomic, strong, readonly) IRPLFView * view;      // graphics view
+@property (nonatomic, strong, readonly) IRPLFView *view;      // graphics view
 @property (nonatomic, assign) BOOL viewAnimationHidden;     // default is YES;
 @property (nonatomic, assign) IRGravityMode viewGravityMode;       // default is IRGravityModeResizeAspect;
+@property (nonatomic, strong) NSArray<IRGLRenderMode *> *renderModes;
+@property (nonatomic, strong, readonly) IRGLRenderMode *renderMode;
 @property (nonatomic, copy) void (^viewTapAction)(IRPlayerImp * player, IRPLFView * view);
+
+- (void)selectRenderMode:(IRGLRenderMode *)renderMode;
 - (IRPLFImage *)snapshot;
 
 // control
@@ -112,11 +124,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) BOOL videoEnable;
 @property (nonatomic, assign, readonly) BOOL audioEnable;
 
-@property (nonatomic, strong, readonly) IRPlayerTrack * videoTrack;
-@property (nonatomic, strong, readonly) IRPlayerTrack * audioTrack;
+@property (nonatomic, strong, readonly) IRPlayerTrack *videoTrack;
+@property (nonatomic, strong, readonly) IRPlayerTrack *audioTrack;
 
-@property (nonatomic, strong, readonly) NSArray <IRPlayerTrack *> * videoTracks;
-@property (nonatomic, strong, readonly) NSArray <IRPlayerTrack *> * audioTracks;
+@property (nonatomic, strong, readonly) NSArray <IRPlayerTrack *> *videoTracks;
+@property (nonatomic, strong, readonly) NSArray <IRPlayerTrack *> *audioTracks;
 
 - (void)selectAudioTrack:(IRPlayerTrack *)audioTrack;
 - (void)selectAudioTrackIndex:(int)audioTrackIndex;

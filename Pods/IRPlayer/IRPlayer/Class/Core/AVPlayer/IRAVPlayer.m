@@ -10,6 +10,7 @@
 #import "IRPlayerImp+DisplayView.h"
 #import "IRPlayerMacro.h"
 #import "IRPlayerNotification.h"
+#import "IRFFCVYUVVideoFrame.h"
 #import <AVFoundation/AVFoundation.h>
 
 static CGFloat const PixelBufferRequestInterval = 0.03f;
@@ -294,6 +295,16 @@ static NSString * const AVMediaSelectionOptionTrackIDKey = @"MediaSelectionOptio
             return nil;
         }
             break;
+        case IRVideoTypePano:
+        {
+            return nil;
+        }
+            break;
+        case IRVideoTypeCustom:
+        {
+            return nil;
+        }
+            break;
     }
 }
 
@@ -488,6 +499,10 @@ static NSString * const AVMediaSelectionOptionTrackIDKey = @"MediaSelectionOptio
                 });
             }];
         }
+            break;
+        case IRVideoTypeFisheye:
+            break;
+        case IRVideoTypePano:
             break;
     }
 }

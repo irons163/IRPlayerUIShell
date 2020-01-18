@@ -12,6 +12,34 @@
 
 
 @implementation IRGLFish2PanoShaderParams {
+    enum
+    {
+        UNIFORM_ROTATION_ANGLE,
+        UNIFORM_TEXTURE_WIDTH,
+        UNIFORM_TEXTURE_HEIGHT,
+        UNIFORM_FISH_APERTURE,
+        UNIFORM_FISH_CENTERX,
+        UNIFORM_FISH_CENTERY,
+        UNIFORM_FISH_RADIUS_H,
+        UNIFORM_FISH_RADIUS_V,
+        UNIFORM_OUTPUT_WIDTH,
+        UNIFORM_OUTPUT_HEIGHT,
+        UNIFORM_ANTIALIAS,
+        UNIFORM_VAPERTURE,
+        UNIFORM_LAT1,
+        UNIFORM_LAT2,
+        UNIFORM_LONG1,
+        UNIFORM_LONG2,
+        UNIFORM_ENABLE_TRANSFORM_X,
+        UNIFORM_ENABLE_TRANSFORM_Y,
+        UNIFORM_ENABLE_TRANSFORM_Z,
+        UNIFORM_TRANSFORM_X,
+        UNIFORM_TRANSFORM_Y,
+        UNIFORM_TRANSFORM_Z,
+        UNIFORM_OFFSETX,
+        NUM_UNIFORMS
+    };
+    
     GLint _uniformSamplers[NUM_UNIFORMS];
     NSMutableArray *_texUVs, *_ltexUVs;
     float_t** pixUV;
@@ -310,6 +338,11 @@ XYZ PRotateZ(XYZ p, float_t theta)
     self.textureWidth = w;
     self.textureHeight = h;
     
+    self.fishcenterx = self.textureWidth / 2.0;
+    self.fishcentery = self.textureHeight / 2.0;
+    self.fishradiush = self.textureWidth / 2.0;
+    self.fishradiusv = self.textureHeight / 2.0;
+    
     [self updateOutputWH];
     
     if(self.delegate)
@@ -335,14 +368,14 @@ XYZ PRotateZ(XYZ p, float_t theta)
         vapertureRadians = 160.0*DTOR;
     }
     
-    self.outputWidth = 2048;
+    self.outputWidth = 1.422222222222222 * self.textureWidth;
     self.outputHeight = (int)(self.outputWidth * tan(0.5*vapertureRadians) / (0.5*(long2Radians - long1Radians)));
-    //    self.fishcenterx = 708;
-    self.fishcenterx = 680;
-    //    self.fishcentery = 550;
-    self.fishcentery = 530;
-    //    self.fishradiush = 516;
-    self.fishradiush = 480;
+    
+//    self.fishcenterx = 680;
+    
+//    self.fishcentery = 530;
+    
+//    self.fishradiush = 480;
     self.enableTransformX = 1;
     //    self.transformX = 180;
     //    self.enableTransformY = 1;

@@ -16,6 +16,7 @@
 #import "IRPlayerNotification.h"
 #import "IRPlayerMacro.h"
 #import "IRPlayerImp+DisplayView.h"
+#import "IRPlayerImp+Private.h"
 
 //@interface IRFFPlayer () <IRFFDecoderDelegate, IRFFDecoderAudioOutput, IRAudioManagerDelegate>
 @interface IRFFPlayer () <IRFFDecoderDelegate, IRFFDecoderAudioOutput>
@@ -52,7 +53,8 @@
     if (self = [super init]) {
         self.abstractPlayer = abstractPlayer;
         self.stateLock = [[NSLock alloc] init];
-        self.audioManager = [IRAudioManager manager];
+//        self.audioManager = [IRAudioManager manager];
+        self.audioManager = self.abstractPlayer.manager;
         [self.audioManager registerAudioSession];
     }
     return self;
@@ -228,6 +230,11 @@
             break;
         case IRVideoTypeVR:
             self.abstractPlayer.displayView.rendererType = IRDisplayRendererTypeFFmpegPexelBufferVR;
+            break;
+        case IRVideoTypeFisheye:
+        case IRVideoTypePano:
+        case IRVideoTypeCustom:
+            self.abstractPlayer.displayView.rendererType = IRDisplayRendererTypeFFmpegPexelBuffer;
             break;
     }
     

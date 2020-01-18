@@ -13,16 +13,11 @@
 #import "IRGLProjection.h"
 #import "IRMediaParameter.h"
 #import "IRGLSupportPixelFormat.h"
+#import "IRGLRenderContentMode.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class IRGLProgram2D;
-
-typedef NS_ENUM(NSInteger, IRGLRenderContentMode){
-    IRGLRenderContentModeScaleAspectFit,
-    IRGLRenderContentModeScaleAspectFill,
-    IRGLRenderContentModeScaleToFill
-};
 
 typedef BOOL (^IRGLProgram2DResetScaleBlock)(IRGLProgram2D *program);
 
@@ -48,8 +43,6 @@ typedef BOOL (^IRGLProgram2DResetScaleBlock)(IRGLProgram2D *program);
 @property (weak) id<IRGLProgramDelegate> delegate;
 @property (nonatomic) IRGLRenderContentMode contentMode;
 @property (nonatomic) CGRect viewprotRange;
-@property (nonatomic) float wideDegreeX;
-@property (nonatomic) float wideDegreeY;
 @property BOOL shouldUpdateToDefaultWhenOutputSizeChanged;
 
 -(instancetype)initWithPixelFormat:(IRPixelFormat)pixelFormat withViewprotRange:(CGRect)viewprotRange withParameter:(IRMediaParameter*)parameter;

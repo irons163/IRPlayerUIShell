@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		092288E6BBFE568505805798 /* Pods_IRPlayerUIShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04EE9BA5188753C6213BE5BA /* Pods_IRPlayerUIShell.framework */; };
+		B546C4B0236B370100FA283A /* IRRTSPPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C4AF236B370100FA283A /* IRRTSPPlayer.m */; };
+		B546C4B5236B38B700FA283A /* NSLayoutConstraint+Multiplier.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C4B3236B38B600FA283A /* NSLayoutConstraint+Multiplier.m */; };
+		B555ACC3236D9BA700AA1400 /* IRPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B555ACC1236D9BA700AA1400 /* IRPlayerViewController.m */; };
+		B555ACC4236D9BA700AA1400 /* IRPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B555ACC2236D9BA700AA1400 /* IRPlayerViewController.xib */; };
 		B55E010A232A93B900B42820 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0109232A93B900B42820 /* AppDelegate.m */; };
 		B55E010D232A93B900B42820 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E010C232A93B900B42820 /* ViewController.m */; };
 		B55E0110232A93B900B42820 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B55E010E232A93B900B42820 /* Main.storyboard */; };
@@ -19,12 +23,20 @@
 		B55E0123232A96C100B42820 /* fisheye-demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B55E0120232A96C000B42820 /* fisheye-demo.mp4 */; };
 		B55E0127232A96D300B42820 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B55E0125232A96D300B42820 /* PlayerViewController.xib */; };
 		B55E0128232A96D300B42820 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0126232A96D300B42820 /* PlayerViewController.m */; };
+		B571C4C52361FA5200201D41 /* IRViewWraper.m in Sources */ = {isa = PBXBuildFile; fileRef = B571C4C42361FA5200201D41 /* IRViewWraper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04EE9BA5188753C6213BE5BA /* Pods_IRPlayerUIShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IRPlayerUIShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23824126AF5DCEB76FDA5F5A /* Pods-IRPlayerUIShell.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IRPlayerUIShell.release.xcconfig"; path = "Target Support Files/Pods-IRPlayerUIShell/Pods-IRPlayerUIShell.release.xcconfig"; sourceTree = "<group>"; };
 		416AD5BE05EB3469D3855D4D /* Pods-IRPlayerUIShell.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IRPlayerUIShell.debug.xcconfig"; path = "Target Support Files/Pods-IRPlayerUIShell/Pods-IRPlayerUIShell.debug.xcconfig"; sourceTree = "<group>"; };
+		B546C4AE236B370000FA283A /* IRRTSPPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRRTSPPlayer.h; sourceTree = "<group>"; };
+		B546C4AF236B370100FA283A /* IRRTSPPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRRTSPPlayer.m; sourceTree = "<group>"; };
+		B546C4B3236B38B600FA283A /* NSLayoutConstraint+Multiplier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+Multiplier.m"; sourceTree = "<group>"; };
+		B546C4B4236B38B700FA283A /* NSLayoutConstraint+Multiplier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+Multiplier.h"; sourceTree = "<group>"; };
+		B555ACC0236D9BA700AA1400 /* IRPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRPlayerViewController.h; sourceTree = "<group>"; };
+		B555ACC1236D9BA700AA1400 /* IRPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRPlayerViewController.m; sourceTree = "<group>"; };
+		B555ACC2236D9BA700AA1400 /* IRPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IRPlayerViewController.xib; sourceTree = "<group>"; };
 		B55E0105232A93B900B42820 /* IRPlayerUIShell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IRPlayerUIShell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B55E0108232A93B900B42820 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B55E0109232A93B900B42820 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -41,6 +53,8 @@
 		B55E0124232A96D300B42820 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		B55E0125232A96D300B42820 /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
 		B55E0126232A96D300B42820 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		B571C4C32361FA5200201D41 /* IRViewWraper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRViewWraper.h; sourceTree = "<group>"; };
+		B571C4C42361FA5200201D41 /* IRViewWraper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRViewWraper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +86,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B546C4AD236B36DD00FA283A /* Display */ = {
+			isa = PBXGroup;
+			children = (
+				B546C4AE236B370000FA283A /* IRRTSPPlayer.h */,
+				B546C4AF236B370100FA283A /* IRRTSPPlayer.m */,
+				B555ACC0236D9BA700AA1400 /* IRPlayerViewController.h */,
+				B555ACC1236D9BA700AA1400 /* IRPlayerViewController.m */,
+				B555ACC2236D9BA700AA1400 /* IRPlayerViewController.xib */,
+			);
+			path = Display;
+			sourceTree = "<group>";
+		};
+		B546C4B1236B389D00FA283A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		B546C4B2236B38A300FA283A /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				B546C4B4236B38B700FA283A /* NSLayoutConstraint+Multiplier.h */,
+				B546C4B3236B38B600FA283A /* NSLayoutConstraint+Multiplier.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		B55E00FC232A93B800B42820 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +135,8 @@
 		B55E0107232A93B900B42820 /* IRPlayerUIShell */ = {
 			isa = PBXGroup;
 			children = (
+				B59BF483236E8DB500B9E100 /* UIShell */,
+				B571C4C02361F44200201D41 /* Class */,
 				B55E0120232A96C000B42820 /* fisheye-demo.mp4 */,
 				B55E011E232A96C000B42820 /* google-help-vr.mp4 */,
 				B55E011F232A96C000B42820 /* i-see-fire.mp4 */,
@@ -112,6 +156,33 @@
 			path = IRPlayerUIShell;
 			sourceTree = "<group>";
 		};
+		B571C4C02361F44200201D41 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				B571C4C12361F44900201D41 /* Class */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		B571C4C12361F44900201D41 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				B546C4B2236B38A300FA283A /* Utility */,
+				B546C4B1236B389D00FA283A /* UI */,
+				B546C4AD236B36DD00FA283A /* Display */,
+				B571C4C32361FA5200201D41 /* IRViewWraper.h */,
+				B571C4C42361FA5200201D41 /* IRViewWraper.m */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		B59BF483236E8DB500B9E100 /* UIShell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIShell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -123,7 +194,7 @@
 				B55E0101232A93B900B42820 /* Sources */,
 				B55E0102232A93B900B42820 /* Frameworks */,
 				B55E0103232A93B900B42820 /* Resources */,
-				142B9D54C4D5DF5B1C7E66BF /* [CP] Embed Pods Frameworks */,
+				1A92A1DE2B066F11A8D58AD1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,6 +244,7 @@
 			files = (
 				B55E0115232A93BA00B42820 /* LaunchScreen.storyboard in Resources */,
 				B55E0127232A96D300B42820 /* PlayerViewController.xib in Resources */,
+				B555ACC4236D9BA700AA1400 /* IRPlayerViewController.xib in Resources */,
 				B55E0121232A96C100B42820 /* google-help-vr.mp4 in Resources */,
 				B55E0123232A96C100B42820 /* fisheye-demo.mp4 in Resources */,
 				B55E0112232A93BA00B42820 /* Assets.xcassets in Resources */,
@@ -184,7 +256,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		142B9D54C4D5DF5B1C7E66BF /* [CP] Embed Pods Frameworks */ = {
+		1A92A1DE2B066F11A8D58AD1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -232,7 +304,11 @@
 			files = (
 				B55E010D232A93B900B42820 /* ViewController.m in Sources */,
 				B55E0128232A96D300B42820 /* PlayerViewController.m in Sources */,
+				B555ACC3236D9BA700AA1400 /* IRPlayerViewController.m in Sources */,
+				B546C4B5236B38B700FA283A /* NSLayoutConstraint+Multiplier.m in Sources */,
+				B546C4B0236B370100FA283A /* IRRTSPPlayer.m in Sources */,
 				B55E0118232A93BA00B42820 /* main.m in Sources */,
+				B571C4C52361FA5200201D41 /* IRViewWraper.m in Sources */,
 				B55E010A232A93B900B42820 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,7 +386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -363,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -378,6 +454,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6VV6T753H;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IRFFMpeg/IRFFMpeg.framework/Headers\"/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IRPlayer/IRPlayer.framework/Headers\"",
+				);
 				INFOPLIST_FILE = IRPlayerUIShell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -396,6 +477,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6VV6T753H;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IRFFMpeg/IRFFMpeg.framework/Headers\"/**",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IRPlayer/IRPlayer.framework/Headers\"",
+				);
 				INFOPLIST_FILE = IRPlayerUIShell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
