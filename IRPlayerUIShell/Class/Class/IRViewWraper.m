@@ -7,14 +7,7 @@
 //
 
 #import "IRViewWraper.h"
-//#import "deviceClass.h"
-//#import "dataDefine.h"
-//#import "DeviceDBhandler.h"
-//#import "VideoViewController.h"
 #import "AppDelegate.h"
-#ifdef EnVMS
-#import "UIColor+Helper.h"
-#endif
 
 #define LOGIN_IPCAM_CALLBACK    0X0001
 #define GET_RTSPINFO_CALLBACK   0X0010

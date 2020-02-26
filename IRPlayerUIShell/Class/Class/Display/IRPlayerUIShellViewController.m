@@ -132,16 +132,16 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 
 - (void)playClick:(UIButton *)sender {
     [self.player playTheIndex:0];
-    [self.controlView showTitle:@"视频标题" coverURLString:kVideoCover fullScreenMode:IRFullScreenModeAutomatic];
+    [self.controlView showTitle:@"Video Title" coverURLString:kVideoCover fullScreenMode:IRFullScreenModeAutomatic];
 }
 
 - (void)nextClick:(UIButton *)sender {
     if (!self.player.isLastAssetURL) {
         [self.player playTheNext];
-        NSString *title = [NSString stringWithFormat:@"视频标题%zd",self.player.currentPlayIndex];
+        NSString *title = [NSString stringWithFormat:@"Video index:%zd",self.player.currentPlayIndex];
         [self.controlView showTitle:title coverURLString:kVideoCover fullScreenMode:IRFullScreenModeAutomatic];
     } else {
-        NSLog(@"最后一个视频了");
+        NSLog(@"Last Video");
     }
 }
 

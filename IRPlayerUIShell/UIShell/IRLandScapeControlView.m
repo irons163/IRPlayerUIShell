@@ -36,23 +36,19 @@
 #import "IRPlayer.h"
 
 @interface IRLandScapeControlView () <IRSliderViewDelegate>
-/// 顶部工具栏
+/// ToolView in the top
 @property (nonatomic, strong) UIView *topToolView;
-/// 返回按钮
 @property (nonatomic, strong) UIButton *backBtn;
-/// 标题
 @property (nonatomic, strong) UILabel *titleLabel;
-/// 底部工具栏
+/// ToolView in the bottom
 @property (nonatomic, strong) UIView *bottomToolView;
-/// 播放或暂停按钮
 @property (nonatomic, strong) UIButton *playOrPauseBtn;
-/// 播放的当前时间
 @property (nonatomic, strong) UILabel *currentTimeLabel;
-/// 滑杆
+///  Slider for seek
 @property (nonatomic, strong) IRSliderView *slider;
-/// 视频总时间
+/// Video Total Time
 @property (nonatomic, strong) UILabel *totalTimeLabel;
-/// 锁定屏幕按钮
+/// Button for Lock Screen
 @property (nonatomic, strong) UIButton *lockBtn;
 
 @property (nonatomic, assign) BOOL isShow;
@@ -78,7 +74,7 @@
         [self.bottomToolView addSubview:self.totalTimeLabel];
         [self addSubview:self.lockBtn];
         
-        // 设置子控件的响应事件
+        // set subViews actions
         [self makeSubViewsAction];
         [self resetControlView];
         
@@ -241,7 +237,6 @@
 
 #pragma mark -
 
-/// 重置ControlView
 - (void)resetControlView {
     self.slider.value                = 0;
     self.slider.bufferValue          = 0;
@@ -322,7 +317,6 @@
     self.lockBtn.hidden = fullScreenMode == IRFullScreenModePortrait;
 }
 
-/// 调节播放进度slider和当前时间更新
 - (void)sliderValueChanged:(CGFloat)value currentTimeString:(NSString *)timeString {
     self.slider.value = value;
     self.currentTimeLabel.text = timeString;
@@ -332,7 +326,6 @@
     }];
 }
 
-/// 滑杆结束滑动
 - (void)sliderChangeEnded {
     self.slider.isdragging = NO;
     [UIView animateWithDuration:0.3 animations:^{

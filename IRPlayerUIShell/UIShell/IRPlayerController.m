@@ -305,7 +305,7 @@
             }
             
             if ([self.controlView respondsToSelector:@selector(videoPlayer:loadStateChanged:)]) {
-                [self.controlView videoPlayer:self loadStateChanged:IRPlayerLoadStatePrepare];
+                [self.controlView videoPlayer:self loadStateChanged:IRPlayerLoadStateStalled];
             }
             
             break;

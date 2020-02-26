@@ -45,29 +45,29 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface IRPlayerControlView () <IRSliderViewDelegate>
-/// 竖屏控制层的View
+
 @property (nonatomic, strong) IRPortraitControlView *portraitControlView;
-/// 横屏控制层的View
+
 @property (nonatomic, strong) IRLandScapeControlView *landScapeControlView;
-/// 加载loading
+/// Loading view
 @property (nonatomic, strong) IRSpeedLoadingView *activity;
-/// 快进快退View
+
 @property (nonatomic, strong) UIView *fastView;
-/// 快进快退进度progress
+
 @property (nonatomic, strong) IRSliderView *fastProgressView;
-/// 快进快退时间
+
 @property (nonatomic, strong) UILabel *fastTimeLabel;
-/// 快进快退ImageView
+
 @property (nonatomic, strong) UIImageView *fastImageView;
-/// 加载失败按钮
+/// Button for loading video fail
 @property (nonatomic, strong) UIButton *failBtn;
-/// 底部播放进度
+///  Progress bar in the bottom
 @property (nonatomic, strong) IRSliderView *bottomPgrogress;
-/// 封面图
+
 @property (nonatomic, strong) UIImageView *coverImageView;
-/// 是否显示了控制层
+
 @property (nonatomic, assign, getter=isShowing) BOOL showing;
-/// 是否播放结束
+///  Is play to end
 @property (nonatomic, assign, getter=isPlayEnd) BOOL playeEnd;
 
 @property (nonatomic, assign) BOOL controlViewAppeared;
@@ -177,7 +177,6 @@
     [self cancelAutoFadeOutControlView];
 }
 
-/// 添加所有子控件
 - (void)addAllSubViews {
     [self addSubview:self.portraitControlView];
     [self addSubview:self.landScapeControlView];
@@ -203,7 +202,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.autoHiddenTimeInterval * NSEC_PER_SEC)), dispatch_get_main_queue(),self.afterBlock);
 }
 
-/// 取消延时隐藏controlView的方法
 - (void)cancelAutoFadeOutControlView {
     if (self.afterBlock) {
         dispatch_block_cancel(self.afterBlock);
@@ -211,7 +209,6 @@
     }
 }
 
-/// 隐藏控制层
 - (void)hideControlViewWithAnimated:(BOOL)animated {
     self.controlViewAppeared = NO;
     if (self.controlViewAppearedCallback) {
@@ -230,7 +227,6 @@
     }];
 }
 
-/// 显示控制层
 - (void)showControlViewWithAnimated:(BOOL)animated {
     self.controlViewAppeared = YES;
     if (self.controlViewAppearedCallback) {
@@ -250,7 +246,6 @@
     }];
 }
 
-/// 音量改变的通知
 - (void)volumeChanged:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
     NSString *reasonstr = userInfo[@"AVSystemController_AudioVolumeChangeReasonNotificationParameter"];
@@ -266,7 +261,6 @@
 
 #pragma mark - Public Method
 
-/// 重置控制层
 - (void)resetControlView {
     [self.portraitControlView resetControlView];
     [self.landScapeControlView resetControlView];
@@ -285,13 +279,11 @@
     }
 }
 
-/// 设置标题、封面、全屏模式
 - (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl fullScreenMode:(IRFullScreenMode)fullScreenMode {
     UIImage *placeholder = [IRUtilities imageWithColor:[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1] size:self.bgImgView.bounds.size];
     [self showTitle:title coverURLString:coverUrl placeholderImage:placeholder fullScreenMode:fullScreenMode];
 }
 
-/// 设置标题、封面、默认占位图、全屏模式
 - (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl placeholderImage:(UIImage *)placeholder fullScreenMode:(IRFullScreenMode)fullScreenMode {
     [self resetControlView];
     [self layoutIfNeeded];
@@ -307,7 +299,6 @@
     }
 }
 
-/// 设置标题、UIImage封面、全屏模式
 - (void)showTitle:(NSString *)title coverImage:(UIImage *)image fullScreenMode:(IRFullScreenMode)fullScreenMode {
     [self resetControlView];
     [self layoutIfNeeded];
@@ -325,7 +316,7 @@
 
 #pragma mark - IRPlayerControlViewDelegate
 
-/// 手势筛选，返回NO不响应该手势
+/// Gesture filter, if return NO, then not respond for this gesture
 - (BOOL)gestureTriggerCondition:(IRGestureController *)gestureControl gestureType:(IRGestureType)gestureType gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer touch:(nonnull UITouch *)touch {
     CGPoint point = [touch locationInView:self];
     if (self.player.isSmallFloatViewShow && !self.player.isFullScreen && gestureType != IRGestureTypeSingleTap) {
@@ -333,15 +324,15 @@
     }
     if (self.player.isFullScreen) {
         if (!self.customDisablePanMovingDirection) {
-            /// 不禁用滑动方向
+            /// Allow pan gestures.
             self.player.disablePanMovingDirection = IRDisablePanMovingDirectionNone;
         }
         return [self.landScapeControlView shouldResponseGestureWithPoint:point withGestureType:gestureType touch:touch];
     } else {
         if (!self.customDisablePanMovingDirection) {
-            if (self.player.scrollView) {  /// 列表时候禁止上下滑动（防止和列表滑动冲突）
+            if (self.player.scrollView) {  /// Avoid conflict with the gestures of scrollView itself
                 self.player.disablePanMovingDirection = IRDisablePanMovingDirectionVertical;
-            } else { /// 不禁用滑动方向
+            } else { /// Allow pan gestures.
                 self.player.disablePanMovingDirection = IRDisablePanMovingDirectionNone;
             }
         }
@@ -349,7 +340,6 @@
     }
 }
 
-/// 单击手势事件
 - (void)gestureSingleTapped:(IRGestureController *)gestureControl {
     if (!self.player) return;
     if (self.player.isSmallFloatViewShow && !self.player.isFullScreen) {
@@ -358,14 +348,12 @@
         if (self.controlViewAppeared) {
             [self hideControlViewWithAnimated:YES];
         } else {
-            /// 显示之前先把控制层复位，先隐藏后显示
             [self hideControlViewWithAnimated:NO];
             [self showControlViewWithAnimated:YES];
         }
     }
 }
 
-/// 双击手势事件
 - (void)gestureDoubleTapped:(IRGestureController *)gestureControl {
     if (self.player.isFullScreen) {
         [self.landScapeControlView playOrPause];
@@ -374,19 +362,15 @@
     }
 }
 
-/// 开始滑动手势事件
 - (void)gestureBeganPan:(IRGestureController *)gestureControl panDirection:(IRPanDirection)direction panLocation:(IRPanLocation)location {
     if (direction == IRPanDirectionH) {
         self.sumTime = self.player.currentTime;
     }
 }
 
-/// 滑动中手势事件
 - (void)gestureChangedPan:(IRGestureController *)gestureControl panDirection:(IRPanDirection)direction panLocation:(IRPanLocation)location withVelocity:(CGPoint)velocity {
     if (direction == IRPanDirectionH) {
-        // 每次滑动需要叠加时间
         self.sumTime += velocity.x / 200;
-        // 需要限定sumTime的范围
         NSTimeInterval totalMovieDuration = self.player.totalTime;
         if (totalMovieDuration == 0) return;
         if (self.sumTime > totalMovieDuration) self.sumTime = totalMovieDuration;
@@ -397,10 +381,10 @@
         if (velocity.x == 0) return;
         [self sliderValueChangingValue:self.sumTime/totalMovieDuration isForward:style];
     } else if (direction == IRPanDirectionV) {
-        if (location == IRPanLocationLeft) { /// 调节亮度
+        if (location == IRPanLocationLeft) { /// Control brightness
             self.player.brightness -= (velocity.y) / 10000;
             [self.volumeBrightnessView updateProgress:self.player.brightness withVolumeBrightnessType:IRVolumeBrightnessTypeumeBrightness];
-        } else if (location == IRPanLocationRight) { /// 调节声音
+        } else if (location == IRPanLocationRight) { /// Control volume
             self.player.volume -= (velocity.y) / 10000;
             if (self.player.isFullScreen) {
                 [self.volumeBrightnessView updateProgress:self.player.volume withVolumeBrightnessType:IRVolumeBrightnessTypeVolume];
@@ -409,13 +393,12 @@
     }
 }
 
-/// 滑动结束手势事件
 - (void)gestureEndedPan:(IRGestureController *)gestureControl panDirection:(IRPanDirection)direction panLocation:(IRPanLocation)location {
     @weakify(self)
     if (direction == IRPanDirectionH && self.sumTime >= 0 && self.player.totalTime > 0) {
         [self.player seekToTime:self.sumTime completionHandler:^(BOOL finished) {
             @strongify(self)
-            /// 左右滑动调节播放进度
+            /// Control video progress
             [self.portraitControlView sliderChangeEnded];
             [self.landScapeControlView sliderChangeEnded];
             if (self.controlViewAppeared) {
@@ -429,7 +412,6 @@
     }
 }
 
-/// 捏合手势事件，这里改变了视频的填充模式
 - (void)gesturePinched:(IRGestureController *)gestureControl scale:(float)scale {
     if (scale > 1) {
         self.player.currentPlayerManager.viewGravityMode = IRPlayerScalingModeAspectFill;
@@ -438,18 +420,16 @@
     }
 }
 
-/// 准备播放
 - (void)videoPlayer:(IRPlayerController *)videoPlayer prepareToPlay:(NSURL *)assetURL {
     [self hideControlViewWithAnimated:NO];
 }
 
-/// 播放状态改变
 - (void)videoPlayer:(IRPlayerController *)videoPlayer playStateChanged:(IRPlayerPlaybackState)state {
     if (state == IRPlayerPlayStatePlaying) {
         [self.portraitControlView playBtnSelectedState:YES];
         [self.landScapeControlView playBtnSelectedState:YES];
         self.failBtn.hidden = YES;
-        /// 开始播放时候判断是否显示loading
+        /// Check for show loading view or not.
         if (videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying && !self.prepareShowLoading) {
             [self.activity startAnimating];
         } else if ((videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying || videoPlayer.currentPlayerManager.state == IRPlayerStateReadyToPlay) && self.prepareShowLoading) {
@@ -458,7 +438,7 @@
     } else if (state == IRPlayerPlayStatePaused) {
         [self.portraitControlView playBtnSelectedState:NO];
         [self.landScapeControlView playBtnSelectedState:NO];
-        /// 暂停的时候隐藏loading
+        /// Hide loading view
         [self.activity stopAnimating];
         self.failBtn.hidden = YES;
     } else if (state == IRPlayerPlayStatePlayFailed) {
@@ -467,7 +447,6 @@
     }
 }
 
-/// 加载状态改变
 - (void)videoPlayer:(IRPlayerController *)videoPlayer loadStateChanged:(IRPlayerLoadState)state {
     if (state == IRPlayerLoadStatePrepare) {
         self.coverImageView.hidden = NO;
@@ -484,23 +463,21 @@
             self.player.currentPlayerManager.view.backgroundColor = [UIColor blackColor];
         }
     }
-    if (state == IRPlayerLoadStateStalled && videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying && !self.prepareShowLoading) {
+    if (state == IRPlayerLoadStateStalled && videoPlayer.currentPlayerManager.state == IRPlayerStateBuffering && !self.prepareShowLoading) {
         [self.activity startAnimating];
-    } else if ((state == IRPlayerLoadStateStalled || state == IRPlayerLoadStatePrepare) && videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying && self.prepareShowLoading) {
+    } else if ((state == IRPlayerLoadStateStalled || state == IRPlayerLoadStatePrepare) && videoPlayer.currentPlayerManager.state == IRPlayerStateBuffering && self.prepareShowLoading) {
         [self.activity startAnimating];
     } else {
         [self.activity stopAnimating];
     }
 }
 
-/// 播放进度改变回调
 - (void)videoPlayer:(IRPlayerController *)videoPlayer currentTime:(NSTimeInterval)currentTime totalTime:(NSTimeInterval)totalTime {
     [self.portraitControlView videoPlayer:videoPlayer currentTime:currentTime totalTime:totalTime];
     [self.landScapeControlView videoPlayer:videoPlayer currentTime:currentTime totalTime:totalTime];
     self.bottomPgrogress.value = videoPlayer.progress;
 }
 
-/// 缓冲改变回调
 - (void)videoPlayer:(IRPlayerController *)videoPlayer bufferTime:(NSTimeInterval)bufferTime {
     [self.portraitControlView videoPlayer:videoPlayer bufferTime:bufferTime];
     [self.landScapeControlView videoPlayer:videoPlayer bufferTime:bufferTime];
@@ -511,7 +488,6 @@
     [self.landScapeControlView videoPlayer:videoPlayer presentationSizeChanged:size];
 }
 
-/// 视频view即将旋转
 - (void)videoPlayer:(IRPlayerController *)videoPlayer orientationWillChange:(IROrientationObserver *)observer {
     self.portraitControlView.hidden = observer.isFullScreen;
     self.landScapeControlView.hidden = !observer.isFullScreen;
@@ -536,7 +512,6 @@
     }
 }
 
-/// 视频view已经旋转
 - (void)videoPlayer:(IRPlayerController *)videoPlayer orientationDidChanged:(IROrientationObserver *)observer {
     if (self.controlViewAppeared) {
         [self showControlViewWithAnimated:NO];
@@ -545,12 +520,10 @@
     }
 }
 
-/// 锁定旋转方向
 - (void)lockedVideoPlayer:(IRPlayerController *)videoPlayer lockedScreen:(BOOL)locked {
     [self showControlViewWithAnimated:YES];
 }
 
-/// 列表滑动时视频view已经显示
 - (void)playerDidAppearInScrollView:(IRPlayerController *)videoPlayer {
     if (!self.player.stopWhileNotVisible && !videoPlayer.isFullScreen) {
         self.floatControlView.hidden = YES;
@@ -558,7 +531,6 @@
     }
 }
 
-/// 列表滑动时视频view已经消失
 - (void)playerDidDisappearInScrollView:(IRPlayerController *)videoPlayer {
     if (!self.player.stopWhileNotVisible && !videoPlayer.isFullScreen) {
         self.floatControlView.hidden = NO;
@@ -591,7 +563,7 @@
     NSString *draggedTime = [IRUtilities convertTimeSecond:self.player.totalTime*value];
     NSString *totalTime = [IRUtilities convertTimeSecond:self.player.totalTime];
     self.fastTimeLabel.text = [NSString stringWithFormat:@"%@ / %@",draggedTime,totalTime];
-    /// 更新滑杆
+    /// Update slider
     [self.portraitControlView sliderValueChanged:value currentTimeString:draggedTime];
     [self.landScapeControlView sliderValueChanged:value currentTimeString:draggedTime];
 
@@ -605,7 +577,6 @@
     }
 }
 
-/// 隐藏快进视图
 - (void)hideFastView {
     [UIView animateWithDuration:0.4 animations:^{
         self.fastView.transform = CGAffineTransformIdentity;
@@ -615,7 +586,6 @@
     }];
 }
 
-/// 加载失败
 - (void)failBtnClick:(UIButton *)sender {
 //    [self.player.currentPlayerManager reloadPlayer];
 }
@@ -626,7 +596,7 @@
     _player = player;
     self.landScapeControlView.player = player;
     self.portraitControlView.player = player;
-    /// 解决播放时候黑屏闪一下问题
+    
 //    [player.currentPlayerManager.view insertSubview:self.bgImgView atIndex:0];
     [player.currentPlayerManager.view.superview insertSubview:self.bgImgView atIndex:0];
     [self.bgImgView addSubview:self.effectView];
