@@ -77,7 +77,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         
         [self.player playTheNext];
         if (!self.player.isLastAssetURL) {
-            NSString *title = [NSString stringWithFormat:@"视频标题%zd",self.player.currentPlayIndex];
+            NSString *title = [NSString stringWithFormat:@"title:%zd",self.player.currentPlayIndex];
             [self.controlView showTitle:title coverURLString:kVideoCover fullScreenMode:IRFullScreenModeLandscape];
         } else {
             [self.player stop];
