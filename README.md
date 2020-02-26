@@ -86,9 +86,13 @@ self.player.orientationWillChange = ^(IRPlayerController * _Nonnull player, BOOL
 
 ## Screenshots
 |Play|Seek|
-|---|---|
+|:---:|:---:|
 |![Demo](./ScreenShots/demo1.png)|![Demo](./ScreenShots/demo2.png)|
 |Volume|Brightness|
 |![Demo](./ScreenShots/demo3.png)|![Demo](./ScreenShots/demo4.png)|
 |Full Screen|Lock Screen|
 |![Demo](./ScreenShots/demo5.png)|![Demo](./ScreenShots/demo6.png)|
+
+
+## Copyright
+##### This project is inspired from [ZFPlayer](https://github.com/renzifeng/ZFPlayer).
