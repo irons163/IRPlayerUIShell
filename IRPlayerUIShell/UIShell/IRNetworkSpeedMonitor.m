@@ -30,19 +30,15 @@
 // THE SOFTWARE.
 
 #import "IRNetworkSpeedMonitor.h"
-#if __has_include(<ZFPlayer/ZFPlayerLogManager.h>)
-#import <ZFPlayer/ZFPlayerLogManager.h>
-#else
 #import "IRPlayerLogManager.h"
-#endif
 #include <arpa/inet.h>
 #include <ifaddrs.h>
 #include <net/if.h>
 #include <net/if_dl.h>
 
-NSString *const ZFDownloadNetworkSpeedNotificationKey = @"ZFDownloadNetworkSpeedNotificationKey";
-NSString *const ZFUploadNetworkSpeedNotificationKey   = @"ZFUploadNetworkSpeedNotificationKey";
-NSString *const ZFNetworkSpeedNotificationKey         = @"ZFNetworkSpeedNotificationKey";
+NSString *const IRDownloadNetworkSpeedNotificationKey = @"IRDownloadNetworkSpeedNotificationKey";
+NSString *const IRUploadNetworkSpeedNotificationKey   = @"IRUploadNetworkSpeedNotificationKey";
+NSString *const IRNetworkSpeedNotificationKey         = @"IRNetworkSpeedNotificationKey";
 
 @interface IRNetworkSpeedMonitor () {
     // 总网速
@@ -150,7 +146,7 @@ NSString *const ZFNetworkSpeedNotificationKey         = @"ZFNetworkSpeedNotifica
     freeifaddrs(ifa_list);
     if (_iBytes != 0) {
         _downloadNetworkSpeed = [[self stringWithbytes:iBytes - _iBytes] stringByAppendingString:@"/s"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:ZFDownloadNetworkSpeedNotificationKey object:nil userInfo:@{ZFNetworkSpeedNotificationKey:_downloadNetworkSpeed}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IRDownloadNetworkSpeedNotificationKey object:nil userInfo:@{IRNetworkSpeedNotificationKey:_downloadNetworkSpeed}];
         IRPlayerLog(@"downloadNetworkSpeed : %@",_downloadNetworkSpeed);
     }
     
@@ -158,7 +154,7 @@ NSString *const ZFNetworkSpeedNotificationKey         = @"ZFNetworkSpeedNotifica
     
     if (_oBytes != 0) {
         _uploadNetworkSpeed = [[self stringWithbytes:oBytes - _oBytes] stringByAppendingString:@"/s"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:ZFUploadNetworkSpeedNotificationKey object:nil userInfo:@{ZFNetworkSpeedNotificationKey:_uploadNetworkSpeed}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IRUploadNetworkSpeedNotificationKey object:nil userInfo:@{IRNetworkSpeedNotificationKey:_uploadNetworkSpeed}];
         IRPlayerLog(@"uploadNetworkSpeed :%@",_uploadNetworkSpeed);
     }
     

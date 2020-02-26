@@ -31,18 +31,18 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, ZFVolumeBrightnessType) {
-    ZFVolumeBrightnessTypeVolume,       // volume
-    ZFVolumeBrightnessTypeumeBrightness // brightness
+typedef NS_ENUM(NSInteger, IRVolumeBrightnessType) {
+    IRVolumeBrightnessTypeVolume,       // volume
+    IRVolumeBrightnessTypeumeBrightness // brightness
 };
 
 @interface IRVolumeBrightnessView : UIView
 
-@property (nonatomic, assign, readonly) ZFVolumeBrightnessType volumeBrightnessType;
+@property (nonatomic, assign, readonly) IRVolumeBrightnessType volumeBrightnessType;
 @property (nonatomic, strong, readonly) UIProgressView *progressView;
 @property (nonatomic, strong, readonly) UIImageView *iconImageView;
 
-- (void)updateProgress:(CGFloat)progress withVolumeBrightnessType:(ZFVolumeBrightnessType)volumeBrightnessType;
+- (void)updateProgress:(CGFloat)progress withVolumeBrightnessType:(IRVolumeBrightnessType)volumeBrightnessType;
 
 /// 添加系统音量view
 - (void)addSystemVolumeView;

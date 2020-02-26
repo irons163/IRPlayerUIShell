@@ -31,9 +31,9 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const ZFDownloadNetworkSpeedNotificationKey;
-extern NSString *const ZFUploadNetworkSpeedNotificationKey;
-extern NSString *const ZFNetworkSpeedNotificationKey;
+extern NSString *const IRDownloadNetworkSpeedNotificationKey;
+extern NSString *const IRUploadNetworkSpeedNotificationKey;
+extern NSString *const IRNetworkSpeedNotificationKey;
 
 @interface IRNetworkSpeedMonitor : NSObject
 

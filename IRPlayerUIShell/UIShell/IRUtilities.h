@@ -35,12 +35,12 @@
 /// iPhoneX  iPhoneXS  iPhoneXS Max  iPhoneXR 机型判断
 #define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? ((NSInteger)(([[UIScreen mainScreen] currentMode].size.height/[[UIScreen mainScreen] currentMode].size.width)*100) == 216) : NO)
 
-#define ZFPlayer_Image(file)                 [IRUtilities imageNamed:file]
+#define IRPlayer_Image(file)                 [IRUtilities imageNamed:file]
 
 // 屏幕的宽
-#define ZFPlayer_ScreenWidth                 [[UIScreen mainScreen] bounds].size.width
+#define IRPlayer_ScreenWidth                 [[UIScreen mainScreen] bounds].size.width
 // 屏幕的高
-#define ZFPlayer_ScreenHeight                [[UIScreen mainScreen] bounds].size.height
+#define IRPlayer_ScreenHeight                [[UIScreen mainScreen] bounds].size.height
 
 @interface IRUtilities : NSObject
 

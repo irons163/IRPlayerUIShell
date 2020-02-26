@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, IRLoadingType) {
 
 @interface IRLoadingView : UIView
 
-/// default is ZFLoadingTypeKeep.
+/// default is IRLoadingTypeKeep.
 @property (nonatomic, assign) IRLoadingType animType;
 
 /// default is whiteColor.

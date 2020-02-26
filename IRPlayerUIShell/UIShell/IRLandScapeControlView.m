@@ -33,13 +33,9 @@
 #import "UIView+IRFrame.h"
 #import "IRUtilities.h"
 #import "IRScope.h"
-#if __has_include(<ZFPlayer/ZFPlayer.h>)
-#import <ZFPlayer/ZFPlayer.h>
-#else
 #import "IRPlayer.h"
-#endif
 
-@interface IRLandScapeControlView () <ZFSliderViewDelegate>
+@interface IRLandScapeControlView () <IRSliderViewDelegate>
 /// 顶部工具栏
 @property (nonatomic, strong) UIView *topToolView;
 /// 返回按钮
@@ -191,7 +187,7 @@
     [self setNeedsLayout];
 }
 
-#pragma mark - ZFSliderViewDelegate
+#pragma mark - IRSliderViewDelegate
 
 - (void)sliderTouchBegan:(float)value {
     self.slider.isdragging = YES;
@@ -303,7 +299,7 @@
 }
 
 - (void)videoPlayer:(IRPlayerController *)videoPlayer presentationSizeChanged:(CGSize)size {
-    self.lockBtn.hidden = self.player.orientationObserver.fullScreenMode == ZFFullScreenModePortrait;
+    self.lockBtn.hidden = self.player.orientationObserver.fullScreenMode == IRFullScreenModePortrait;
 }
 
 - (void)videoPlayer:(IRPlayerController *)videoPlayer currentTime:(NSTimeInterval)currentTime totalTime:(NSTimeInterval)totalTime {
@@ -320,10 +316,10 @@
     self.slider.bufferValue = videoPlayer.bufferProgress;
 }
 
-- (void)showTitle:(NSString *)title fullScreenMode:(ZFFullScreenMode)fullScreenMode {
+- (void)showTitle:(NSString *)title fullScreenMode:(IRFullScreenMode)fullScreenMode {
     self.titleLabel.text = title;
     self.player.orientationObserver.fullScreenMode = fullScreenMode;
-    self.lockBtn.hidden = fullScreenMode == ZFFullScreenModePortrait;
+    self.lockBtn.hidden = fullScreenMode == IRFullScreenModePortrait;
 }
 
 /// 调节播放进度slider和当前时间更新
@@ -350,7 +346,7 @@
     self.lockBtn.selected = NO;
     self.player.lockedScreen = NO;
     self.lockBtn.selected = NO;
-    if (self.player.orientationObserver.supportInterfaceOrientation & ZFInterfaceOrientationMaskPortrait) {
+    if (self.player.orientationObserver.supportInterfaceOrientation & IRInterfaceOrientationMaskPortrait) {
         [self.player enterFullScreen:NO animated:YES];
     }
     if (self.backBtnClickCallback) {
@@ -382,7 +378,7 @@
 - (UIView *)topToolView {
     if (!_topToolView) {
         _topToolView = [[UIView alloc] init];
-        UIImage *image = ZFPlayer_Image(@"ZFPlayer_top_shadow");
+        UIImage *image = IRPlayer_Image(@"IRPlayer_top_shadow");
         _topToolView.layer.contents = (id)image.CGImage;
     }
     return _topToolView;
@@ -391,7 +387,7 @@
 - (UIButton *)backBtn {
     if (!_backBtn) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backBtn setImage:ZFPlayer_Image(@"ZFPlayer_back_full") forState:UIControlStateNormal];
+        [_backBtn setImage:IRPlayer_Image(@"IRPlayer_back_full") forState:UIControlStateNormal];
     }
     return _backBtn;
 }
@@ -408,7 +404,7 @@
 - (UIView *)bottomToolView {
     if (!_bottomToolView) {
         _bottomToolView = [[UIView alloc] init];
-        UIImage *image = ZFPlayer_Image(@"ZFPlayer_bottom_shadow");
+        UIImage *image = IRPlayer_Image(@"IRPlayer_bottom_shadow");
         _bottomToolView.layer.contents = (id)image.CGImage;
     }
     return _bottomToolView;
@@ -417,8 +413,8 @@
 - (UIButton *)playOrPauseBtn {
     if (!_playOrPauseBtn) {
         _playOrPauseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playOrPauseBtn setImage:ZFPlayer_Image(@"ZFPlayer_play") forState:UIControlStateNormal];
-        [_playOrPauseBtn setImage:ZFPlayer_Image(@"ZFPlayer_pause") forState:UIControlStateSelected];
+        [_playOrPauseBtn setImage:IRPlayer_Image(@"IRPlayer_play") forState:UIControlStateNormal];
+        [_playOrPauseBtn setImage:IRPlayer_Image(@"IRPlayer_pause") forState:UIControlStateSelected];
     }
     return _playOrPauseBtn;
 }
@@ -440,7 +436,7 @@
         _slider.maximumTrackTintColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.8];
         _slider.bufferTrackTintColor  = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];
         _slider.minimumTrackTintColor = [UIColor whiteColor];
-        [_slider setThumbImage:ZFPlayer_Image(@"ZFPlayer_slider") forState:UIControlStateNormal];
+        [_slider setThumbImage:IRPlayer_Image(@"IRPlayer_slider") forState:UIControlStateNormal];
         _slider.sliderHeight = 2;
     }
     return _slider;
@@ -459,8 +455,8 @@
 - (UIButton *)lockBtn {
     if (!_lockBtn) {
         _lockBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_lockBtn setImage:ZFPlayer_Image(@"ZFPlayer_unlock-nor") forState:UIControlStateNormal];
-        [_lockBtn setImage:ZFPlayer_Image(@"ZFPlayer_lock-nor") forState:UIControlStateSelected];
+        [_lockBtn setImage:IRPlayer_Image(@"IRPlayer_unlock-nor") forState:UIControlStateNormal];
+        [_lockBtn setImage:IRPlayer_Image(@"IRPlayer_lock-nor") forState:UIControlStateSelected];
     }
     return _lockBtn;
 }

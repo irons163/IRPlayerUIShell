@@ -15,11 +15,6 @@
 #import "IRSpeedLoadingView.h"
 #import "IRNetworkSpeedMonitor.h"
 #import "UIView+IRFrame.h"
-//#if __has_include(<ZFPlayer/ZFPlayer.h>)
-//#import <ZFPlayer/ZFPlayer.h>
-//#else
-//#import "ZFPlayer.h"
-//#endif
 
 @interface IRSpeedLoadingView ()
 
@@ -54,12 +49,12 @@
     [self addSubview:self.loadingView];
     [self addSubview:self.speedTextLabel];
     [self.speedMonitor startNetworkSpeedMonitor];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkSpeedChanged:) name:ZFDownloadNetworkSpeedNotificationKey object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkSpeedChanged:) name:IRDownloadNetworkSpeedNotificationKey object:nil];
 }
 
 - (void)dealloc {
     [self.speedMonitor stopNetworkSpeedMonitor];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ZFDownloadNetworkSpeedNotificationKey object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:IRDownloadNetworkSpeedNotificationKey object:nil];
 }
 
 - (void)layoutSubviews {
@@ -85,7 +80,7 @@
 }
 
 - (void)networkSpeedChanged:(NSNotification *)sender {
-    NSString *downloadSpped = [sender.userInfo objectForKey:ZFNetworkSpeedNotificationKey];
+    NSString *downloadSpped = [sender.userInfo objectForKey:IRNetworkSpeedNotificationKey];
     self.speedTextLabel.text = downloadSpped;
 }
 

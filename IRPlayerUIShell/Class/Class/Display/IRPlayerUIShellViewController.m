@@ -8,11 +8,7 @@
 
 #import "IRPlayerUIShellViewController.h"
 #import <IRPlayer/IRPlayer.h>
-//#import <ZFPlayer/ZFAVPlayerManager.h>
-//#import <ZFPlayer/ZFIJKPlayerManager.h>
-//#import <ZFPlayer/KSMediaPlayerManager.h>
 #import "IRPlayerControlView.h"
-//#import "ZFNotAutoPlayViewController.h"
 #import "UIImageView+IRCache.h"
 #import "IRUtilities.h"
 #import "IRScope.h"
@@ -47,11 +43,6 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     });
     
     self.playerImp = [IRPlayerImp player];
-    [self.playerImp registerPlayerNotificationTarget:self
-                                      stateAction:@selector(stateAction:)
-                                   progressAction:@selector(progressAction:)
-                                   playableAction:@selector(playableAction:)
-                                      errorAction:@selector(errorAction:)];
     [self.playerImp setViewTapAction:^(IRPlayerImp * _Nonnull player, IRPLFView * _Nonnull view) {
         NSLog(@"player display view did click!");
     }];
@@ -60,16 +51,12 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Push" style:UIBarButtonItemStylePlain target:self action:@selector(pushNewVC)];
     [self.view addSubview:self.containerView];
     
     [self.containerView addSubview:self.playBtn];
     [self.view addSubview:self.changeBtn];
     [self.view addSubview:self.nextBtn];
 
-//    ZFAVPlayerManager *playerManager = [[ZFAVPlayerManager alloc] init];
-    /// 播放器相关
-//    self.player = [IRPlayerController playerWithPlayerManager:playerManager containerView:self.containerView];
     self.player = [IRPlayerController playerWithPlayerManager:self.playerImp containerView:self.containerView];
     self.player.controlView = self.controlView;
     /// 设置退到后台继续播放
@@ -84,11 +71,14 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     /// 播放完成
     self.player.playerDidToEnd = ^(id  _Nonnull asset) {
         @strongify(self)
-        [self.player.currentPlayerManager replay];
+//        [self.player.currentPlayerManager replay];
+        [self.player.currentPlayerManager pause];
+        [self.player.currentPlayerManager play];
+        
         [self.player playTheNext];
         if (!self.player.isLastAssetURL) {
             NSString *title = [NSString stringWithFormat:@"视频标题%zd",self.player.currentPlayIndex];
-            [self.controlView showTitle:title coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeLandscape];
+            [self.controlView showTitle:title coverURLString:kVideoCover fullScreenMode:IRFullScreenModeLandscape];
         } else {
             [self.player stop];
         }
@@ -137,27 +127,22 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 - (void)changeVideo:(UIButton *)sender {
     NSString *URLString = @"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4";
     self.player.assetURL = [NSURL URLWithString:URLString];
-    [self.controlView showTitle:@"Apple" coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeAutomatic];
+    [self.controlView showTitle:@"Apple" coverURLString:kVideoCover fullScreenMode:IRFullScreenModeAutomatic];
 }
 
 - (void)playClick:(UIButton *)sender {
     [self.player playTheIndex:0];
-    [self.controlView showTitle:@"视频标题" coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeAutomatic];
+    [self.controlView showTitle:@"视频标题" coverURLString:kVideoCover fullScreenMode:IRFullScreenModeAutomatic];
 }
 
 - (void)nextClick:(UIButton *)sender {
     if (!self.player.isLastAssetURL) {
         [self.player playTheNext];
         NSString *title = [NSString stringWithFormat:@"视频标题%zd",self.player.currentPlayIndex];
-        [self.controlView showTitle:title coverURLString:kVideoCover fullScreenMode:ZFFullScreenModeAutomatic];
+        [self.controlView showTitle:title coverURLString:kVideoCover fullScreenMode:IRFullScreenModeAutomatic];
     } else {
         NSLog(@"最后一个视频了");
     }
-}
-
-- (void)pushNewVC {
-//    IRNotAutoPlayViewController *vc = [[IRNotAutoPlayViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -236,8 +221,6 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
           [NSURL URLWithString:@"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4"],
           [NSURL URLWithString:@"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/peter/mac-peter-tpl-cc-us-2018_1280x720h.mp4"],
           [NSURL URLWithString:@"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/grimes/mac-grimes-tpl-cc-us-2018_1280x720h.mp4"],
-          [NSURL URLWithString:@"http://flv3.bn.netease.com/tvmrepo/2018/6/H/9/EDJTRBEH9/SD/EDJTRBEH9-mobile.mp4"],
-          [NSURL URLWithString:@"http://flv3.bn.netease.com/tvmrepo/2018/6/9/R/EDJTRAD9R/SD/EDJTRAD9R-mobile.mp4"],
           [NSURL URLWithString:@"http://www.flashls.org/playlists/test_001/stream_1000k_48k_640x360.m3u8"],
           [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-video/7_517c8948b166655ad5cfb563cc7fbd8e.mp4"],
           [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-smallvideo/68_20df3a646ab5357464cd819ea987763a.mp4"],

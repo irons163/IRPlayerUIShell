@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "IRPlayerViewController.h"
+#import "IRPlayerUIShellViewController.h"
 
 @interface ViewController ()
 
@@ -48,8 +49,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    IRPlayerViewController *player = [IRPlayerViewController new];
-    player.displayMode = IRPlayerDisplayerQuadMode;
+//    IRPlayerViewController *player = [IRPlayerViewController new];
+//    player.displayMode = IRPlayerDisplayerQuadMode;
+    IRPlayerUIShellViewController *player = [IRPlayerUIShellViewController new];
     [self.navigationController pushViewController:player animated:YES];
 }
 

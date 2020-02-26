@@ -41,7 +41,7 @@ static const CGFloat kProgressH = 1.0;
 /** 拖动slider动画的时间*/
 static const CGFloat kAnimate = 0.3;
 
-@implementation ZFSliderButton
+@implementation IRSliderButton
 
 // 重写此方法将按钮的点击范围扩大
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
@@ -63,7 +63,7 @@ static const CGFloat kAnimate = 0.3;
 /** 滑动进度 */
 @property (nonatomic, strong) UIImageView *sliderProgressView;
 /** 滑块 */
-@property (nonatomic, strong) ZFSliderButton *sliderBtn;
+@property (nonatomic, strong) IRSliderButton *sliderBtn;
 
 @property (nonatomic, strong) UIView *loadingBarView;
 
@@ -413,9 +413,9 @@ static const CGFloat kAnimate = 0.3;
     return _sliderProgressView;
 }
 
-- (ZFSliderButton *)sliderBtn {
+- (IRSliderButton *)sliderBtn {
     if (!_sliderBtn) {
-        _sliderBtn = [ZFSliderButton buttonWithType:UIButtonTypeCustom];
+        _sliderBtn = [IRSliderButton buttonWithType:UIButtonTypeCustom];
         [_sliderBtn setAdjustsImageWhenHighlighted:NO];
     }
     return _sliderBtn;

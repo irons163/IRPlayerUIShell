@@ -32,17 +32,12 @@
 #import "IRVolumeBrightnessView.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "IRUtilities.h"
-//#if __has_include(<ZFPlayer/ZFPlayer.h>)
-//#import <ZFPlayer/ZFPlayer.h>
-//#else
-//#import "ZFPlayer.h"
-//#endif
 
 @interface IRVolumeBrightnessView ()
 
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) UIImageView *iconImageView;
-@property (nonatomic, assign) ZFVolumeBrightnessType volumeBrightnessType;
+@property (nonatomic, assign) IRVolumeBrightnessType volumeBrightnessType;
 @property (nonatomic, strong) MPVolumeView *volumeView;
 
 @end
@@ -107,7 +102,7 @@
     [[UIApplication sharedApplication].keyWindow addSubview:self.volumeView];
 }
 
-- (void)updateProgress:(CGFloat)progress withVolumeBrightnessType:(ZFVolumeBrightnessType)volumeBrightnessType {
+- (void)updateProgress:(CGFloat)progress withVolumeBrightnessType:(IRVolumeBrightnessType)volumeBrightnessType {
     if (progress >= 1) {
         progress = 1;
     } else if (progress <= 0) {
@@ -116,19 +111,19 @@
     self.progressView.progress = progress;
     self.volumeBrightnessType = volumeBrightnessType;
     UIImage *playerImage = nil;
-    if (volumeBrightnessType == ZFVolumeBrightnessTypeVolume) {
+    if (volumeBrightnessType == IRVolumeBrightnessTypeVolume) {
         if (progress == 0) {
-            playerImage = ZFPlayer_Image(@"ZFPlayer_muted");
+            playerImage = IRPlayer_Image(@"IRPlayer_muted");
         } else if (progress > 0 && progress < 0.5) {
-            playerImage = ZFPlayer_Image(@"ZFPlayer_volume_low");
+            playerImage = IRPlayer_Image(@"IRPlayer_volume_low");
         } else {
-            playerImage = ZFPlayer_Image(@"ZFPlayer_volume_high");
+            playerImage = IRPlayer_Image(@"IRPlayer_volume_high");
         }
-    } else if (volumeBrightnessType == ZFVolumeBrightnessTypeumeBrightness) {
+    } else if (volumeBrightnessType == IRVolumeBrightnessTypeumeBrightness) {
         if (progress >= 0 && progress < 0.5) {
-            playerImage = ZFPlayer_Image(@"ZFPlayer_brightness_low");
+            playerImage = IRPlayer_Image(@"IRPlayer_brightness_low");
         } else {
-            playerImage = ZFPlayer_Image(@"ZFPlayer_brightness_high");
+            playerImage = IRPlayer_Image(@"IRPlayer_brightness_high");
         }
     }
     self.iconImageView.image = playerImage;
@@ -138,12 +133,12 @@
     [self performSelector:@selector(hideTipView) withObject:nil afterDelay:1.5];
 }
 
-- (void)setVolumeBrightnessType:(ZFVolumeBrightnessType)volumeBrightnessType {
+- (void)setVolumeBrightnessType:(IRVolumeBrightnessType)volumeBrightnessType {
     _volumeBrightnessType = volumeBrightnessType;
-    if (volumeBrightnessType == ZFVolumeBrightnessTypeVolume) {
-        self.iconImageView.image = ZFPlayer_Image(@"ZFPlayer_volume");
+    if (volumeBrightnessType == IRVolumeBrightnessTypeVolume) {
+        self.iconImageView.image = IRPlayer_Image(@"IRPlayer_volume");
     } else {
-        self.iconImageView.image = ZFPlayer_Image(@"ZFPlayer_brightness");
+        self.iconImageView.image = IRPlayer_Image(@"IRPlayer_brightness");
     }
 }
 

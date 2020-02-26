@@ -42,7 +42,7 @@
 // Gets the log output status.
 + (BOOL)getLogEnable;
 
-/// Get ZFPlayer version.
+/// Get IRPlayer version.
 + (NSString *)version;
 
 // Log output method.

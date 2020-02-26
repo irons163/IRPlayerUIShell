@@ -34,11 +34,7 @@
 #import "IRLandScapeControlView.h"
 #import "IRSpeedLoadingView.h"
 #import "IRSmallFloatControlView.h"
-#if __has_include(<ZFPlayer/ZFPlayerMediaControl.h>)
-#import <ZFPlayer/ZFPlayerMediaControl.h>
-#else
 #import "IRPlayerMediaControl.h"
-#endif
 
 @interface IRPlayerControlView : UIView <IRPlayerMediaControl>
 
@@ -126,7 +122,7 @@
  @param coverUrl 视频的封面，占位图默认是灰色的
  @param fullScreenMode 全屏模式
  */
-- (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl fullScreenMode:(ZFFullScreenMode)fullScreenMode;
+- (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl fullScreenMode:(IRFullScreenMode)fullScreenMode;
 
 /**
  设置标题、封面、默认占位图、全屏模式
@@ -135,7 +131,7 @@
  @param placeholder 指定封面的placeholder
  @param fullScreenMode 全屏模式
  */
-- (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl placeholderImage:(UIImage *)placeholder fullScreenMode:(ZFFullScreenMode)fullScreenMode;
+- (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl placeholderImage:(UIImage *)placeholder fullScreenMode:(IRFullScreenMode)fullScreenMode;
 
 /**
  设置标题、UIImage封面、全屏模式
@@ -143,7 +139,7 @@
  @param image 视频的封面UIImage
  @param fullScreenMode 全屏模式
  */
-- (void)showTitle:(NSString *)title coverImage:(UIImage *)image fullScreenMode:(ZFFullScreenMode)fullScreenMode;
+- (void)showTitle:(NSString *)title coverImage:(UIImage *)image fullScreenMode:(IRFullScreenMode)fullScreenMode;
 
 /**
  重置控制层

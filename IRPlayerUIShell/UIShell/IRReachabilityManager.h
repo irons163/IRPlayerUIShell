@@ -33,19 +33,19 @@
 #if !TARGET_OS_WATCH
 #import <SystemConfiguration/SystemConfiguration.h>
 
-typedef NS_ENUM(NSInteger, ZFReachabilityStatus) {
-    ZFReachabilityStatusUnknown          = -1,
-    ZFReachabilityStatusNotReachable     = 0,
-    ZFReachabilityStatusReachableViaWiFi = 1,
-    ZFReachabilityStatusReachableVia2G   = 2,
-    ZFReachabilityStatusReachableVia3G   = 3,
-    ZFReachabilityStatusReachableVia4G   = 4,
+typedef NS_ENUM(NSInteger, IRReachabilityStatus) {
+    IRReachabilityStatusUnknown          = -1,
+    IRReachabilityStatusNotReachable     = 0,
+    IRReachabilityStatusReachableViaWiFi = 1,
+    IRReachabilityStatusReachableVia2G   = 2,
+    IRReachabilityStatusReachableVia3G   = 3,
+    IRReachabilityStatusReachableVia4G   = 4,
 };
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- `ZFReachabilityManager` monitors the reachability of domains, and addresses for both WWAN and WiFi network interfaces.
+ `IRReachabilityManager` monitors the reachability of domains, and addresses for both WWAN and WiFi network interfaces.
  Reachability can be used to determine background information about why a network operation failed, or to trigger a network operation retrying when a connection is established. It should not be used to prevent a user from initiating a network request, as it's possible that an initial request may be required to establish reachability.
  See Apple's Reachability Sample Code ( https://developer.apple.com/library/ios/samplecode/reachability/ )
  @warning Instances of `AFNetworkReachabilityManager` must be started with `-startMonitoring` before reachability status can be determined.
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The current network reachability status.
  */
-@property (readonly, nonatomic, assign) ZFReachabilityStatus networkReachabilityStatus;
+@property (readonly, nonatomic, assign) IRReachabilityStatus networkReachabilityStatus;
 
 /**
  Whether or not the network is currently reachable.
@@ -140,7 +140,7 @@ NS_ASSUME_NONNULL_BEGIN
  Sets a callback to be executed when the network availability of the `baseURL` host changes.
  @param block A block object to be executed when the network availability of the `baseURL` host changes.. This block has no return value and takes a single argument which represents the various reachability states from the device to the `baseURL`.
  */
-- (void)setReachabilityStatusChangeBlock:(nullable void (^)(ZFReachabilityStatus status))block;
+- (void)setReachabilityStatusChangeBlock:(nullable void (^)(IRReachabilityStatus status))block;
 
 @end
 
@@ -148,17 +148,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Notifications
 ///--------------------
 
-FOUNDATION_EXPORT NSString * const ZFReachabilityDidChangeNotification;
-FOUNDATION_EXPORT NSString * const ZFReachabilityNotificationStatusItem;
+FOUNDATION_EXPORT NSString * const IRReachabilityDidChangeNotification;
+FOUNDATION_EXPORT NSString * const IRReachabilityNotificationStatusItem;
 
 ///--------------------
 /// @name Functions
 ///--------------------
 
 /**
- Returns a localized string representation of an `ZFReachabilityStatus` value.
+ Returns a localized string representation of an `IRReachabilityStatus` value.
  */
-FOUNDATION_EXPORT NSString * ZFStringFromNetworkReachabilityStatus(ZFReachabilityStatus status);
+FOUNDATION_EXPORT NSString * IRStringFromNetworkReachabilityStatus(IRReachabilityStatus status);
 
 NS_ASSUME_NONNULL_END
 #endif

@@ -31,7 +31,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol ZFSliderViewDelegate <NSObject>
+@protocol IRSliderViewDelegate <NSObject>
 
 @optional
 // 滑块滑动开始
@@ -45,16 +45,16 @@
 
 @end
 
-@interface ZFSliderButton : UIButton
+@interface IRSliderButton : UIButton
 
 @end
 
 @interface IRSliderView : UIView
 
-@property (nonatomic, weak) id<ZFSliderViewDelegate> delegate;
+@property (nonatomic, weak) id<IRSliderViewDelegate> delegate;
 
 /** 滑块 */
-@property (nonatomic, strong, readonly) ZFSliderButton *sliderBtn;
+@property (nonatomic, strong, readonly) IRSliderButton *sliderBtn;
 
 /** 默认滑杆的颜色 */
 @property (nonatomic, strong) UIColor *maximumTrackTintColor;

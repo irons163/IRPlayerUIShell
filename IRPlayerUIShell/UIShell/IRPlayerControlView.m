@@ -43,14 +43,8 @@
 #import "IRScope.h"
 #import "UIImageView+IRCache.h"
 #import <MediaPlayer/MediaPlayer.h>
-//#import "ZFVolumeBrightnessView.h"
-//#if __has_include(<ZFPlayer/ZFPlayer.h>)
-//#import <ZFPlayer/ZFPlayer.h>
-//#else
-//#import "ZFPlayer.h"
-//#endif
 
-@interface IRPlayerControlView () <ZFSliderViewDelegate>
+@interface IRPlayerControlView () <IRSliderViewDelegate>
 /// 竖屏控制层的View
 @property (nonatomic, strong) IRPortraitControlView *portraitControlView;
 /// 横屏控制层的View
@@ -263,7 +257,7 @@
     if ([reasonstr isEqualToString:@"ExplicitVolumeChange"]) {
         float volume = [ userInfo[@"AVSystemController_AudioVolumeNotificationParameter"] floatValue];
         if (self.player.isFullScreen) {
-            [self.volumeBrightnessView updateProgress:volume withVolumeBrightnessType:ZFVolumeBrightnessTypeVolume];
+            [self.volumeBrightnessView updateProgress:volume withVolumeBrightnessType:IRVolumeBrightnessTypeVolume];
         } else {
             [self.volumeBrightnessView addSystemVolumeView];
         }
@@ -292,13 +286,13 @@
 }
 
 /// 设置标题、封面、全屏模式
-- (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl fullScreenMode:(ZFFullScreenMode)fullScreenMode {
+- (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl fullScreenMode:(IRFullScreenMode)fullScreenMode {
     UIImage *placeholder = [IRUtilities imageWithColor:[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1] size:self.bgImgView.bounds.size];
     [self showTitle:title coverURLString:coverUrl placeholderImage:placeholder fullScreenMode:fullScreenMode];
 }
 
 /// 设置标题、封面、默认占位图、全屏模式
-- (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl placeholderImage:(UIImage *)placeholder fullScreenMode:(ZFFullScreenMode)fullScreenMode {
+- (void)showTitle:(NSString *)title coverURLString:(NSString *)coverUrl placeholderImage:(UIImage *)placeholder fullScreenMode:(IRFullScreenMode)fullScreenMode {
     [self resetControlView];
     [self layoutIfNeeded];
     [self setNeedsDisplay];
@@ -314,7 +308,7 @@
 }
 
 /// 设置标题、UIImage封面、全屏模式
-- (void)showTitle:(NSString *)title coverImage:(UIImage *)image fullScreenMode:(ZFFullScreenMode)fullScreenMode {
+- (void)showTitle:(NSString *)title coverImage:(UIImage *)image fullScreenMode:(IRFullScreenMode)fullScreenMode {
     [self resetControlView];
     [self layoutIfNeeded];
     [self setNeedsDisplay];
@@ -405,11 +399,11 @@
     } else if (direction == IRPanDirectionV) {
         if (location == IRPanLocationLeft) { /// 调节亮度
             self.player.brightness -= (velocity.y) / 10000;
-            [self.volumeBrightnessView updateProgress:self.player.brightness withVolumeBrightnessType:ZFVolumeBrightnessTypeumeBrightness];
+            [self.volumeBrightnessView updateProgress:self.player.brightness withVolumeBrightnessType:IRVolumeBrightnessTypeumeBrightness];
         } else if (location == IRPanLocationRight) { /// 调节声音
             self.player.volume -= (velocity.y) / 10000;
             if (self.player.isFullScreen) {
-                [self.volumeBrightnessView updateProgress:self.player.volume withVolumeBrightnessType:ZFVolumeBrightnessTypeVolume];
+                [self.volumeBrightnessView updateProgress:self.player.volume withVolumeBrightnessType:IRVolumeBrightnessTypeVolume];
             }
         }
     }
@@ -438,9 +432,9 @@
 /// 捏合手势事件，这里改变了视频的填充模式
 - (void)gesturePinched:(IRGestureController *)gestureControl scale:(float)scale {
     if (scale > 1) {
-        self.player.currentPlayerManager.scalingMode = ZFPlayerScalingModeAspectFill;
+        self.player.currentPlayerManager.viewGravityMode = IRPlayerScalingModeAspectFill;
     } else {
-        self.player.currentPlayerManager.scalingMode = ZFPlayerScalingModeAspectFit;
+        self.player.currentPlayerManager.viewGravityMode = IRPlayerScalingModeAspectFit;
     }
 }
 
@@ -450,36 +444,38 @@
 }
 
 /// 播放状态改变
-- (void)videoPlayer:(IRPlayerController *)videoPlayer playStateChanged:(ZFPlayerPlaybackState)state {
-    if (state == ZFPlayerPlayStatePlaying) {
+- (void)videoPlayer:(IRPlayerController *)videoPlayer playStateChanged:(IRPlayerPlaybackState)state {
+    if (state == IRPlayerPlayStatePlaying) {
         [self.portraitControlView playBtnSelectedState:YES];
         [self.landScapeControlView playBtnSelectedState:YES];
         self.failBtn.hidden = YES;
         /// 开始播放时候判断是否显示loading
-        if (videoPlayer.currentPlayerManager.loadState == ZFPlayerLoadStateStalled && !self.prepareShowLoading) {
+        if (videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying && !self.prepareShowLoading) {
             [self.activity startAnimating];
-        } else if ((videoPlayer.currentPlayerManager.loadState == ZFPlayerLoadStateStalled || videoPlayer.currentPlayerManager.loadState == ZFPlayerLoadStatePrepare) && self.prepareShowLoading) {
+        } else if ((videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying || videoPlayer.currentPlayerManager.state == IRPlayerStateReadyToPlay) && self.prepareShowLoading) {
             [self.activity startAnimating];
         }
-    } else if (state == ZFPlayerPlayStatePaused) {
+    } else if (state == IRPlayerPlayStatePaused) {
         [self.portraitControlView playBtnSelectedState:NO];
         [self.landScapeControlView playBtnSelectedState:NO];
         /// 暂停的时候隐藏loading
         [self.activity stopAnimating];
         self.failBtn.hidden = YES;
-    } else if (state == ZFPlayerPlayStatePlayFailed) {
+    } else if (state == IRPlayerPlayStatePlayFailed) {
         self.failBtn.hidden = NO;
         [self.activity stopAnimating];
     }
 }
 
 /// 加载状态改变
-- (void)videoPlayer:(IRPlayerController *)videoPlayer loadStateChanged:(ZFPlayerLoadState)state {
-    if (state == ZFPlayerLoadStatePrepare) {
+- (void)videoPlayer:(IRPlayerController *)videoPlayer loadStateChanged:(IRPlayerLoadState)state {
+    if (state == IRPlayerLoadStatePrepare) {
         self.coverImageView.hidden = NO;
-        [self.portraitControlView playBtnSelectedState:videoPlayer.currentPlayerManager.shouldAutoPlay];
-        [self.landScapeControlView playBtnSelectedState:videoPlayer.currentPlayerManager.shouldAutoPlay];
-    } else if (state == ZFPlayerLoadStatePlaythroughOK || state == ZFPlayerLoadStatePlayable) {
+//        [self.portraitControlView playBtnSelectedState:videoPlayer.currentPlayerManager.shouldAutoPlay];
+//        [self.landScapeControlView playBtnSelectedState:videoPlayer.currentPlayerManager.shouldAutoPlay];
+        [self.portraitControlView playBtnSelectedState:YES];
+        [self.landScapeControlView playBtnSelectedState:YES];
+    } else if (state == IRPlayerLoadStatePlaythroughOK || state == IRPlayerLoadStatePlayable) {
         self.coverImageView.hidden = YES;
         if (self.effectViewShow) {
             self.effectView.hidden = NO;
@@ -488,9 +484,9 @@
             self.player.currentPlayerManager.view.backgroundColor = [UIColor blackColor];
         }
     }
-    if (state == ZFPlayerLoadStateStalled && videoPlayer.currentPlayerManager.isPlaying && !self.prepareShowLoading) {
+    if (state == IRPlayerLoadStateStalled && videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying && !self.prepareShowLoading) {
         [self.activity startAnimating];
-    } else if ((state == ZFPlayerLoadStateStalled || state == ZFPlayerLoadStatePrepare) && videoPlayer.currentPlayerManager.isPlaying && self.prepareShowLoading) {
+    } else if ((state == IRPlayerLoadStateStalled || state == IRPlayerLoadStatePrepare) && videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying && self.prepareShowLoading) {
         [self.activity startAnimating];
     } else {
         [self.activity stopAnimating];
@@ -588,9 +584,9 @@
     self.fastView.hidden = NO;
     self.fastView.alpha = 1;
     if (forward) {
-        self.fastImageView.image = ZFPlayer_Image(@"ZFPlayer_fast_forward");
+        self.fastImageView.image = IRPlayer_Image(@"IRPlayer_fast_forward");
     } else {
-        self.fastImageView.image = ZFPlayer_Image(@"ZFPlayer_fast_backward");
+        self.fastImageView.image = IRPlayer_Image(@"IRPlayer_fast_backward");
     }
     NSString *draggedTime = [IRUtilities convertTimeSecond:self.player.totalTime*value];
     NSString *totalTime = [IRUtilities convertTimeSecond:self.player.totalTime];
@@ -621,7 +617,7 @@
 
 /// 加载失败
 - (void)failBtnClick:(UIButton *)sender {
-    [self.player.currentPlayerManager reloadPlayer];
+//    [self.player.currentPlayerManager reloadPlayer];
 }
 
 #pragma mark - setter
@@ -631,9 +627,12 @@
     self.landScapeControlView.player = player;
     self.portraitControlView.player = player;
     /// 解决播放时候黑屏闪一下问题
-    [player.currentPlayerManager.view insertSubview:self.bgImgView atIndex:0];
+//    [player.currentPlayerManager.view insertSubview:self.bgImgView atIndex:0];
+    [player.currentPlayerManager.view.superview insertSubview:self.bgImgView atIndex:0];
     [self.bgImgView addSubview:self.effectView];
-    [player.currentPlayerManager.view insertSubview:self.coverImageView atIndex:1];
+//    [player.currentPlayerManager.view insertSubview:self.coverImageView atIndex:1];
+    [player.currentPlayerManager.view.superview insertSubview:self.coverImageView atIndex:1];
+    
     self.coverImageView.frame = player.currentPlayerManager.view.bounds;
     self.coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.bgImgView.frame = player.currentPlayerManager.view.bounds;
@@ -800,9 +799,9 @@
         @weakify(self)
         _floatControlView.closeClickCallback = ^{
             @strongify(self)
-            if (self.player.containerType == ZFPlayerContainerTypeCell) {
+            if (self.player.containerType == IRPlayerContainerTypeCell) {
                 [self.player stopCurrentPlayingCell];
-            } else if (self.player.containerType == ZFPlayerContainerTypeView) {
+            } else if (self.player.containerType == IRPlayerContainerTypeView) {
                 [self.player stopCurrentPlayingView];
             }
             [self resetControlView];

@@ -35,14 +35,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, ZFPlayerBackgroundState) {
-    ZFPlayerBackgroundStateForeground,  // Enter the foreground from the background.
-    ZFPlayerBackgroundStateBackground,  // From the foreground to the background.
+typedef NS_ENUM(NSUInteger, IRPlayerBackgroundState) {
+    IRPlayerBackgroundStateForeground,  // Enter the foreground from the background.
+    IRPlayerBackgroundStateBackground,  // From the foreground to the background.
 };
 
 @interface IRPlayerControllerNotification : NSObject
 
-@property (nonatomic, readonly) ZFPlayerBackgroundState backgroundState;
+@property (nonatomic, readonly) IRPlayerBackgroundState backgroundState;
 
 @property (nonatomic, copy, nullable) void(^willResignActive)(IRPlayerControllerNotification *registrar);
 

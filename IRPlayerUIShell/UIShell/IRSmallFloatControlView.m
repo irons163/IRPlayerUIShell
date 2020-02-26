@@ -70,7 +70,7 @@
 - (UIButton *)closeBtn {
     if (!_closeBtn) {
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_closeBtn setImage:ZFPlayer_Image(@"ZFPlayer_close") forState:UIControlStateNormal];
+        [_closeBtn setImage:IRPlayer_Image(@"IRPlayer_close") forState:UIControlStateNormal];
         [_closeBtn addTarget:self action:@selector(closeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _closeBtn;

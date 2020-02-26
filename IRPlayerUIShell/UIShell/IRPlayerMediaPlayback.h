@@ -34,27 +34,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, ZFPlayerPlaybackState) {
-    ZFPlayerPlayStateUnknown,
-    ZFPlayerPlayStatePlaying,
-    ZFPlayerPlayStatePaused,
-    ZFPlayerPlayStatePlayFailed,
-    ZFPlayerPlayStatePlayStopped
+typedef NS_ENUM(NSUInteger, IRPlayerPlaybackState) {
+    IRPlayerPlayStateUnknown,
+    IRPlayerPlayStatePlaying,
+    IRPlayerPlayStatePaused,
+    IRPlayerPlayStatePlayFailed,
+    IRPlayerPlayStatePlayStopped
 };
 
-typedef NS_OPTIONS(NSUInteger, ZFPlayerLoadState) {
-    ZFPlayerLoadStateUnknown        = 0,
-    ZFPlayerLoadStatePrepare        = 1 << 0,
-    ZFPlayerLoadStatePlayable       = 1 << 1,
-    ZFPlayerLoadStatePlaythroughOK  = 1 << 2, // Playback will be automatically started.
-    ZFPlayerLoadStateStalled        = 1 << 3, // Playback will be automatically paused in this state, if started.
+typedef NS_OPTIONS(NSUInteger, IRPlayerLoadState) {
+    IRPlayerLoadStateUnknown        = 0,
+    IRPlayerLoadStatePrepare        = 1 << 0,
+    IRPlayerLoadStatePlayable       = 1 << 1,
+    IRPlayerLoadStatePlaythroughOK  = 1 << 2, // Playback will be automatically started.
+    IRPlayerLoadStateStalled        = 1 << 3, // Playback will be automatically paused in this state, if started.
 };
 
-typedef NS_ENUM(NSInteger, ZFPlayerScalingMode) {
-    ZFPlayerScalingModeNone,       // No scaling.
-    ZFPlayerScalingModeAspectFit,  // Uniform scale until one dimension fits.
-    ZFPlayerScalingModeAspectFill, // Uniform scale until the movie fills the visible bounds. One dimension may have clipped contents.
-    ZFPlayerScalingModeFill        // Non-uniform scale. Both render dimensions will exactly match the visible bounds.
+typedef NS_ENUM(NSInteger, IRPlayerScalingMode) {
+    IRPlayerScalingModeNone,       // No scaling.
+    IRPlayerScalingModeAspectFit,  // Uniform scale until one dimension fits.
+    IRPlayerScalingModeAspectFill, // Uniform scale until the movie fills the visible bounds. One dimension may have clipped contents.
+    IRPlayerScalingModeFill        // Non-uniform scale. Both render dimensions will exactly match the visible bounds.
 };
 
 @protocol IRPlayerMediaPlayback <NSObject>
@@ -66,12 +66,12 @@ typedef NS_ENUM(NSInteger, ZFPlayerScalingMode) {
 @optional
 /// The player volume.
 /// Only affects audio volume for the player instance and not for the device.
-/// You can change device volume or player volume as needed,change the player volume you can folllow the `ZFPlayerMediaPlayback` protocol.
+/// You can change device volume or player volume as needed,change the player volume you can folllow the `IRPlayerMediaPlayback` protocol.
 @property (nonatomic) float volume;
 
 /// The player muted.
 /// indicates whether or not audio output of the player is muted. Only affects audio muting for the player instance and not for the device.
-/// You can change device volume or player muted as needed,change the player muted you can folllow the `ZFPlayerMediaPlayback` protocol.
+/// You can change device volume or player muted as needed,change the player muted you can folllow the `IRPlayerMediaPlayback` protocol.
 @property (nonatomic, getter=isMuted) BOOL muted;
 
 /// Playback speed,0.5...2
@@ -92,15 +92,15 @@ typedef NS_ENUM(NSInteger, ZFPlayerScalingMode) {
 /// The player play state,playing or not playing.
 @property (nonatomic, readonly) BOOL isPlaying;
 
-/// Determines how the content scales to fit the view. Defaults to ZFPlayerScalingModeNone.
-@property (nonatomic) ZFPlayerScalingMode scalingMode;
+/// Determines how the content scales to fit the view. Defaults to IRPlayerScalingModeNone.
+@property (nonatomic) IRPlayerScalingMode scalingMode;
 
 /**
  @abstract Check whether video preparation is complete.
  @discussion isPreparedToPlay processing logic
  
- * If isPreparedToPlay is true, you can call [ZFPlayerMediaPlayback play] API start playing;
- * If isPreparedToPlay to false, direct call [ZFPlayerMediaPlayback play], in the play the internal automatic call [ZFPlayerMediaPlayback prepareToPlay] API.
+ * If isPreparedToPlay is true, you can call [IRPlayerMediaPlayback play] API start playing;
+ * If isPreparedToPlay to false, direct call [IRPlayerMediaPlayback play], in the play the internal automatic call [IRPlayerMediaPlayback prepareToPlay] API.
  * Returns true if prepared for playback.
  */
 @property (nonatomic, readonly) BOOL isPreparedToPlay;
@@ -115,14 +115,14 @@ typedef NS_ENUM(NSInteger, ZFPlayerScalingMode) {
 @property (nonatomic, readonly) CGSize presentationSize;
 
 /// The playback state.
-@property (nonatomic, readonly) ZFPlayerPlaybackState playState;
+@property (nonatomic, readonly) IRPlayerPlaybackState playState;
 
 /// The player load state.
-@property (nonatomic, readonly) ZFPlayerLoadState loadState;
+@property (nonatomic, readonly) IRPlayerLoadState loadState;
 
 ///------------------------------------
 /// If you don't appoint the controlView, you can called the following blocks.
-/// If you appoint the controlView, The following block cannot be called outside, only for `ZFPlayerController` calls.
+/// If you appoint the controlView, The following block cannot be called outside, only for `IRPlayerController` calls.
 ///------------------------------------
 
 /// The block invoked when the player is Prepare to play.
@@ -138,10 +138,10 @@ typedef NS_ENUM(NSInteger, ZFPlayerScalingMode) {
 @property (nonatomic, copy, nullable) void(^playerBufferTimeChanged)(id<IRPlayerMediaPlayback> asset, NSTimeInterval bufferTime);
 
 /// The block invoked when the player playback state changed.
-@property (nonatomic, copy, nullable) void(^playerPlayStateChanged)(id<IRPlayerMediaPlayback> asset, ZFPlayerPlaybackState playState);
+@property (nonatomic, copy, nullable) void(^playerPlayStateChanged)(id<IRPlayerMediaPlayback> asset, IRPlayerPlaybackState playState);
 
 /// The block invoked when the player load state changed.
-@property (nonatomic, copy, nullable) void(^playerLoadStateChanged)(id<IRPlayerMediaPlayback> asset, ZFPlayerLoadState loadState);
+@property (nonatomic, copy, nullable) void(^playerLoadStateChanged)(id<IRPlayerMediaPlayback> asset, IRPlayerLoadState loadState);
 
 /// The block invoked when the player play failed.
 @property (nonatomic, copy, nullable) void(^playerPlayFailed)(id<IRPlayerMediaPlayback> asset, id error);

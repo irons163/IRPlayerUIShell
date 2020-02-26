@@ -38,39 +38,39 @@
 #import <netdb.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 
-NSString * const ZFReachabilityDidChangeNotification = @"com.ZFPlayer.reachability.change";
-NSString * const ZFReachabilityNotificationStatusItem = @"ZFNetworkingReachabilityNotificationStatusItem";
+NSString * const IRReachabilityDidChangeNotification = @"com.IRPlayer.reachability.change";
+NSString * const IRReachabilityNotificationStatusItem = @"IRNetworkingReachabilityNotificationStatusItem";
 
-typedef void (^ZFReachabilityStatusBlock)(ZFReachabilityStatus status);
+typedef void (^IRReachabilityStatusBlock)(IRReachabilityStatus status);
 
-NSString * ZFStringFromNetworkReachabilityStatus(ZFReachabilityStatus status) {
+NSString * IRStringFromNetworkReachabilityStatus(IRReachabilityStatus status) {
     switch (status) {
-        case ZFReachabilityStatusNotReachable:
-            return NSLocalizedStringFromTable(@"Not Reachable", @"ZFPlayer", nil);
-        case ZFReachabilityStatusReachableViaWiFi:
-            return NSLocalizedStringFromTable(@"Reachable via WiFi", @"ZFPlayer", nil);
-        case ZFReachabilityStatusReachableVia2G:
-            return NSLocalizedStringFromTable(@"Reachable via 2G", @"ZFPlayer", nil);
-        case ZFReachabilityStatusReachableVia3G:
-            return NSLocalizedStringFromTable(@"Reachable via 3G", @"ZFPlayer", nil);
-        case ZFReachabilityStatusReachableVia4G:
-            return NSLocalizedStringFromTable(@"Reachable via 4G", @"ZFPlayer", nil);
-        case ZFReachabilityStatusUnknown:
+        case IRReachabilityStatusNotReachable:
+            return NSLocalizedStringFromTable(@"Not Reachable", @"IRPlayer", nil);
+        case IRReachabilityStatusReachableViaWiFi:
+            return NSLocalizedStringFromTable(@"Reachable via WiFi", @"IRPlayer", nil);
+        case IRReachabilityStatusReachableVia2G:
+            return NSLocalizedStringFromTable(@"Reachable via 2G", @"IRPlayer", nil);
+        case IRReachabilityStatusReachableVia3G:
+            return NSLocalizedStringFromTable(@"Reachable via 3G", @"IRPlayer", nil);
+        case IRReachabilityStatusReachableVia4G:
+            return NSLocalizedStringFromTable(@"Reachable via 4G", @"IRPlayer", nil);
+        case IRReachabilityStatusUnknown:
         default:
-            return NSLocalizedStringFromTable(@"Unknown", @"ZFPlayer", nil);
+            return NSLocalizedStringFromTable(@"Unknown", @"IRPlayer", nil);
     }
 }
 
-static ZFReachabilityStatus ZFReachabilityStatusForFlags(SCNetworkReachabilityFlags flags) {
+static IRReachabilityStatus IRReachabilityStatusForFlags(SCNetworkReachabilityFlags flags) {
     BOOL isReachable = ((flags & kSCNetworkReachabilityFlagsReachable) != 0);
     BOOL needsConnection = ((flags & kSCNetworkReachabilityFlagsConnectionRequired) != 0);
     BOOL canConnectionAutomatically = (((flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0) || ((flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0));
     BOOL canConnectWithoutUserInteraction = (canConnectionAutomatically && (flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0);
     BOOL isNetworkReachable = (isReachable && (!needsConnection || canConnectWithoutUserInteraction));
     
-    ZFReachabilityStatus status = ZFReachabilityStatusUnknown;
+    IRReachabilityStatus status = IRReachabilityStatusUnknown;
     if (isNetworkReachable == NO) {
-        status = ZFReachabilityStatusNotReachable;
+        status = IRReachabilityStatusNotReachable;
     }
 #if TARGET_OS_IPHONE
     else if ((flags & kSCNetworkReachabilityFlagsIsWWAN) != 0) {
@@ -78,17 +78,17 @@ static ZFReachabilityStatus ZFReachabilityStatusForFlags(SCNetworkReachabilityFl
         NSString *currentRadioAccessTechnology = info.currentRadioAccessTechnology;
         if (currentRadioAccessTechnology) {
             if ([currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyLTE]) {
-                status = ZFReachabilityStatusReachableVia4G;
+                status = IRReachabilityStatusReachableVia4G;
             } else if ([currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyEdge] || [currentRadioAccessTechnology isEqualToString:CTRadioAccessTechnologyGPRS]) {
-                status = ZFReachabilityStatusReachableVia2G;
+                status = IRReachabilityStatusReachableVia2G;
             } else {
-                status = ZFReachabilityStatusReachableVia3G;
+                status = IRReachabilityStatusReachableVia3G;
             }
         }
     }
 #endif
     else {
-        status = ZFReachabilityStatusReachableViaWiFi;
+        status = IRReachabilityStatusReachableViaWiFi;
     }
     return status;
     
@@ -102,26 +102,26 @@ static ZFReachabilityStatus ZFReachabilityStatusForFlags(SCNetworkReachabilityFl
  * a queued notification (for an earlier status condition) is processed after
  * the later update, resulting in the listener being left in the wrong state.
  */
-static void ZFPostReachabilityStatusChange(SCNetworkReachabilityFlags flags, ZFReachabilityStatusBlock block) {
-    ZFReachabilityStatus status = ZFReachabilityStatusForFlags(flags);
+static void IRPostReachabilityStatusChange(SCNetworkReachabilityFlags flags, IRReachabilityStatusBlock block) {
+    IRReachabilityStatus status = IRReachabilityStatusForFlags(flags);
     dispatch_async(dispatch_get_main_queue(), ^{
         if (block) block(status);
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        NSDictionary *userInfo = @{ ZFReachabilityNotificationStatusItem: @(status) };
-        [notificationCenter postNotificationName:ZFReachabilityDidChangeNotification object:nil userInfo:userInfo];
+        NSDictionary *userInfo = @{ IRReachabilityNotificationStatusItem: @(status) };
+        [notificationCenter postNotificationName:IRReachabilityDidChangeNotification object:nil userInfo:userInfo];
     });
 }
 
 static void AFNetworkReachabilityCallback(SCNetworkReachabilityRef __unused target, SCNetworkReachabilityFlags flags, void *info) {
-    ZFPostReachabilityStatusChange(flags, (__bridge ZFReachabilityStatusBlock)info);
+    IRPostReachabilityStatusChange(flags, (__bridge IRReachabilityStatusBlock)info);
 }
 
 
-static const void * ZFReachabilityRetainCallback(const void *info) {
+static const void * IRReachabilityRetainCallback(const void *info) {
     return Block_copy(info);
 }
 
-static void ZFReachabilityReleaseCallback(const void *info) {
+static void IRReachabilityReleaseCallback(const void *info) {
     if (info) {
         Block_release(info);
     }
@@ -130,8 +130,8 @@ static void ZFReachabilityReleaseCallback(const void *info) {
 @interface IRReachabilityManager ()
 
 @property (readonly, nonatomic, assign) SCNetworkReachabilityRef networkReachability;
-@property (readwrite, nonatomic, assign) ZFReachabilityStatus networkReachabilityStatus;
-@property (readwrite, nonatomic, copy) ZFReachabilityStatusBlock networkReachabilityStatusBlock;
+@property (readwrite, nonatomic, assign) IRReachabilityStatus networkReachabilityStatus;
+@property (readwrite, nonatomic, copy) IRReachabilityStatusBlock networkReachabilityStatusBlock;
 
 @end
 
@@ -181,7 +181,7 @@ static void ZFReachabilityReleaseCallback(const void *info) {
         return nil;
     }
     _networkReachability = CFRetain(reachability);
-    self.networkReachabilityStatus = ZFReachabilityStatusUnknown;
+    self.networkReachabilityStatus = IRReachabilityStatusUnknown;
     
     return self;
 }
@@ -205,11 +205,11 @@ static void ZFReachabilityReleaseCallback(const void *info) {
 }
 
 - (BOOL)isReachableViaWWAN {
-    return (self.networkReachabilityStatus == ZFReachabilityStatusReachableVia2G ||self.networkReachabilityStatus == ZFReachabilityStatusReachableVia3G || self.networkReachabilityStatus == ZFReachabilityStatusReachableVia4G);
+    return (self.networkReachabilityStatus == IRReachabilityStatusReachableVia2G ||self.networkReachabilityStatus == IRReachabilityStatusReachableVia3G || self.networkReachabilityStatus == IRReachabilityStatusReachableVia4G);
 }
 
 - (BOOL)isReachableViaWiFi {
-    return self.networkReachabilityStatus == ZFReachabilityStatusReachableViaWiFi;
+    return self.networkReachabilityStatus == IRReachabilityStatusReachableViaWiFi;
 }
 
 #pragma mark -
@@ -221,7 +221,7 @@ static void ZFReachabilityReleaseCallback(const void *info) {
     }
     
     __weak __typeof(self)weakSelf = self;
-    ZFReachabilityStatusBlock callback = ^(ZFReachabilityStatus status) {
+    IRReachabilityStatusBlock callback = ^(IRReachabilityStatus status) {
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         strongSelf.networkReachabilityStatus = status;
         if (strongSelf.networkReachabilityStatusBlock) {
@@ -229,14 +229,14 @@ static void ZFReachabilityReleaseCallback(const void *info) {
         }
     };
     
-    SCNetworkReachabilityContext context = {0, (__bridge void *)callback, ZFReachabilityRetainCallback, ZFReachabilityReleaseCallback, NULL};
+    SCNetworkReachabilityContext context = {0, (__bridge void *)callback, IRReachabilityRetainCallback, IRReachabilityReleaseCallback, NULL};
     SCNetworkReachabilitySetCallback(self.networkReachability, AFNetworkReachabilityCallback, &context);
     SCNetworkReachabilityScheduleWithRunLoop(self.networkReachability, CFRunLoopGetMain(), kCFRunLoopCommonModes);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         SCNetworkReachabilityFlags flags;
         if (SCNetworkReachabilityGetFlags(self.networkReachability, &flags)) {
-            ZFPostReachabilityStatusChange(flags, callback);
+            IRPostReachabilityStatusChange(flags, callback);
         }
     });
 }
@@ -252,12 +252,12 @@ static void ZFReachabilityReleaseCallback(const void *info) {
 #pragma mark -
 
 - (NSString *)localizedNetworkReachabilityStatusString {
-    return ZFStringFromNetworkReachabilityStatus(self.networkReachabilityStatus);
+    return IRStringFromNetworkReachabilityStatus(self.networkReachabilityStatus);
 }
 
 #pragma mark -
 
-- (void)setReachabilityStatusChangeBlock:(void (^)(ZFReachabilityStatus status))block {
+- (void)setReachabilityStatusChangeBlock:(void (^)(IRReachabilityStatus status))block {
     self.networkReachabilityStatusBlock = block;
 }
 

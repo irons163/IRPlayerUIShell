@@ -32,10 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)videoPlayer:(IRPlayerController *)videoPlayer prepareToPlay:(NSURL *)assetURL;
 
 /// When th player playback state changed.
-- (void)videoPlayer:(IRPlayerController *)videoPlayer playStateChanged:(ZFPlayerPlaybackState)state;
+- (void)videoPlayer:(IRPlayerController *)videoPlayer playStateChanged:(IRPlayerPlaybackState)state;
 
 /// When th player loading state changed.
-- (void)videoPlayer:(IRPlayerController *)videoPlayer loadStateChanged:(ZFPlayerLoadState)state;
+- (void)videoPlayer:(IRPlayerController *)videoPlayer loadStateChanged:(IRPlayerLoadState)state;
 
 #pragma mark - progress
 
@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  When the network changed
  */
-- (void)videoPlayer:(IRPlayerController *)videoPlayer reachabilityChanged:(ZFReachabilityStatus)status;
+- (void)videoPlayer:(IRPlayerController *)videoPlayer reachabilityChanged:(IRReachabilityStatus)status;
 
 #pragma mark - The video size changed
 

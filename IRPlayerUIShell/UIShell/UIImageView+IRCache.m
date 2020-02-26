@@ -33,11 +33,11 @@
 #import <objc/runtime.h>
 #import <CommonCrypto/CommonDigest.h>
 
-@implementation ZFImageDownloader
+@implementation IRImageDownloader
 
 - (void)startDownloadImageWithUrl:(NSString *)url
-                         progress:(ZFDownloadProgressBlock)progress
-                         finished:(ZFDownLoadDataCallBack)finished {
+                         progress:(IRDownloadProgressBlock)progress
+                         finished:(IRDownLoadDataCallBack)finished {
     self.progressBlock = progress;
     self.callbackOnFinished = finished;
     
@@ -98,18 +98,18 @@
 @interface NSString (md5)
 
 + (NSString *)cachedFileNameForKey:(NSString *)key;
-+ (NSString *)zf_cachePath;
-+ (NSString *)zf_keyForRequest:(NSURLRequest *)request;
++ (NSString *)ir_cachePath;
++ (NSString *)ir_keyForRequest:(NSURLRequest *)request;
 
 @end
 
 @implementation NSString (md5)
 
-+ (NSString *)zf_keyForRequest:(NSURLRequest *)request{
++ (NSString *)ir_keyForRequest:(NSURLRequest *)request{
     return request.URL.absoluteString;
 }
 
-+ (NSString *)zf_cachePath {
++ (NSString *)ir_cachePath {
     NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *directoryPath = [NSString stringWithFormat:@"%@/%@/%@",cachePath,@"default",@"com.hackemist.SDWebImageCache.default"];
     return directoryPath;
@@ -131,20 +131,20 @@
 
 @end
 
-@interface UIApplication (ZFCacheImage)
+@interface UIApplication (IRCacheImage)
 
-@property (nonatomic, strong, readonly) NSMutableDictionary *zf_cacheFaileTimes;
+@property (nonatomic, strong, readonly) NSMutableDictionary *ir_cacheFaileTimes;
 
-- (UIImage *)zf_cacheImageForRequest:(NSURLRequest *)request;
-- (void)zf_cacheImage:(UIImage *)image forRequest:(NSURLRequest *)request;
-- (void)zf_cacheFailRequest:(NSURLRequest *)request;
-- (NSUInteger)zf_failTimesForRequest:(NSURLRequest *)request;
+- (UIImage *)ir_cacheImageForRequest:(NSURLRequest *)request;
+- (void)ir_cacheImage:(UIImage *)image forRequest:(NSURLRequest *)request;
+- (void)ir_cacheFailRequest:(NSURLRequest *)request;
+- (NSUInteger)ir_failTimesForRequest:(NSURLRequest *)request;
 
 @end
 
-@implementation UIApplication (ZFCacheImage)
+@implementation UIApplication (IRCacheImage)
 
-- (NSMutableDictionary *)zf_cacheFaileTimes {
+- (NSMutableDictionary *)ir_cacheFaileTimes {
     NSMutableDictionary *dict = objc_getAssociatedObject(self, _cmd);
     if (!dict) {
         dict = [[NSMutableDictionary alloc] init];
@@ -152,17 +152,17 @@
     return dict;
 }
 
-- (void)setZf_cacheFaileTimes:(NSMutableDictionary *)zf_cacheFaileTimes {
-    objc_setAssociatedObject(self, @selector(zf_cacheFaileTimes), zf_cacheFaileTimes, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setIr_cacheFaileTimes:(NSMutableDictionary *)ir_cacheFaileTimes {
+    objc_setAssociatedObject(self, @selector(ir_cacheFaileTimes), ir_cacheFaileTimes, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)zf_clearCache {
-    [self.zf_cacheFaileTimes removeAllObjects];
-    self.zf_cacheFaileTimes = nil;
+- (void)ir_clearCache {
+    [self.ir_cacheFaileTimes removeAllObjects];
+    self.ir_cacheFaileTimes = nil;
 }
 
-- (void)zf_clearDiskCaches {
-    NSString *directoryPath = [NSString zf_cachePath];
+- (void)ir_clearDiskCaches {
+    NSString *directoryPath = [NSString ir_cachePath];
     if ([[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:nil]) {
         dispatch_queue_t ioQueue = dispatch_queue_create("com.hackemist.SDWebImageCache", DISPATCH_QUEUE_SERIAL);
         dispatch_async(ioQueue, ^{
@@ -174,28 +174,28 @@
                                                             error:nil];
         });
     }
-    [self zf_clearCache];
+    [self ir_clearCache];
 }
 
-- (UIImage *)zf_cacheImageForRequest:(NSURLRequest *)request {
+- (UIImage *)ir_cacheImageForRequest:(NSURLRequest *)request {
     if (request) {
-        NSString *directoryPath = [NSString zf_cachePath];
-        NSString *path = [NSString stringWithFormat:@"%@/%@", directoryPath, [NSString cachedFileNameForKey:[NSString zf_keyForRequest:request]]];
+        NSString *directoryPath = [NSString ir_cachePath];
+        NSString *path = [NSString stringWithFormat:@"%@/%@", directoryPath, [NSString cachedFileNameForKey:[NSString ir_keyForRequest:request]]];
         return [UIImage imageWithContentsOfFile:path];
     }
     return nil;
 }
 
-- (NSUInteger)zf_failTimesForRequest:(NSURLRequest *)request {
-    NSNumber *faileTimes = [self.zf_cacheFaileTimes objectForKey:[NSString cachedFileNameForKey:[NSString zf_keyForRequest:request]]];
+- (NSUInteger)ir_failTimesForRequest:(NSURLRequest *)request {
+    NSNumber *faileTimes = [self.ir_cacheFaileTimes objectForKey:[NSString cachedFileNameForKey:[NSString ir_keyForRequest:request]]];
     if (faileTimes && [faileTimes respondsToSelector:@selector(integerValue)]) {
         return faileTimes.integerValue;
     }
     return 0;
 }
 
-- (void)zf_cacheFailRequest:(NSURLRequest *)request {
-    NSNumber *faileTimes = [self.zf_cacheFaileTimes objectForKey:[NSString cachedFileNameForKey:[NSString zf_keyForRequest:request]]];
+- (void)ir_cacheFailRequest:(NSURLRequest *)request {
+    NSNumber *faileTimes = [self.ir_cacheFaileTimes objectForKey:[NSString cachedFileNameForKey:[NSString ir_keyForRequest:request]]];
     NSUInteger times = 0;
     if (faileTimes && [faileTimes respondsToSelector:@selector(integerValue)]) {
         times = [faileTimes integerValue];
@@ -203,13 +203,13 @@
     
     times++;
     
-    [self.zf_cacheFaileTimes setObject:@(times) forKey:[NSString cachedFileNameForKey:[NSString zf_keyForRequest:request]]];
+    [self.ir_cacheFaileTimes setObject:@(times) forKey:[NSString cachedFileNameForKey:[NSString ir_keyForRequest:request]]];
 }
 
-- (void)zf_cacheImage:(UIImage *)image forRequest:(NSURLRequest *)request {
+- (void)ir_cacheImage:(UIImage *)image forRequest:(NSURLRequest *)request {
     if (!image || !request) { return; }
     
-    NSString *directoryPath = [NSString zf_cachePath];
+    NSString *directoryPath = [NSString ir_cachePath];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:nil]) {
         NSError *error = nil;
@@ -220,7 +220,7 @@
         if (error) { return; }
     }
     
-    NSString *path = [NSString stringWithFormat:@"%@/%@", directoryPath, [NSString cachedFileNameForKey:[NSString zf_keyForRequest:request]]];
+    NSString *path = [NSString stringWithFormat:@"%@/%@", directoryPath, [NSString cachedFileNameForKey:[NSString ir_keyForRequest:request]]];
     NSData *data = UIImagePNGRepresentation(image);
     if (data) {
         [[NSFileManager defaultManager] createFileAtPath:path contents:data attributes:nil];
@@ -234,12 +234,12 @@
 
 #pragma mark - getter
 
-- (ZFImageBlock)completion
+- (IRImageBlock)completion
 {
     return objc_getAssociatedObject(self, _cmd);
 }
 
-- (ZFImageDownloader *)imageDownloader
+- (IRImageDownloader *)imageDownloader
 {
     return objc_getAssociatedObject(self, _cmd);
 }
@@ -258,12 +258,12 @@
 
 #pragma mark - setter
 
-- (void)setCompletion:(ZFImageBlock)completion
+- (void)setCompletion:(IRImageBlock)completion
 {
     objc_setAssociatedObject(self, @selector(completion), completion, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
-- (void)setImageDownloader:(ZFImageDownloader *)imageDownloader
+- (void)setImageDownloader:(IRImageDownloader *)imageDownloader
 {
     objc_setAssociatedObject(self, @selector(imageDownloader), imageDownloader, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -321,7 +321,7 @@
 #pragma mark - private method
 
 - (void)downloadWithReqeust:(NSURLRequest *)theRequest holder:(UIImage *)holder {
-    UIImage *cachedImage = [[UIApplication sharedApplication] zf_cacheImageForRequest:theRequest];
+    UIImage *cachedImage = [[UIApplication sharedApplication] ir_cacheImageForRequest:theRequest];
     
     if (cachedImage) {
         [self setImage:cachedImage isFromCache:YES];
@@ -333,7 +333,7 @@
     
     [self setImage:holder isFromCache:YES];
     
-    if ([[UIApplication sharedApplication] zf_failTimesForRequest:theRequest] >= self.attemptToReloadTimesForFailedURL) {
+    if ([[UIApplication sharedApplication] ir_failTimesForRequest:theRequest] >= self.attemptToReloadTimesForFailedURL) {
         return;
     }
     
@@ -342,7 +342,7 @@
     
     __weak __typeof(self) weakSelf = self;
     
-    self.imageDownloader = [[ZFImageDownloader alloc] init];
+    self.imageDownloader = [[IRImageDownloader alloc] init];
     [self.imageDownloader startDownloadImageWithUrl:theRequest.URL.absoluteString progress:nil finished:^(NSData *data, NSError *error) {
         // success
         if (data != nil && error == nil) {
@@ -359,9 +359,9 @@
                         }
                     }
                     
-                    [[UIApplication sharedApplication] zf_cacheImage:finalImage forRequest:theRequest];
+                    [[UIApplication sharedApplication] ir_cacheImage:finalImage forRequest:theRequest];
                 } else {
-                    [[UIApplication sharedApplication] zf_cacheFailRequest:theRequest];
+                    [[UIApplication sharedApplication] ir_cacheFailRequest:theRequest];
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -379,7 +379,7 @@
                 });
             });
         } else { // error
-            [[UIApplication sharedApplication] zf_cacheFailRequest:theRequest];
+            [[UIApplication sharedApplication] ir_cacheFailRequest:theRequest];
             
             if (weakSelf.completion) {
                 weakSelf.completion(weakSelf.image);

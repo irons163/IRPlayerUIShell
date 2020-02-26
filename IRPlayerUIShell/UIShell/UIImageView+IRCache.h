@@ -31,10 +31,10 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^ZFDownLoadDataCallBack)(NSData *data, NSError *error);
-typedef void (^ZFDownloadProgressBlock)(unsigned long long total, unsigned long long current);
+typedef void (^IRDownLoadDataCallBack)(NSData *data, NSError *error);
+typedef void (^IRDownloadProgressBlock)(unsigned long long total, unsigned long long current);
 
-@interface ZFImageDownloader : NSObject<NSURLSessionDownloadDelegate>
+@interface IRImageDownloader : NSObject<NSURLSessionDownloadDelegate>
 
 @property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSURLSessionDownloadTask *task;
@@ -42,16 +42,16 @@ typedef void (^ZFDownloadProgressBlock)(unsigned long long total, unsigned long 
 @property (nonatomic, assign) unsigned long long totalLength;
 @property (nonatomic, assign) unsigned long long currentLength;
 
-@property (nonatomic, copy) ZFDownloadProgressBlock progressBlock;
-@property (nonatomic, copy) ZFDownLoadDataCallBack callbackOnFinished;
+@property (nonatomic, copy) IRDownloadProgressBlock progressBlock;
+@property (nonatomic, copy) IRDownLoadDataCallBack callbackOnFinished;
 
 - (void)startDownloadImageWithUrl:(NSString *)url
-                         progress:(ZFDownloadProgressBlock)progress
-                         finished:(ZFDownLoadDataCallBack)finished;
+                         progress:(IRDownloadProgressBlock)progress
+                         finished:(IRDownLoadDataCallBack)finished;
 
 @end
 
-typedef void (^ZFImageBlock)(UIImage *image);
+typedef void (^IRImageBlock)(UIImage *image);
 
 @interface UIImageView (IRCache)
 
@@ -60,12 +60,12 @@ typedef void (^ZFImageBlock)(UIImage *image);
  *
  *  The image object from network or from disk.
  */
-@property (nonatomic, copy) ZFImageBlock completion;
+@property (nonatomic, copy) IRImageBlock completion;
 
 /**
  *  Image downloader
  */
-@property (nonatomic, strong) ZFImageDownloader *imageDownloader;
+@property (nonatomic, strong) IRImageDownloader *imageDownloader;
 
 /**
  *    Specify the URL to download images fails, the number of retries, the default is 2

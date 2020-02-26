@@ -33,7 +33,7 @@
 
 @interface IRPlayerControllerNotification ()
 
-@property (nonatomic, assign) ZFPlayerBackgroundState backgroundState;
+@property (nonatomic, assign) IRPlayerBackgroundState backgroundState;
 
 @end
 
@@ -102,12 +102,12 @@
 }
 
 - (void)applicationWillResignActiveNotification {
-    self.backgroundState = ZFPlayerBackgroundStateBackground;
+    self.backgroundState = IRPlayerBackgroundStateBackground;
     if (_willResignActive) _willResignActive(self);
 }
 
 - (void)applicationDidBecomeActiveNotification {
-    self.backgroundState = ZFPlayerBackgroundStateForeground;
+    self.backgroundState = IRPlayerBackgroundStateForeground;
     if (_didBecomeActive) _didBecomeActive(self);
 }
 

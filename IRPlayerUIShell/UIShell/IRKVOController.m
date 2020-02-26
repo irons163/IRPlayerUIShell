@@ -31,13 +31,13 @@
 
 #import "IRKVOController.h"
 
-@interface ZFKVOEntry : NSObject
+@interface IRKVOEntry : NSObject
 @property (nonatomic, weak)   NSObject *observer;
 @property (nonatomic, strong) NSString *keyPath;
 
 @end
 
-@implementation ZFKVOEntry
+@implementation IRKVOEntry
 @synthesize observer;
 @synthesize keyPath;
 
@@ -79,12 +79,12 @@
                     options:options
                     context:context];
         
-        ZFKVOEntry *entry = [[ZFKVOEntry alloc] init];
+        IRKVOEntry *entry = [[IRKVOEntry alloc] init];
         entry.observer = observer;
         entry.keyPath  = keyPath;
         [_observerArray addObject:entry];
     } @catch (NSException *e) {
-        NSLog(@"ZFKVO: failed to add observer for %@\n", keyPath);
+        NSLog(@"IRKVO: failed to add observer for %@\n", keyPath);
     }
 }
 
@@ -105,7 +105,7 @@
                         forKeyPath:keyPath];
         }
     } @catch (NSException *e) {
-        NSLog(@"ZFKVO: failed to remove observer for %@\n", keyPath);
+        NSLog(@"IRKVO: failed to remove observer for %@\n", keyPath);
     }
 }
 
@@ -113,7 +113,7 @@
     __block NSObject *target = _target;
     if (target == nil) return;
     [_observerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        ZFKVOEntry *entry = obj;
+        IRKVOEntry *entry = obj;
         if (entry == nil) return;
         NSObject *observer = entry.observer;
         if (observer == nil) return;
@@ -121,7 +121,7 @@
             [target removeObserver:observer
                         forKeyPath:entry.keyPath];
         } @catch (NSException *e) {
-            NSLog(@"ZFKVO: failed to remove observer for %@\n", entry.keyPath);
+            NSLog(@"IRKVO: failed to remove observer for %@\n", entry.keyPath);
         }
     }];
     
@@ -132,7 +132,7 @@
                    forKeyPath:(NSString *)keyPath {
     __block NSInteger foundIndex = -1;
     [_observerArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        ZFKVOEntry *entry = (ZFKVOEntry *)obj;
+        IRKVOEntry *entry = (IRKVOEntry *)obj;
         if (entry.observer == observer &&
             [entry.keyPath isEqualToString:keyPath]) {
             foundIndex = idx;

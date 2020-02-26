@@ -31,11 +31,7 @@
 
 #import <UIKit/UIKit.h>
 #import "IRSliderView.h"
-#if __has_include(<ZFPlayer/ZFPlayerController.h>)
-#import <ZFPlayer/ZFPlayerController.h>
-#else
 #import "IRPlayerController.h"
-#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -96,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)shouldResponseGestureWithPoint:(CGPoint)point withGestureType:(IRGestureType)type touch:(nonnull UITouch *)touch;
 
 /// 标题和全屏模式
-- (void)showTitle:(NSString *_Nullable)title fullScreenMode:(ZFFullScreenMode)fullScreenMode;
+- (void)showTitle:(NSString *_Nullable)title fullScreenMode:(IRFullScreenMode)fullScreenMode;
 
 /// 根据当前播放状态取反
 - (void)playOrPause;

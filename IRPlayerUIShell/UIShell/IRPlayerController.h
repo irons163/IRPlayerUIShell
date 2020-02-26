@@ -47,16 +47,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *containerView;
 
 /// The currentPlayerManager must conform `IRPlayerMediaPlayback` protocol.
-@property (nonatomic, strong) id<IRPlayerMediaPlayback> currentPlayerManager;
+//@property (nonatomic, strong) id<IRPlayerMediaPlayback> currentPlayerManager;
+@property (nonatomic, strong) IRPlayerImp *currentPlayerManager;
 
-/// The custom controlView must conform `ZFPlayerMediaControl` protocol.
+/// The custom controlView must conform `IRPlayerMediaControl` protocol.
 @property (nonatomic, strong) UIView<IRPlayerMediaControl> *controlView;
 
 /// The notification manager class.
 @property (nonatomic, strong, readonly) IRPlayerControllerNotification *notification;
 
 /// The container view type.
-@property (nonatomic, assign, readonly) ZFPlayerContainerType containerType;
+@property (nonatomic, assign, readonly) IRPlayerContainerType containerType;
 
 /// The player's small container view.
 @property (nonatomic, strong, readonly) IRFloatView *smallFloatView;
@@ -66,63 +67,65 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*!
  @method            playerWithPlayerManager:containerView:
- @abstract          Create an ZFPlayerController that plays a single audiovisual item.
- @param             playerManager must conform `ZFPlayerMediaPlayback` protocol.
+ @abstract          Create an IRPlayerController that plays a single audiovisual item.
+ @param             playerManager must conform `IRPlayerMediaPlayback` protocol.
  @param             containerView to see the video frames must set the contrainerView.
- @result            An instance of ZFPlayerController.
+ @result            An instance of IRPlayerController.
  */
-+ (instancetype)playerWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(UIView *)containerView;
+//+ (instancetype)playerWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(UIView *)containerView;
++ (instancetype)playerWithPlayerManager:(IRPlayerImp *)playerManager containerView:(UIView *)containerView;
 
 /*!
  @method            initWithPlayerManager:containerView:
- @abstract          Create an ZFPlayerController that plays a single audiovisual item.
- @param             playerManager must conform `ZFPlayerMediaPlayback` protocol.
+ @abstract          Create an IRPlayerController that plays a single audiovisual item.
+ @param             playerManager must conform `IRPlayerMediaPlayback` protocol.
  @param             containerView to see the video frames must set the contrainerView.
- @result            An instance of ZFPlayerController.
+ @result            An instance of IRPlayerController.
  */
-- (instancetype)initWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(UIView *)containerView;
+//- (instancetype)initWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(UIView *)containerView;
+- (instancetype)initWithPlayerManager:(IRPlayerImp *)playerManager containerView:(UIView *)containerView;
 
 /*!
  @method            playerWithScrollView:playerManager:containerViewTag:
- @abstract          Create an ZFPlayerController that plays a single audiovisual item. Use in `UITableView` or `UICollectionView`.
+ @abstract          Create an IRPlayerController that plays a single audiovisual item. Use in `UITableView` or `UICollectionView`.
  @param             scrollView is `tableView` or `collectionView`.
- @param             playerManager must conform `ZFPlayerMediaPlayback` protocol.
+ @param             playerManager must conform `IRPlayerMediaPlayback` protocol.
  @param             containerViewTag to see the video at scrollView must set the contrainerViewTag.
- @result            An instance of ZFPlayerController.
+ @result            An instance of IRPlayerController.
  */
 + (instancetype)playerWithScrollView:(UIScrollView *)scrollView playerManager:(id<IRPlayerMediaPlayback>)playerManager containerViewTag:(NSInteger)containerViewTag;
 
 /*!
  @method            initWithScrollView:playerManager:containerViewTag:
- @abstract          Create an ZFPlayerController that plays a single audiovisual item. Use in `UITableView` or `UICollectionView`.
+ @abstract          Create an IRPlayerController that plays a single audiovisual item. Use in `UITableView` or `UICollectionView`.
  @param             scrollView is `tableView` or `collectionView`.
- @param             playerManager must conform `ZFPlayerMediaPlayback` protocol.
+ @param             playerManager must conform `IRPlayerMediaPlayback` protocol.
  @param             containerViewTag to see the video at scrollView must set the contrainerViewTag.
- @result            An instance of ZFPlayerController.
+ @result            An instance of IRPlayerController.
  */
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView playerManager:(id<IRPlayerMediaPlayback>)playerManager containerViewTag:(NSInteger)containerViewTag;
 
 /*!
  @method            playerWithScrollView:playerManager:containerView:
- @abstract          Create an ZFPlayerController that plays a single audiovisual item. Use in `UIScrollView`.
- @param             playerManager must conform `ZFPlayerMediaPlayback` protocol.
+ @abstract          Create an IRPlayerController that plays a single audiovisual item. Use in `UIScrollView`.
+ @param             playerManager must conform `IRPlayerMediaPlayback` protocol.
  @param             containerView to see the video at the scrollView.
- @result            An instance of ZFPlayerController.
+ @result            An instance of IRPlayerController.
  */
 + (instancetype)playerWithScrollView:(UIScrollView *)scrollView playerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(UIView *)containerView;
 
 /*!
  @method            initWithScrollView:playerManager:containerView:
- @abstract          Create an ZFPlayerController that plays a single audiovisual item. Use in `UIScrollView`.
- @param             playerManager must conform `ZFPlayerMediaPlayback` protocol.
+ @abstract          Create an IRPlayerController that plays a single audiovisual item. Use in `UIScrollView`.
+ @param             playerManager must conform `IRPlayerMediaPlayback` protocol.
  @param             containerView to see the video at the scrollView.
- @result            An instance of ZFPlayerController.
+ @result            An instance of IRPlayerController.
  */
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView playerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(UIView *)containerView;
 
 @end
 
-@interface IRPlayerController (ZFPlayerTimeControl)
+@interface IRPlayerController (IRPlayerTimeControl)
 
 /// The player current play time.
 @property (nonatomic, readonly) NSTimeInterval currentTime;
@@ -148,16 +151,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface IRPlayerController (ZFPlayerPlaybackControl)
+@interface IRPlayerController (IRPlayerPlaybackControl)
 
 /// 0...1.0
 /// Only affects audio volume for the device instance and not for the player.
-/// You can change device volume or player volume as needed,change the player volume you can conform the `ZFPlayerMediaPlayback` protocol.
+/// You can change device volume or player volume as needed,change the player volume you can conform the `IRPlayerMediaPlayback` protocol.
 @property (nonatomic) float volume;
 
 /// The device muted.
 /// Only affects audio muting for the device instance and not for the player.
-/// You can change device mute or player mute as needed,change the player mute you can conform the `ZFPlayerMediaPlayback` protocol.
+/// You can change device mute or player mute as needed,change the player mute you can conform the `IRPlayerMediaPlayback` protocol.
 @property (nonatomic, getter=isMuted) BOOL muted;
 
 // 0...1.0, where 1.0 is maximum brightness. Only supported by main screen.
@@ -208,10 +211,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) void(^playerBufferTimeChanged)(id<IRPlayerMediaPlayback> asset, NSTimeInterval bufferTime);
 
 /// The block invoked when the player playback state changed.
-@property (nonatomic, copy, nullable) void(^playerPlayStateChanged)(id<IRPlayerMediaPlayback> asset, ZFPlayerPlaybackState playState);
+@property (nonatomic, copy, nullable) void(^playerPlayStateChanged)(id<IRPlayerMediaPlayback> asset, IRPlayerPlaybackState playState);
 
 /// The block invoked when the player load state changed.
-@property (nonatomic, copy, nullable) void(^playerLoadStateChanged)(id<IRPlayerMediaPlayback> asset, ZFPlayerLoadState loadState);
+@property (nonatomic, copy, nullable) void(^playerLoadStateChanged)(id<IRPlayerMediaPlayback> asset, IRPlayerLoadState loadState);
 
 /// The block invoked when the player play failed.
 @property (nonatomic, copy, nullable) void(^playerPlayFailed)(id<IRPlayerMediaPlayback> asset, id error);
@@ -246,7 +249,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  @method           replaceCurrentPlayerManager:
  @abstract         Replaces the player's current playeranager with the specified player item.
- @param            manager must conform `ZFPlayerMediaPlayback` protocol
+ @param            manager must conform `IRPlayerMediaPlayback` protocol
  @discussion       The playerManager that will become the player's current playeranager.
  */
 - (void)replaceCurrentPlayerManager:(id<IRPlayerMediaPlayback>)manager;
@@ -278,7 +281,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface IRPlayerController (ZFPlayerOrientationRotation)
+@interface IRPlayerController (IRPlayerOrientationRotation)
 
 @property (nonatomic, readonly) IROrientationObserver *orientationObserver;
 
@@ -291,8 +294,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// default is YES.
 @property (nonatomic) BOOL allowOrentitaionRotation;
 
-/// When ZFFullScreenMode is ZFFullScreenModeLandscape the orientation is LandscapeLeft or LandscapeRight, this value is YES.
-/// When ZFFullScreenMode is ZFFullScreenModePortrait, while the player fullSceen this value is YES.
+/// When IRFullScreenMode is IRFullScreenModeLandscape the orientation is LandscapeLeft or LandscapeRight, this value is YES.
+/// When IRFullScreenMode is IRFullScreenModePortrait, while the player fullSceen this value is YES.
 @property (nonatomic, readonly) BOOL isFullScreen;
 
 /// when call the `stop` method, exit the fullScreen model, default is YES.
@@ -328,21 +331,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeDeviceOrientationObserver;
 
 /**
- Enter the fullScreen while the ZFFullScreenMode is ZFFullScreenModeLandscape.
+ Enter the fullScreen while the IRFullScreenMode is IRFullScreenModeLandscape.
  @param orientation UIInterfaceOrientation
  @param animated is animated.
  */
 - (void)enterLandscapeFullScreen:(UIInterfaceOrientation)orientation animated:(BOOL)animated;
 
 /**
- Enter the fullScreen while the ZFFullScreenMode is ZFFullScreenModePortrait.
+ Enter the fullScreen while the IRFullScreenMode is IRFullScreenModePortrait.
  @param fullScreen is fullscreen.
  @param animated is animated.
  */
 - (void)enterPortraitFullScreen:(BOOL)fullScreen animated:(BOOL)animated;
 
 /**
- FullScreen mode is determined by ZFFullScreenMode.
+ FullScreen mode is determined by IRFullScreenMode.
  @param fullScreen is fullscreen.
  @param animated is animated.
  */
@@ -350,9 +353,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface IRPlayerController (ZFPlayerViewGesture)
+@interface IRPlayerController (IRPlayerViewGesture)
 
-/// An instance of ZFPlayerGestureControl.
+/// An instance of IRPlayerGestureControl.
 @property (nonatomic, readonly) IRGestureController *gestureControl;
 
 /// The gesture types that the player not support.
@@ -363,7 +366,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface IRPlayerController (ZFPlayerScrollView)
+@interface IRPlayerController (IRPlayerScrollView)
 
 /// The scroll view is `tableView` or `collectionView`.
 @property (nonatomic, readonly, nullable) UIScrollView *scrollView;
@@ -405,22 +408,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSArray <NSArray <NSURL *>*>*sectionAssetURLs;
 
 /// The block invoked When the player appearing.
-@property (nonatomic, copy, nullable) void(^zf_playerAppearingInScrollView)(NSIndexPath *indexPath, CGFloat playerApperaPercent);
+@property (nonatomic, copy, nullable) void(^ir_playerAppearingInScrollView)(NSIndexPath *indexPath, CGFloat playerApperaPercent);
 
 /// The block invoked When the player disappearing.
-@property (nonatomic, copy, nullable) void(^zf_playerDisappearingInScrollView)(NSIndexPath *indexPath, CGFloat playerDisapperaPercent);
+@property (nonatomic, copy, nullable) void(^ir_playerDisappearingInScrollView)(NSIndexPath *indexPath, CGFloat playerDisapperaPercent);
 
 /// The block invoked When the player will appeared.
-@property (nonatomic, copy, nullable) void(^zf_playerWillAppearInScrollView)(NSIndexPath *indexPath);
+@property (nonatomic, copy, nullable) void(^ir_playerWillAppearInScrollView)(NSIndexPath *indexPath);
 
 /// The block invoked When the player did appeared.
-@property (nonatomic, copy, nullable) void(^zf_playerDidAppearInScrollView)(NSIndexPath *indexPath);
+@property (nonatomic, copy, nullable) void(^ir_playerDidAppearInScrollView)(NSIndexPath *indexPath);
 
 /// The block invoked When the player will disappear.
-@property (nonatomic, copy, nullable) void(^zf_playerWillDisappearInScrollView)(NSIndexPath *indexPath);
+@property (nonatomic, copy, nullable) void(^ir_playerWillDisappearInScrollView)(NSIndexPath *indexPath);
 
 /// The block invoked When the player did disappeared.
-@property (nonatomic, copy, nullable) void(^zf_playerDidDisappearInScrollView)(NSIndexPath *indexPath);
+@property (nonatomic, copy, nullable) void(^ir_playerDidDisappearInScrollView)(NSIndexPath *indexPath);
 
 /**
  Play the indexPath of url, while the `assetURLs` or `sectionAssetURLs` is not NULL.
@@ -456,7 +459,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface IRPlayerController (ZFPlayerDeprecated)
+@interface IRPlayerController (IRPlayerDeprecated)
 
 /**
  Add the playerView to cell.

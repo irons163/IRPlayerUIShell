@@ -33,13 +33,8 @@
 #import "UIView+IRFrame.h"
 #import "IRUtilities.h"
 #import "IRScope.h"
-//#if __has_include(<ZFPlayer/ZFPlayer.h>)
-//#import <ZFPlayer/ZFPlayer.h>
-//#else
-//#import "ZFPlayer.h"
-//#endif
 
-@interface IRPortraitControlView () <ZFSliderViewDelegate>
+@interface IRPortraitControlView () <IRSliderViewDelegate>
 /// 底部工具栏
 @property (nonatomic, strong) UIView *bottomToolView;
 /// 顶部工具栏
@@ -89,7 +84,7 @@
     [self.fullScreenBtn addTarget:self action:@selector(fullScreenButtonClickAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-#pragma mark - ZFSliderViewDelegate
+#pragma mark - IRSliderViewDelegate
 
 - (void)sliderTouchBegan:(float)value {
     self.slider.isdragging = YES;
@@ -293,7 +288,7 @@
     self.slider.bufferValue = videoPlayer.bufferProgress;
 }
 
-- (void)showTitle:(NSString *)title fullScreenMode:(ZFFullScreenMode)fullScreenMode {
+- (void)showTitle:(NSString *)title fullScreenMode:(IRFullScreenMode)fullScreenMode {
     self.titleLabel.text = title;
     self.player.orientationObserver.fullScreenMode = fullScreenMode;
 }
@@ -321,7 +316,7 @@
 - (UIView *)topToolView {
     if (!_topToolView) {
         _topToolView = [[UIView alloc] init];
-        UIImage *image = ZFPlayer_Image(@"ZFPlayer_top_shadow");
+        UIImage *image = IRPlayer_Image(@"IRPlayer_top_shadow");
         _topToolView.layer.contents = (id)image.CGImage;
     }
     return _topToolView;
@@ -339,7 +334,7 @@
 - (UIView *)bottomToolView {
     if (!_bottomToolView) {
         _bottomToolView = [[UIView alloc] init];
-        UIImage *image = ZFPlayer_Image(@"ZFPlayer_bottom_shadow");
+        UIImage *image = IRPlayer_Image(@"IRPlayer_bottom_shadow");
         _bottomToolView.layer.contents = (id)image.CGImage;
     }
     return _bottomToolView;
@@ -348,8 +343,8 @@
 - (UIButton *)playOrPauseBtn {
     if (!_playOrPauseBtn) {
         _playOrPauseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playOrPauseBtn setImage:ZFPlayer_Image(@"new_allPlay_44x44_") forState:UIControlStateNormal];
-        [_playOrPauseBtn setImage:ZFPlayer_Image(@"new_allPause_44x44_") forState:UIControlStateSelected];
+        [_playOrPauseBtn setImage:IRPlayer_Image(@"new_allPlay_44x44_") forState:UIControlStateNormal];
+        [_playOrPauseBtn setImage:IRPlayer_Image(@"new_allPause_44x44_") forState:UIControlStateSelected];
     }
     return _playOrPauseBtn;
 }
@@ -371,7 +366,7 @@
         _slider.maximumTrackTintColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.8];
         _slider.bufferTrackTintColor  = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];
         _slider.minimumTrackTintColor = [UIColor whiteColor];
-        [_slider setThumbImage:ZFPlayer_Image(@"ZFPlayer_slider") forState:UIControlStateNormal];
+        [_slider setThumbImage:IRPlayer_Image(@"IRPlayer_slider") forState:UIControlStateNormal];
         _slider.sliderHeight = 2;
     }
     return _slider;
@@ -390,7 +385,7 @@
 - (UIButton *)fullScreenBtn {
     if (!_fullScreenBtn) {
         _fullScreenBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_fullScreenBtn setImage:ZFPlayer_Image(@"ZFPlayer_fullscreen") forState:UIControlStateNormal];
+        [_fullScreenBtn setImage:IRPlayer_Image(@"IRPlayer_fullscreen") forState:UIControlStateNormal];
     }
     return _fullScreenBtn;
 }

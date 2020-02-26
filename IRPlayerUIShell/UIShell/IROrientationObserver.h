@@ -34,30 +34,30 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Full screen mode
-typedef NS_ENUM(NSUInteger, ZFFullScreenMode) {
-    ZFFullScreenModeAutomatic,  // Determine full screen mode automatically
-    ZFFullScreenModeLandscape,  // Landscape full screen mode
-    ZFFullScreenModePortrait    // Portrait full screen Model
+typedef NS_ENUM(NSUInteger, IRFullScreenMode) {
+    IRFullScreenModeAutomatic,  // Determine full screen mode automatically
+    IRFullScreenModeLandscape,  // Landscape full screen mode
+    IRFullScreenModePortrait    // Portrait full screen Model
 };
 
 /// Full screen mode on the view
-typedef NS_ENUM(NSUInteger, ZFRotateType) {
-    ZFRotateTypeNormal,         // Normal
-    ZFRotateTypeCell,           // Cell
-    ZFRotateTypeCellOther       // Cell mode add to other view
+typedef NS_ENUM(NSUInteger, IRRotateType) {
+    IRRotateTypeNormal,         // Normal
+    IRRotateTypeCell,           // Cell
+    IRRotateTypeCellOther       // Cell mode add to other view
 };
 
 /**
  Rotation of support direction
  */
-typedef NS_OPTIONS(NSUInteger, ZFInterfaceOrientationMask) {
-    ZFInterfaceOrientationMaskPortrait = (1 << 0),
-    ZFInterfaceOrientationMaskLandscapeLeft = (1 << 1),
-    ZFInterfaceOrientationMaskLandscapeRight = (1 << 2),
-    ZFInterfaceOrientationMaskPortraitUpsideDown = (1 << 3),
-    ZFInterfaceOrientationMaskLandscape = (ZFInterfaceOrientationMaskLandscapeLeft | ZFInterfaceOrientationMaskLandscapeRight),
-    ZFInterfaceOrientationMaskAll = (ZFInterfaceOrientationMaskPortrait | ZFInterfaceOrientationMaskLandscapeLeft | ZFInterfaceOrientationMaskLandscapeRight | ZFInterfaceOrientationMaskPortraitUpsideDown),
-    ZFInterfaceOrientationMaskAllButUpsideDown = (ZFInterfaceOrientationMaskPortrait | ZFInterfaceOrientationMaskLandscapeLeft | ZFInterfaceOrientationMaskLandscapeRight),
+typedef NS_OPTIONS(NSUInteger, IRInterfaceOrientationMask) {
+    IRInterfaceOrientationMaskPortrait = (1 << 0),
+    IRInterfaceOrientationMaskLandscapeLeft = (1 << 1),
+    IRInterfaceOrientationMaskLandscapeRight = (1 << 2),
+    IRInterfaceOrientationMaskPortraitUpsideDown = (1 << 3),
+    IRInterfaceOrientationMaskLandscape = (IRInterfaceOrientationMaskLandscapeLeft | IRInterfaceOrientationMaskLandscapeRight),
+    IRInterfaceOrientationMaskAll = (IRInterfaceOrientationMaskPortrait | IRInterfaceOrientationMaskLandscapeLeft | IRInterfaceOrientationMaskLandscapeRight | IRInterfaceOrientationMaskPortraitUpsideDown),
+    IRInterfaceOrientationMaskAllButUpsideDown = (IRInterfaceOrientationMaskPortrait | IRInterfaceOrientationMaskLandscapeLeft | IRInterfaceOrientationMaskLandscapeRight),
 };
 
 @interface IROrientationObserver : NSObject
@@ -97,7 +97,7 @@ typedef NS_OPTIONS(NSUInteger, ZFInterfaceOrientationMask) {
 @property (nonatomic, copy, nullable) void(^orientationDidChanged)(IROrientationObserver *observer, BOOL isFullScreen);
 
 /// Full screen mode, the default landscape into full screen
-@property (nonatomic) ZFFullScreenMode fullScreenMode;
+@property (nonatomic) IRFullScreenMode fullScreenMode;
 
 /// rotate duration, default is 0.30
 @property (nonatomic) float duration;
@@ -113,8 +113,8 @@ typedef NS_OPTIONS(NSUInteger, ZFInterfaceOrientationMask) {
 /// default is YES.
 @property (nonatomic) BOOL allowOrentitaionRotation;
 
-/// The support Interface Orientation,default is ZFInterfaceOrientationMaskAllButUpsideDown
-@property (nonatomic, assign) ZFInterfaceOrientationMask supportInterfaceOrientation;
+/// The support Interface Orientation,default is IRInterfaceOrientationMaskAllButUpsideDown
+@property (nonatomic, assign) IRInterfaceOrientationMask supportInterfaceOrientation;
 
 /// Add the device orientation observer.
 - (void)addDeviceOrientationObserver;
@@ -122,10 +122,10 @@ typedef NS_OPTIONS(NSUInteger, ZFInterfaceOrientationMask) {
 /// Remove the device orientation observer.
 - (void)removeDeviceOrientationObserver;
 
-/// Enter the fullScreen while the ZFFullScreenMode is ZFFullScreenModeLandscape.
+/// Enter the fullScreen while the IRFullScreenMode is IRFullScreenModeLandscape.
 - (void)enterLandscapeFullScreen:(UIInterfaceOrientation)orientation animated:(BOOL)animated;
 
-/// Enter the fullScreen while the ZFFullScreenMode is ZFFullScreenModePortrait.
+/// Enter the fullScreen while the IRFullScreenMode is IRFullScreenModePortrait.
 - (void)enterPortraitFullScreen:(BOOL)fullScreen animated:(BOOL)animated;
 
 /// Exit the fullScreen.
