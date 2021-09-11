@@ -30,7 +30,7 @@
 // THE SOFTWARE.
 
 #import "IRPlayerView.h"
-#import "IRPlayer.h"
+//#import "IRPlayer.h"
 
 @interface IRPlayerView ()
 

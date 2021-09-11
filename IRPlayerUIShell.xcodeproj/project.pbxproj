@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A8E828E26EC68FD0031E62F /* IRPlayerUIShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E828C26EC68FD0031E62F /* IRPlayerUIShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4A8E832026EC69520031E62F /* IRLandScapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82F226EC69510031E62F /* IRLandScapeControlView.m */; };
+		4A8E832126EC69520031E62F /* IRPlayerControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82F326EC69510031E62F /* IRPlayerControlView.h */; };
+		4A8E832226EC69520031E62F /* UIScrollView+IRPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82F426EC69510031E62F /* UIScrollView+IRPlayer.m */; };
+		4A8E832326EC69520031E62F /* IRPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82F526EC69510031E62F /* IRPlayerController.m */; };
+		4A8E832426EC69520031E62F /* IRPlayerMediaControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82F626EC69510031E62F /* IRPlayerMediaControl.h */; };
+		4A8E832526EC69520031E62F /* UIView+IRFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82F726EC69510031E62F /* UIView+IRFrame.h */; };
+		4A8E832626EC69520031E62F /* IRScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82F826EC69510031E62F /* IRScope.h */; };
+		4A8E832726EC69520031E62F /* IRVolumeBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82F926EC69510031E62F /* IRVolumeBrightnessView.m */; };
+		4A8E832826EC69520031E62F /* IRSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82FA26EC69510031E62F /* IRSliderView.m */; };
+		4A8E832926EC69520031E62F /* IRSmallFloatControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82FB26EC69510031E62F /* IRSmallFloatControlView.h */; };
+		4A8E832A26EC69520031E62F /* IRLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82FC26EC69510031E62F /* IRLoadingView.m */; };
+		4A8E832B26EC69520031E62F /* IROrientationObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82FD26EC69510031E62F /* IROrientationObserver.m */; };
+		4A8E832C26EC69520031E62F /* IRPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82FE26EC69510031E62F /* IRPlayerView.m */; };
+		4A8E832D26EC69520031E62F /* IRPlayerControllerNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82FF26EC69510031E62F /* IRPlayerControllerNotification.m */; };
+		4A8E832E26EC69520031E62F /* UIImageView+IRCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E830026EC69510031E62F /* UIImageView+IRCache.m */; };
+		4A8E832F26EC69520031E62F /* IRUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E830126EC69510031E62F /* IRUtilities.m */; };
+		4A8E833026EC69520031E62F /* IRPlayerMediaPlayback.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E830226EC69510031E62F /* IRPlayerMediaPlayback.h */; };
+		4A8E833126EC69520031E62F /* IRPortraitControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E830326EC69510031E62F /* IRPortraitControlView.h */; };
+		4A8E833226EC69520031E62F /* IRPlayerLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E830426EC69510031E62F /* IRPlayerLogManager.m */; };
+		4A8E833326EC69520031E62F /* IRMetamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E830526EC69510031E62F /* IRMetamacros.h */; };
+		4A8E833426EC69520031E62F /* IRNetworkSpeedMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E830626EC69510031E62F /* IRNetworkSpeedMonitor.m */; };
+		4A8E833526EC69520031E62F /* IRKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E830726EC69510031E62F /* IRKVOController.m */; };
+		4A8E833626EC69520031E62F /* IRSpeedLoadingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E830826EC69510031E62F /* IRSpeedLoadingView.h */; };
+		4A8E833726EC69520031E62F /* IRFloatView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E830926EC69510031E62F /* IRFloatView.h */; };
+		4A8E833826EC69520031E62F /* IRReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E830A26EC69510031E62F /* IRReachabilityManager.h */; };
+		4A8E833926EC69520031E62F /* IRPlayerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E830B26EC69510031E62F /* IRPlayerController.h */; };
+		4A8E833A26EC69520031E62F /* UIScrollView+IRPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E830C26EC69510031E62F /* UIScrollView+IRPlayer.h */; };
+		4A8E833B26EC69520031E62F /* IRPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E830D26EC69510031E62F /* IRPlayerControlView.m */; };
+		4A8E833C26EC69520031E62F /* IRLandScapeControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E830E26EC69510031E62F /* IRLandScapeControlView.h */; };
+		4A8E833D26EC69520031E62F /* IRSliderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E830F26EC69510031E62F /* IRSliderView.h */; };
+		4A8E833E26EC69520031E62F /* IRVolumeBrightnessView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E831026EC69510031E62F /* IRVolumeBrightnessView.h */; };
+		4A8E833F26EC69520031E62F /* UIView+IRFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E831126EC69510031E62F /* UIView+IRFrame.m */; };
+		4A8E834026EC69520031E62F /* IRPlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E831226EC69510031E62F /* IRPlayerView.h */; };
+		4A8E834126EC69520031E62F /* IRPlayerControllerNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E831326EC69520031E62F /* IRPlayerControllerNotification.h */; };
+		4A8E834226EC69520031E62F /* IRUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E831426EC69520031E62F /* IRUtilities.h */; };
+		4A8E834326EC69520031E62F /* UIImageView+IRCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E831526EC69520031E62F /* UIImageView+IRCache.h */; };
+		4A8E834426EC69520031E62F /* IRLoadingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E831626EC69520031E62F /* IRLoadingView.h */; };
+		4A8E834526EC69520031E62F /* IROrientationObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E831726EC69520031E62F /* IROrientationObserver.h */; };
+		4A8E834626EC69520031E62F /* IRSmallFloatControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E831826EC69520031E62F /* IRSmallFloatControlView.m */; };
+		4A8E834726EC69520031E62F /* IRFloatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E831926EC69520031E62F /* IRFloatView.m */; };
+		4A8E834826EC69520031E62F /* IRReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E831A26EC69520031E62F /* IRReachabilityManager.m */; };
+		4A8E834926EC69520031E62F /* IRSpeedLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E831B26EC69520031E62F /* IRSpeedLoadingView.m */; };
+		4A8E834A26EC69520031E62F /* IRKVOController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E831C26EC69520031E62F /* IRKVOController.h */; };
+		4A8E834B26EC69520031E62F /* IRNetworkSpeedMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E831D26EC69520031E62F /* IRNetworkSpeedMonitor.h */; };
+		4A8E834C26EC69520031E62F /* IRPortraitControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E831E26EC69520031E62F /* IRPortraitControlView.m */; };
+		4A8E834D26EC69520031E62F /* IRPlayerLogManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E831F26EC69520031E62F /* IRPlayerLogManager.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4A8E828926EC68FD0031E62F /* IRPlayerUIShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRPlayerUIShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A8E828C26EC68FD0031E62F /* IRPlayerUIShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRPlayerUIShell.h; sourceTree = "<group>"; };
+		4A8E828D26EC68FD0031E62F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4A8E82F226EC69510031E62F /* IRLandScapeControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRLandScapeControlView.m; sourceTree = "<group>"; };
+		4A8E82F326EC69510031E62F /* IRPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRPlayerControlView.h; sourceTree = "<group>"; };
+		4A8E82F426EC69510031E62F /* UIScrollView+IRPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+IRPlayer.m"; sourceTree = "<group>"; };
+		4A8E82F526EC69510031E62F /* IRPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPlayerController.m; sourceTree = "<group>"; };
+		4A8E82F626EC69510031E62F /* IRPlayerMediaControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRPlayerMediaControl.h; sourceTree = "<group>"; };
+		4A8E82F726EC69510031E62F /* UIView+IRFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+IRFrame.h"; sourceTree = "<group>"; };
+		4A8E82F826EC69510031E62F /* IRScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRScope.h; sourceTree = "<group>"; };
+		4A8E82F926EC69510031E62F /* IRVolumeBrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRVolumeBrightnessView.m; sourceTree = "<group>"; };
+		4A8E82FA26EC69510031E62F /* IRSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRSliderView.m; sourceTree = "<group>"; };
+		4A8E82FB26EC69510031E62F /* IRSmallFloatControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRSmallFloatControlView.h; sourceTree = "<group>"; };
+		4A8E82FC26EC69510031E62F /* IRLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRLoadingView.m; sourceTree = "<group>"; };
+		4A8E82FD26EC69510031E62F /* IROrientationObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IROrientationObserver.m; sourceTree = "<group>"; };
+		4A8E82FE26EC69510031E62F /* IRPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPlayerView.m; sourceTree = "<group>"; };
+		4A8E82FF26EC69510031E62F /* IRPlayerControllerNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPlayerControllerNotification.m; sourceTree = "<group>"; };
+		4A8E830026EC69510031E62F /* UIImageView+IRCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+IRCache.m"; sourceTree = "<group>"; };
+		4A8E830126EC69510031E62F /* IRUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRUtilities.m; sourceTree = "<group>"; };
+		4A8E830226EC69510031E62F /* IRPlayerMediaPlayback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRPlayerMediaPlayback.h; sourceTree = "<group>"; };
+		4A8E830326EC69510031E62F /* IRPortraitControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRPortraitControlView.h; sourceTree = "<group>"; };
+		4A8E830426EC69510031E62F /* IRPlayerLogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPlayerLogManager.m; sourceTree = "<group>"; };
+		4A8E830526EC69510031E62F /* IRMetamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRMetamacros.h; sourceTree = "<group>"; };
+		4A8E830626EC69510031E62F /* IRNetworkSpeedMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRNetworkSpeedMonitor.m; sourceTree = "<group>"; };
+		4A8E830726EC69510031E62F /* IRKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRKVOController.m; sourceTree = "<group>"; };
+		4A8E830826EC69510031E62F /* IRSpeedLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRSpeedLoadingView.h; sourceTree = "<group>"; };
+		4A8E830926EC69510031E62F /* IRFloatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRFloatView.h; sourceTree = "<group>"; };
+		4A8E830A26EC69510031E62F /* IRReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRReachabilityManager.h; sourceTree = "<group>"; };
+		4A8E830B26EC69510031E62F /* IRPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRPlayerController.h; sourceTree = "<group>"; };
+		4A8E830C26EC69510031E62F /* UIScrollView+IRPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+IRPlayer.h"; sourceTree = "<group>"; };
+		4A8E830D26EC69510031E62F /* IRPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPlayerControlView.m; sourceTree = "<group>"; };
+		4A8E830E26EC69510031E62F /* IRLandScapeControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRLandScapeControlView.h; sourceTree = "<group>"; };
+		4A8E830F26EC69510031E62F /* IRSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRSliderView.h; sourceTree = "<group>"; };
+		4A8E831026EC69510031E62F /* IRVolumeBrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRVolumeBrightnessView.h; sourceTree = "<group>"; };
+		4A8E831126EC69510031E62F /* UIView+IRFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+IRFrame.m"; sourceTree = "<group>"; };
+		4A8E831226EC69510031E62F /* IRPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRPlayerView.h; sourceTree = "<group>"; };
+		4A8E831326EC69520031E62F /* IRPlayerControllerNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRPlayerControllerNotification.h; sourceTree = "<group>"; };
+		4A8E831426EC69520031E62F /* IRUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRUtilities.h; sourceTree = "<group>"; };
+		4A8E831526EC69520031E62F /* UIImageView+IRCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+IRCache.h"; sourceTree = "<group>"; };
+		4A8E831626EC69520031E62F /* IRLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRLoadingView.h; sourceTree = "<group>"; };
+		4A8E831726EC69520031E62F /* IROrientationObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IROrientationObserver.h; sourceTree = "<group>"; };
+		4A8E831826EC69520031E62F /* IRSmallFloatControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRSmallFloatControlView.m; sourceTree = "<group>"; };
+		4A8E831926EC69520031E62F /* IRFloatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRFloatView.m; sourceTree = "<group>"; };
+		4A8E831A26EC69520031E62F /* IRReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRReachabilityManager.m; sourceTree = "<group>"; };
+		4A8E831B26EC69520031E62F /* IRSpeedLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRSpeedLoadingView.m; sourceTree = "<group>"; };
+		4A8E831C26EC69520031E62F /* IRKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRKVOController.h; sourceTree = "<group>"; };
+		4A8E831D26EC69520031E62F /* IRNetworkSpeedMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRNetworkSpeedMonitor.h; sourceTree = "<group>"; };
+		4A8E831E26EC69520031E62F /* IRPortraitControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRPortraitControlView.m; sourceTree = "<group>"; };
+		4A8E831F26EC69520031E62F /* IRPlayerLogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRPlayerLogManager.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4A8E828626EC68FD0031E62F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4A8E827F26EC68FD0031E62F = {
+			isa = PBXGroup;
+			children = (
+				4A8E828B26EC68FD0031E62F /* IRPlayerUIShell */,
+				4A8E828A26EC68FD0031E62F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4A8E828A26EC68FD0031E62F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4A8E828926EC68FD0031E62F /* IRPlayerUIShell.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4A8E828B26EC68FD0031E62F /* IRPlayerUIShell */ = {
+			isa = PBXGroup;
+			children = (
+				4A8E82F126EC69510031E62F /* Classes */,
+				4A8E828C26EC68FD0031E62F /* IRPlayerUIShell.h */,
+				4A8E828D26EC68FD0031E62F /* Info.plist */,
+			);
+			path = IRPlayerUIShell;
+			sourceTree = "<group>";
+		};
+		4A8E82F126EC69510031E62F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4A8E82F226EC69510031E62F /* IRLandScapeControlView.m */,
+				4A8E82F326EC69510031E62F /* IRPlayerControlView.h */,
+				4A8E82F426EC69510031E62F /* UIScrollView+IRPlayer.m */,
+				4A8E82F526EC69510031E62F /* IRPlayerController.m */,
+				4A8E82F626EC69510031E62F /* IRPlayerMediaControl.h */,
+				4A8E82F726EC69510031E62F /* UIView+IRFrame.h */,
+				4A8E82F826EC69510031E62F /* IRScope.h */,
+				4A8E82F926EC69510031E62F /* IRVolumeBrightnessView.m */,
+				4A8E82FA26EC69510031E62F /* IRSliderView.m */,
+				4A8E82FB26EC69510031E62F /* IRSmallFloatControlView.h */,
+				4A8E82FC26EC69510031E62F /* IRLoadingView.m */,
+				4A8E82FD26EC69510031E62F /* IROrientationObserver.m */,
+				4A8E82FE26EC69510031E62F /* IRPlayerView.m */,
+				4A8E82FF26EC69510031E62F /* IRPlayerControllerNotification.m */,
+				4A8E830026EC69510031E62F /* UIImageView+IRCache.m */,
+				4A8E830126EC69510031E62F /* IRUtilities.m */,
+				4A8E830226EC69510031E62F /* IRPlayerMediaPlayback.h */,
+				4A8E830326EC69510031E62F /* IRPortraitControlView.h */,
+				4A8E830426EC69510031E62F /* IRPlayerLogManager.m */,
+				4A8E830526EC69510031E62F /* IRMetamacros.h */,
+				4A8E830626EC69510031E62F /* IRNetworkSpeedMonitor.m */,
+				4A8E830726EC69510031E62F /* IRKVOController.m */,
+				4A8E830826EC69510031E62F /* IRSpeedLoadingView.h */,
+				4A8E830926EC69510031E62F /* IRFloatView.h */,
+				4A8E830A26EC69510031E62F /* IRReachabilityManager.h */,
+				4A8E830B26EC69510031E62F /* IRPlayerController.h */,
+				4A8E830C26EC69510031E62F /* UIScrollView+IRPlayer.h */,
+				4A8E830D26EC69510031E62F /* IRPlayerControlView.m */,
+				4A8E830E26EC69510031E62F /* IRLandScapeControlView.h */,
+				4A8E830F26EC69510031E62F /* IRSliderView.h */,
+				4A8E831026EC69510031E62F /* IRVolumeBrightnessView.h */,
+				4A8E831126EC69510031E62F /* UIView+IRFrame.m */,
+				4A8E831226EC69510031E62F /* IRPlayerView.h */,
+				4A8E831326EC69520031E62F /* IRPlayerControllerNotification.h */,
+				4A8E831426EC69520031E62F /* IRUtilities.h */,
+				4A8E831526EC69520031E62F /* UIImageView+IRCache.h */,
+				4A8E831626EC69520031E62F /* IRLoadingView.h */,
+				4A8E831726EC69520031E62F /* IROrientationObserver.h */,
+				4A8E831826EC69520031E62F /* IRSmallFloatControlView.m */,
+				4A8E831926EC69520031E62F /* IRFloatView.m */,
+				4A8E831A26EC69520031E62F /* IRReachabilityManager.m */,
+				4A8E831B26EC69520031E62F /* IRSpeedLoadingView.m */,
+				4A8E831C26EC69520031E62F /* IRKVOController.h */,
+				4A8E831D26EC69520031E62F /* IRNetworkSpeedMonitor.h */,
+				4A8E831E26EC69520031E62F /* IRPortraitControlView.m */,
+				4A8E831F26EC69520031E62F /* IRPlayerLogManager.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4A8E828426EC68FD0031E62F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A8E833A26EC69520031E62F /* UIScrollView+IRPlayer.h in Headers */,
+				4A8E833C26EC69520031E62F /* IRLandScapeControlView.h in Headers */,
+				4A8E833926EC69520031E62F /* IRPlayerController.h in Headers */,
+				4A8E832526EC69520031E62F /* UIView+IRFrame.h in Headers */,
+				4A8E834126EC69520031E62F /* IRPlayerControllerNotification.h in Headers */,
+				4A8E833126EC69520031E62F /* IRPortraitControlView.h in Headers */,
+				4A8E834226EC69520031E62F /* IRUtilities.h in Headers */,
+				4A8E834426EC69520031E62F /* IRLoadingView.h in Headers */,
+				4A8E833326EC69520031E62F /* IRMetamacros.h in Headers */,
+				4A8E833626EC69520031E62F /* IRSpeedLoadingView.h in Headers */,
+				4A8E834526EC69520031E62F /* IROrientationObserver.h in Headers */,
+				4A8E834D26EC69520031E62F /* IRPlayerLogManager.h in Headers */,
+				4A8E833826EC69520031E62F /* IRReachabilityManager.h in Headers */,
+				4A8E833026EC69520031E62F /* IRPlayerMediaPlayback.h in Headers */,
+				4A8E833726EC69520031E62F /* IRFloatView.h in Headers */,
+				4A8E834B26EC69520031E62F /* IRNetworkSpeedMonitor.h in Headers */,
+				4A8E834A26EC69520031E62F /* IRKVOController.h in Headers */,
+				4A8E828E26EC68FD0031E62F /* IRPlayerUIShell.h in Headers */,
+				4A8E834026EC69520031E62F /* IRPlayerView.h in Headers */,
+				4A8E832426EC69520031E62F /* IRPlayerMediaControl.h in Headers */,
+				4A8E832626EC69520031E62F /* IRScope.h in Headers */,
+				4A8E834326EC69520031E62F /* UIImageView+IRCache.h in Headers */,
+				4A8E833D26EC69520031E62F /* IRSliderView.h in Headers */,
+				4A8E833E26EC69520031E62F /* IRVolumeBrightnessView.h in Headers */,
+				4A8E832126EC69520031E62F /* IRPlayerControlView.h in Headers */,
+				4A8E832926EC69520031E62F /* IRSmallFloatControlView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4A8E828826EC68FD0031E62F /* IRPlayerUIShell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A8E829126EC68FD0031E62F /* Build configuration list for PBXNativeTarget "IRPlayerUIShell" */;
+			buildPhases = (
+				4A8E828426EC68FD0031E62F /* Headers */,
+				4A8E828526EC68FD0031E62F /* Sources */,
+				4A8E828626EC68FD0031E62F /* Frameworks */,
+				4A8E828726EC68FD0031E62F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IRPlayerUIShell;
+			productName = IRPlayerUIShell;
+			productReference = 4A8E828926EC68FD0031E62F /* IRPlayerUIShell.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4A8E828026EC68FD0031E62F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					4A8E828826EC68FD0031E62F = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = 4A8E828326EC68FD0031E62F /* Build configuration list for PBXProject "IRPlayerUIShell" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4A8E827F26EC68FD0031E62F;
+			productRefGroup = 4A8E828A26EC68FD0031E62F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4A8E828826EC68FD0031E62F /* IRPlayerUIShell */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4A8E828726EC68FD0031E62F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4A8E828526EC68FD0031E62F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A8E833226EC69520031E62F /* IRPlayerLogManager.m in Sources */,
+				4A8E832826EC69520031E62F /* IRSliderView.m in Sources */,
+				4A8E832326EC69520031E62F /* IRPlayerController.m in Sources */,
+				4A8E833526EC69520031E62F /* IRKVOController.m in Sources */,
+				4A8E834626EC69520031E62F /* IRSmallFloatControlView.m in Sources */,
+				4A8E832026EC69520031E62F /* IRLandScapeControlView.m in Sources */,
+				4A8E833F26EC69520031E62F /* UIView+IRFrame.m in Sources */,
+				4A8E832F26EC69520031E62F /* IRUtilities.m in Sources */,
+				4A8E834926EC69520031E62F /* IRSpeedLoadingView.m in Sources */,
+				4A8E832726EC69520031E62F /* IRVolumeBrightnessView.m in Sources */,
+				4A8E832E26EC69520031E62F /* UIImageView+IRCache.m in Sources */,
+				4A8E833B26EC69520031E62F /* IRPlayerControlView.m in Sources */,
+				4A8E833426EC69520031E62F /* IRNetworkSpeedMonitor.m in Sources */,
+				4A8E834726EC69520031E62F /* IRFloatView.m in Sources */,
+				4A8E834C26EC69520031E62F /* IRPortraitControlView.m in Sources */,
+				4A8E832C26EC69520031E62F /* IRPlayerView.m in Sources */,
+				4A8E832B26EC69520031E62F /* IROrientationObserver.m in Sources */,
+				4A8E832D26EC69520031E62F /* IRPlayerControllerNotification.m in Sources */,
+				4A8E832A26EC69520031E62F /* IRLoadingView.m in Sources */,
+				4A8E834826EC69520031E62F /* IRReachabilityManager.m in Sources */,
+				4A8E832226EC69520031E62F /* UIScrollView+IRPlayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4A8E828F26EC68FD0031E62F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4A8E829026EC68FD0031E62F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4A8E829226EC68FD0031E62F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = T6VV6T753H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = IRPlayerUIShell/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = irons163.IRPlayerUIShell;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4A8E829326EC68FD0031E62F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = T6VV6T753H;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = IRPlayerUIShell/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = irons163.IRPlayerUIShell;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4A8E828326EC68FD0031E62F /* Build configuration list for PBXProject "IRPlayerUIShell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A8E828F26EC68FD0031E62F /* Debug */,
+				4A8E829026EC68FD0031E62F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A8E829126EC68FD0031E62F /* Build configuration list for PBXNativeTarget "IRPlayerUIShell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A8E829226EC68FD0031E62F /* Debug */,
+				4A8E829326EC68FD0031E62F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4A8E828026EC68FD0031E62F /* Project object */;
+}

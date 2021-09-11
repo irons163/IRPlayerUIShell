@@ -29,7 +29,7 @@
 // THE SOFTWARE.
 
 #import "IROrientationObserver.h"
-#import "IRPlayer.h"
+//#import "IRPlayer.h"
 
 #define SysVersion [[UIDevice currentDevice] systemVersion].floatValue
 
