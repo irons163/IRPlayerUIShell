@@ -32,7 +32,7 @@
 #import "UIScrollView+IRPlayer.h"
 #import <objc/runtime.h>
 #import "IRReachabilityManager.h"
-#import "IRPlayer.h"
+//#import "IRPlayer.h"
 #import "IRKVOController.h"
 #import "IRScope.h"
 

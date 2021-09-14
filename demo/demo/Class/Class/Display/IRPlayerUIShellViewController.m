@@ -8,15 +8,20 @@
 
 #import "IRPlayerUIShellViewController.h"
 #import <IRPlayer/IRPlayer.h>
-#import "IRPlayerControlView.h"
-#import "UIImageView+IRCache.h"
-#import "IRUtilities.h"
-#import "IRScope.h"
+//#import "IRPlayerControlView.h"
+#import <IRPlayerUIShell/IRPlayerUIShell.h>
+#import <IRPlayerUIShell/UIImageView+IRCache.h>
+#import <IRPlayerUIShell/IRUtilities.h>
+//#import "UIImageView+IRCache.h"
+//#import "IRUtilities.h"
+//#import "IRScope.h"
+#import <IRPlayer/IRScope.h>
+#import "IRPlayerWithMediaPlayback.h"
 
 static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/635942-14593722fe3f0695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
 
 @interface IRPlayerUIShellViewController ()
-@property (nonatomic, strong) IRPlayerImp * playerImp;
+@property (nonatomic, strong) IRPlayerWithMediaPlayback * playerImp;
 @property (nonatomic, strong) IRPlayerController *player;
 @property (nonatomic, strong) UIImageView *containerView;
 @property (nonatomic, strong) IRPlayerControlView *controlView;
@@ -42,7 +47,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
         fisheyeVideo = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"fisheye-demo" ofType:@"mp4"]];
     });
     
-    self.playerImp = [IRPlayerImp player];
+    self.playerImp = [IRPlayerWithMediaPlayback player];
     [self.playerImp setViewTapAction:^(IRPlayerImp * _Nonnull player, IRPLFView * _Nonnull view) {
         NSLog(@"player display view did click!");
     }];
@@ -61,6 +66,12 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     self.player.controlView = self.controlView;
     /// 设置退到后台继续播放
     self.player.pauseWhenAppResignActive = NO;
+    
+    [self.playerImp registerPlayerNotificationTarget:self
+       stateAction:@selector(stateAction:)
+    progressAction:@selector(progressAction:)
+    playableAction:@selector(playableAction:)
+       errorAction:@selector(errorAction:)];
     
     @weakify(self)
     self.player.orientationWillChange = ^(IRPlayerController * _Nonnull player, BOOL isFullScreen) {
@@ -231,6 +242,107 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
                            [NSURL URLWithString:@"http://tb-video.bdstatic.com/tieba-movideo/11233547_ac127ce9e993877dce0eebceaa04d6c2_593d93a619b0.mp4"]];
     }
     return _assetURLs;
+}
+
+
+- (void)stateAction:(NSNotification *)notification
+{
+    [self dealWithNotification:notification Player:self.playerImp];
+}
+
+- (void)progressAction:(NSNotification *)notification
+{
+    //    IRProgress * progress = [IRProgress progressFromUserInfo:notification.userInfo];
+    //    if (!self.progressSilderTouching) {
+    //        self.progressSilder.value = progress.percent;
+    //    }
+    //    self.currentTimeLabel.text = [self timeStringFromSeconds:progress.current];
+    
+//    if (self.playerPlayTimeChanged) self.playerPlayTimeChanged(asset,currentTime,duration);
+    if ([self.controlView respondsToSelector:@selector(videoPlayer:currentTime:totalTime:)]) {
+        IRProgress * progress = [IRProgress progressFromUserInfo:notification.userInfo];
+//        if (!self.progressSilderTouching) {
+//            self.progressSilder.value = progress.percent;
+//        }
+        [self.controlView videoPlayer:self.player currentTime:progress.current totalTime:progress.total];
+    }
+}
+
+- (NSString *)timeStringFromSeconds:(CGFloat)seconds
+{
+    return [NSString stringWithFormat:@"%ld:%.2ld", (long)seconds / 60, (long)seconds % 60];
+}
+
+- (void)playableAction:(NSNotification *)notification
+{
+    IRPlayable * playable = [IRPlayable playableFromUserInfo:notification.userInfo];
+    NSLog(@"playable time : %f", playable.current);
+}
+
+- (void)errorAction:(NSNotification *)notification
+{
+    IRError * error = [IRError errorFromUserInfo:notification.userInfo];
+    NSLog(@"player did error : %@", error.error);
+}
+
+- (void)dealWithNotification:(NSNotification *)notification Player:(IRPlayerImp *)player {
+    IRState * state = [IRState stateFromUserInfo:notification.userInfo];
+    
+    NSString * text;
+    switch (state.current) {
+        case IRPlayerStateNone:
+            text = @"None";
+            break;
+        case IRPlayerStateBuffering:
+            text = @"Buffering...";
+            
+            if (self.playerImp.playerReadyToPlay) self.playerImp.playerPrepareToPlay(self.playerImp, player.contentURL);
+            
+//            self.currentPlayerManager.view.hidden = NO;
+//            [self.notification addNotification];
+//            [self addDeviceOrientationObserver];
+//            if (self.scrollView) {
+//                self.scrollView.ir_stopPlay = NO;
+//            }
+//            [self layoutPlayerSubViews];
+////            if (self.playerPrepareToPlay) self.playerPrepareToPlay(asset,assetURL);
+//            if ([self.controlView respondsToSelector:@selector(videoPlayer:prepareToPlay:)]) {
+//                [self.controlView videoPlayer:self prepareToPlay:player.contentURL];
+//            }
+//
+//            if ([self.controlView respondsToSelector:@selector(videoPlayer:loadStateChanged:)]) {
+//                [self.controlView videoPlayer:self loadStateChanged:IRPlayerLoadStateStalled];
+//            }
+            
+            break;
+        case IRPlayerStateReadyToPlay:
+            text = @"Prepare";
+            //            self.totalTimeLabel.text = [self timeStringFromSeconds:self.player.duration];
+            
+            if (self.playerImp.playerReadyToPlay) self.playerImp.playerReadyToPlay(self.playerImp, player.contentURL);
+            break;
+        case IRPlayerStatePlaying:
+            text = @"Playing";
+            if ([self.controlView respondsToSelector:@selector(videoPlayer:loadStateChanged:)]) {
+                [self.controlView videoPlayer:self.player loadStateChanged:IRPlayerLoadStatePlaythroughOK];
+            }
+            break;
+        case IRPlayerStateSuspend:
+            text = @"Suspend";
+            break;
+        case IRPlayerStateFinished:
+            text = @"Finished";
+            break;
+        case IRPlayerStateFailed:
+            text = @"Error";
+//            if (self.playerPlayFailed) self.playerPlayFailed(asset, error);
+            if ([self.controlView respondsToSelector:@selector(videoPlayerPlayFailed:error:)]) {
+                IRError *error = [IRError errorFromUserInfo:notification.userInfo];
+                [self.controlView videoPlayerPlayFailed:self.player error:error];
+            }
+            break;
+    }
+    //    self.stateLabel.text = text;
 }
 
 @end

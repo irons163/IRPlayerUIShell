@@ -10,6 +10,7 @@
 		078349FFF7E5B3B3F0E81C03 /* Pods_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37AC3707AB0BB71DFCDB54B /* Pods_demo.framework */; };
 		4A8E835426EC6A080031E62F /* IRPlayerUIShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E835326EC69E90031E62F /* IRPlayerUIShell.framework */; };
 		4A8E835526EC6A080031E62F /* IRPlayerUIShell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E835326EC69E90031E62F /* IRPlayerUIShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4A927A3126EC88C8004FB95E /* IRPlayerWithMediaPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A927A3026EC88C8004FB95E /* IRPlayerWithMediaPlayback.m */; };
 		B546C4B0236B370100FA283A /* IRRTSPPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C4AF236B370100FA283A /* IRRTSPPlayer.m */; };
 		B546C4B5236B38B700FA283A /* NSLayoutConstraint+Multiplier.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C4B3236B38B600FA283A /* NSLayoutConstraint+Multiplier.m */; };
 		B555ACC3236D9BA700AA1400 /* IRPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B555ACC1236D9BA700AA1400 /* IRPlayerViewController.m */; };
@@ -56,6 +57,8 @@
 
 /* Begin PBXFileReference section */
 		4A8E834E26EC69E80031E62F /* IRPlayerUIShell.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IRPlayerUIShell.xcodeproj; path = ../IRPlayerUIShell.xcodeproj; sourceTree = "<group>"; };
+		4A927A2F26EC88C8004FB95E /* IRPlayerWithMediaPlayback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRPlayerWithMediaPlayback.h; sourceTree = "<group>"; };
+		4A927A3026EC88C8004FB95E /* IRPlayerWithMediaPlayback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRPlayerWithMediaPlayback.m; sourceTree = "<group>"; };
 		4AB4348FBA92D8ED97E6CFF1 /* Pods-demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.release.xcconfig"; path = "Target Support Files/Pods-demo/Pods-demo.release.xcconfig"; sourceTree = "<group>"; };
 		6ED1F323FB34B903805EF66B /* Pods-demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.debug.xcconfig"; path = "Target Support Files/Pods-demo/Pods-demo.debug.xcconfig"; sourceTree = "<group>"; };
 		B546C4AE236B370000FA283A /* IRRTSPPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRRTSPPlayer.h; sourceTree = "<group>"; };
@@ -110,6 +113,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		4A927A2E26EC8874004FB95E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B571C4C32361FA5200201D41 /* IRViewWraper.h */,
+				B571C4C42361FA5200201D41 /* IRViewWraper.m */,
+				4A927A2F26EC88C8004FB95E /* IRPlayerWithMediaPlayback.h */,
+				4A927A3026EC88C8004FB95E /* IRPlayerWithMediaPlayback.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		5E9C8B5E239364B1AB78B2E1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,13 +154,6 @@
 				B5AD60A724039C6900E513BA /* IRPlayerUIShellViewController.xib */,
 			);
 			path = Display;
-			sourceTree = "<group>";
-		};
-		B546C4B1236B389D00FA283A /* UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		B546C4B2236B38A300FA283A /* Utility */ = {
@@ -211,11 +218,9 @@
 		B571C4C12361F44900201D41 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				4A927A2E26EC8874004FB95E /* UI */,
 				B546C4B2236B38A300FA283A /* Utility */,
-				B546C4B1236B389D00FA283A /* UI */,
 				B546C4AD236B36DD00FA283A /* Display */,
-				B571C4C32361FA5200201D41 /* IRViewWraper.h */,
-				B571C4C42361FA5200201D41 /* IRViewWraper.m */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				B55E0128232A96D300B42820 /* PlayerViewController.m in Sources */,
 				B555ACC3236D9BA700AA1400 /* IRPlayerViewController.m in Sources */,
 				B546C4B5236B38B700FA283A /* NSLayoutConstraint+Multiplier.m in Sources */,
+				4A927A3126EC88C8004FB95E /* IRPlayerWithMediaPlayback.m in Sources */,
 				B546C4B0236B370100FA283A /* IRRTSPPlayer.m in Sources */,
 				B55E0118232A93BA00B42820 /* main.m in Sources */,
 				B571C4C52361FA5200201D41 /* IRViewWraper.m in Sources */,

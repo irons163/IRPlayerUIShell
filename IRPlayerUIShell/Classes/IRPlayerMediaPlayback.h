@@ -30,7 +30,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "IRPlayerView.h"
+//#import "IRPlayerView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -61,7 +61,8 @@ typedef NS_ENUM(NSInteger, IRPlayerScalingMode) {
 
 @required
 /// The view must inherited `IRPlayerView`,this view deals with some gesture conflicts.
-@property (nonatomic) IRPlayerView *view;
+//@property (nonatomic) IRPlayerView *view;
+@property (nonatomic) UIView *view;
 
 @optional
 /// The player volume.
@@ -119,6 +120,11 @@ typedef NS_ENUM(NSInteger, IRPlayerScalingMode) {
 
 /// The player load state.
 @property (nonatomic, readonly) IRPlayerLoadState loadState;
+
+@property (nonatomic, assign, readonly) NSTimeInterval progress;
+@property (nonatomic, assign, readonly) NSTimeInterval duration;
+@property (nonatomic, assign, readonly) NSTimeInterval playableTime;
+@property (nonatomic, assign) NSTimeInterval playableBufferInterval;
 
 ///------------------------------------
 /// If you don't appoint the controlView, you can called the following blocks.

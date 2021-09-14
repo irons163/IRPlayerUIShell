@@ -414,9 +414,11 @@
 
 - (void)gesturePinched:(IRGestureController *)gestureControl scale:(float)scale {
     if (scale > 1) {
-        self.player.currentPlayerManager.viewGravityMode = IRPlayerScalingModeAspectFill;
+//        self.player.currentPlayerManager.viewGravityMode = IRPlayerScalingModeAspectFill;
+        self.player.currentPlayerManager.scalingMode = IRPlayerScalingModeAspectFill;
     } else {
-        self.player.currentPlayerManager.viewGravityMode = IRPlayerScalingModeAspectFit;
+//        self.player.currentPlayerManager.viewGravityMode = IRPlayerScalingModeAspectFit;
+        self.player.currentPlayerManager.scalingMode = IRPlayerScalingModeAspectFit;
     }
 }
 
@@ -430,9 +432,14 @@
         [self.landScapeControlView playBtnSelectedState:YES];
         self.failBtn.hidden = YES;
         /// Check for show loading view or not.
-        if (videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying && !self.prepareShowLoading) {
+//        if (videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying && !self.prepareShowLoading) {
+//            [self.activity startAnimating];
+//        } else if ((videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying || videoPlayer.currentPlayerManager.state == IRPlayerStateReadyToPlay) && self.prepareShowLoading) {
+//            [self.activity startAnimating];
+//        }
+        if (videoPlayer.currentPlayerManager.playState == IRPlayerPlayStatePlaying && !self.prepareShowLoading) {
             [self.activity startAnimating];
-        } else if ((videoPlayer.currentPlayerManager.state == IRPlayerStatePlaying || videoPlayer.currentPlayerManager.state == IRPlayerStateReadyToPlay) && self.prepareShowLoading) {
+        } else if ((videoPlayer.currentPlayerManager.playState == IRPlayerPlayStatePlaying || videoPlayer.currentPlayerManager.loadState == IRPlayerLoadStatePlayable) && self.prepareShowLoading) {
             [self.activity startAnimating];
         }
     } else if (state == IRPlayerPlayStatePaused) {
@@ -463,9 +470,16 @@
             self.player.currentPlayerManager.view.backgroundColor = [UIColor blackColor];
         }
     }
-    if (state == IRPlayerLoadStateStalled && videoPlayer.currentPlayerManager.state == IRPlayerStateBuffering && !self.prepareShowLoading) {
+//    if (state == IRPlayerLoadStateStalled && videoPlayer.currentPlayerManager.state == IRPlayerStateBuffering && !self.prepareShowLoading) {
+//        [self.activity startAnimating];
+//    } else if ((state == IRPlayerLoadStateStalled || state == IRPlayerLoadStatePrepare) && videoPlayer.currentPlayerManager.state == IRPlayerStateBuffering && self.prepareShowLoading) {
+//        [self.activity startAnimating];
+//    } else {
+//        [self.activity stopAnimating];
+//    }
+    if (state == IRPlayerLoadStateStalled && videoPlayer.currentPlayerManager.loadState == IRPlayerLoadStatePrepare && !self.prepareShowLoading) {
         [self.activity startAnimating];
-    } else if ((state == IRPlayerLoadStateStalled || state == IRPlayerLoadStatePrepare) && videoPlayer.currentPlayerManager.state == IRPlayerStateBuffering && self.prepareShowLoading) {
+    } else if ((state == IRPlayerLoadStateStalled || state == IRPlayerLoadStatePrepare) && videoPlayer.currentPlayerManager.loadState == IRPlayerLoadStatePrepare && self.prepareShowLoading) {
         [self.activity startAnimating];
     } else {
         [self.activity stopAnimating];

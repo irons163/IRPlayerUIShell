@@ -33,7 +33,7 @@
 #import "UIView+IRFrame.h"
 #import "IRUtilities.h"
 #import "IRScope.h"
-#import "IRPlayer.h"
+//#import "IRPlayer.h"
 
 @interface IRLandScapeControlView () <IRSliderViewDelegate>
 /// ToolView in the top

@@ -33,9 +33,10 @@
 #import "IRPlayerMediaPlayback.h"
 #import "IROrientationObserver.h"
 #import "IRPlayerMediaControl.h"
-#import <IRPlayer/IRPlayer.h>
-#import <IRPlayer/IRGestureController.h>
+//#import <IRPlayer/IRPlayer.h>
+//#import <IRPlayer/IRGestureController.h>
 #import "IRPlayerControllerNotification.h"
+#import "IRGestureController.h"
 #import "IRFloatView.h"
 #import "UIScrollView+IRPlayer.h"
 
@@ -47,8 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *containerView;
 
 /// The currentPlayerManager must conform `IRPlayerMediaPlayback` protocol.
-//@property (nonatomic, strong) id<IRPlayerMediaPlayback> currentPlayerManager;
-@property (nonatomic, strong) IRPlayerImp *currentPlayerManager;
+@property (nonatomic, strong) id<IRPlayerMediaPlayback> currentPlayerManager;
+//@property (nonatomic, strong) IRPlayerImp *currentPlayerManager;
 
 /// The custom controlView must conform `IRPlayerMediaControl` protocol.
 @property (nonatomic, strong) UIView<IRPlayerMediaControl> *controlView;
@@ -72,8 +73,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param             containerView to see the video frames must set the contrainerView.
  @result            An instance of IRPlayerController.
  */
-//+ (instancetype)playerWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(UIView *)containerView;
-+ (instancetype)playerWithPlayerManager:(IRPlayerImp *)playerManager containerView:(UIView *)containerView;
++ (instancetype)playerWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(UIView *)containerView;
+//+ (instancetype)playerWithPlayerManager:(IRPlayerImp *)playerManager containerView:(UIView *)containerView;
 
 /*!
  @method            initWithPlayerManager:containerView:
@@ -82,8 +83,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param             containerView to see the video frames must set the contrainerView.
  @result            An instance of IRPlayerController.
  */
-//- (instancetype)initWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(UIView *)containerView;
-- (instancetype)initWithPlayerManager:(IRPlayerImp *)playerManager containerView:(UIView *)containerView;
+- (instancetype)initWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(UIView *)containerView;
+//- (instancetype)initWithPlayerManager:(IRPlayerImp *)playerManager containerView:(UIView *)containerView;
 
 /*!
  @method            playerWithScrollView:playerManager:containerViewTag:

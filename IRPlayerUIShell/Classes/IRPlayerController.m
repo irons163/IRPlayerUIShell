@@ -34,7 +34,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "UIScrollView+IRPlayer.h"
 #import "IRReachabilityManager.h"
-#import "IRPlayer.h"
+//#import "IRPlayer.h"
 #import "IRScope.h"
 
 @interface IRPlayerController ()
@@ -88,15 +88,15 @@
     [self.currentPlayerManager pause];
 }
 
-//+ (instancetype)playerWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(nonnull UIView *)containerView {
-//    IRPlayerController *player = [[self alloc] initWithPlayerManager:playerManager containerView:containerView];
-//    return player;
-//}
-
-+ (instancetype)playerWithPlayerManager:(IRPlayerImp *)playerManager containerView:(UIView *)containerView {
++ (instancetype)playerWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(nonnull UIView *)containerView {
     IRPlayerController *player = [[self alloc] initWithPlayerManager:playerManager containerView:containerView];
     return player;
 }
+
+//+ (instancetype)playerWithPlayerManager:(IRPlayerImp *)playerManager containerView:(UIView *)containerView {
+//    IRPlayerController *player = [[self alloc] initWithPlayerManager:playerManager containerView:containerView];
+//    return player;
+//}
 
 + (instancetype)playerWithScrollView:(UIScrollView *)scrollView playerManager:(id<IRPlayerMediaPlayback>)playerManager containerViewTag:(NSInteger)containerViewTag {
     IRPlayerController *player = [[self alloc] initWithScrollView:scrollView playerManager:playerManager containerViewTag:containerViewTag];
@@ -108,21 +108,21 @@
     return player;
 }
 
-//- (instancetype)initWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(nonnull UIView *)containerView {
-//    IRPlayerController *player = [self init];
-//    player.containerView = containerView;
-//    player.currentPlayerManager = playerManager;
-//    player.containerType = IRPlayerContainerTypeView;
-//    return player;
-//}
-
-- (instancetype)initWithPlayerManager:(IRPlayerImp *)playerManager containerView:(nonnull UIView *)containerView {
+- (instancetype)initWithPlayerManager:(id<IRPlayerMediaPlayback>)playerManager containerView:(nonnull UIView *)containerView {
     IRPlayerController *player = [self init];
     player.containerView = containerView;
     player.currentPlayerManager = playerManager;
     player.containerType = IRPlayerContainerTypeView;
     return player;
 }
+
+//- (instancetype)initWithPlayerManager:(IRPlayerImp *)playerManager containerView:(nonnull UIView *)containerView {
+//    IRPlayerController *player = [self init];
+//    player.containerView = containerView;
+//    player.currentPlayerManager = playerManager;
+//    player.containerType = IRPlayerContainerTypeView;
+//    return player;
+//}
 
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView playerManager:(id<IRPlayerMediaPlayback>)playerManager containerViewTag:(NSInteger)containerViewTag {
     IRPlayerController *player = [self init];
@@ -143,40 +143,45 @@
 }
 
 - (void)playerManagerCallbcak {
-    [self.currentPlayerManager registerPlayerNotificationTarget:self
-       stateAction:@selector(stateAction:)
-    progressAction:@selector(progressAction:)
-    playableAction:@selector(playableAction:)
-       errorAction:@selector(errorAction:)];
-    
-    
-//    @weakify(self)
-//    self.currentPlayerManager.playerPrepareToPlay = ^(id<IRPlayerMediaPlayback>  _Nonnull asset, NSURL * _Nonnull assetURL) {
-//        @strongify(self)
-//        self.currentPlayerManager.view.hidden = NO;
-//        [self.notification addNotification];
-//        [self addDeviceOrientationObserver];
-//        if (self.scrollView) {
-//            self.scrollView.ir_stopPlay = NO;
-//        }
-//        [self layoutPlayerSubViews];
-//        if (self.playerPrepareToPlay) self.playerPrepareToPlay(asset,assetURL);
-//        if ([self.controlView respondsToSelector:@selector(videoPlayer:prepareToPlay:)]) {
-//            [self.controlView videoPlayer:self prepareToPlay:assetURL];
-//        }
-//    };
-//
-//    self.currentPlayerManager.playerReadyToPlay = ^(id<IRPlayerMediaPlayback>  _Nonnull asset, NSURL * _Nonnull assetURL) {
-//        @strongify(self)
-//        if (self.playerReadyToPlay) self.playerReadyToPlay(asset,assetURL);
-//        if (!self.customAudioSession) {
-//            // Apps using this category don't mute when the phone's mute button is turned on, but play sound when the phone is silent
-//            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionAllowBluetooth error:nil];
-//            [[AVAudioSession sharedInstance] setActive:YES error:nil];
-//        }
-//        if (self.viewControllerDisappear) self.pauseByEvent = YES;
-//    };
-//
+    @weakify(self)
+    self.currentPlayerManager.playerPrepareToPlay = ^(id<IRPlayerMediaPlayback>  _Nonnull asset, NSURL * _Nonnull assetURL) {
+        @strongify(self)
+        self.currentPlayerManager.view.hidden = NO;
+        [self.notification addNotification];
+        [self addDeviceOrientationObserver];
+        
+        if (self.scrollView) {
+            self.scrollView.ir_stopPlay = NO;
+        }
+        
+        [self layoutPlayerSubViews];
+        
+        if ([self.controlView respondsToSelector:@selector(videoPlayer:prepareToPlay:)]) {
+            [self.controlView videoPlayer:self prepareToPlay:assetURL];
+        }
+        
+        if ([self.controlView respondsToSelector:@selector(videoPlayer:loadStateChanged:)]) {
+            [self.controlView videoPlayer:self loadStateChanged:IRPlayerLoadStateStalled];
+        }
+    };
+
+    self.currentPlayerManager.playerReadyToPlay = ^(id<IRPlayerMediaPlayback>  _Nonnull asset, NSURL * _Nonnull assetURL) {
+        @strongify(self)
+        if ([self.controlView respondsToSelector:@selector(videoPlayer:loadStateChanged:)]) {
+            [self.controlView videoPlayer:self loadStateChanged:IRPlayerLoadStatePlayable];
+        }
+        
+        if (!self.customAudioSession) {
+            // Apps using this category don't mute when the phone's mute button is turned on, but play sound when the phone is silent
+            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionAllowBluetooth error:nil];
+            [[AVAudioSession sharedInstance] setActive:YES error:nil];
+        }
+        
+        if (self.viewControllerDisappear) self.pauseByEvent = YES;
+        
+        [self.currentPlayerManager play];
+    };
+
 //    self.currentPlayerManager.playerPlayTimeChanged = ^(id<IRPlayerMediaPlayback>  _Nonnull asset, NSTimeInterval currentTime, NSTimeInterval duration) {
 //        @strongify(self)
 //        if (self.playerPlayTimeChanged) self.playerPlayTimeChanged(asset,currentTime,duration);
@@ -241,114 +246,7 @@
 //    };
 }
 
-- (void)stateAction:(NSNotification *)notification
-{
-    [self dealWithNotification:notification Player:self.currentPlayerManager];
-}
 
-- (void)progressAction:(NSNotification *)notification
-{
-    //    IRProgress * progress = [IRProgress progressFromUserInfo:notification.userInfo];
-    //    if (!self.progressSilderTouching) {
-    //        self.progressSilder.value = progress.percent;
-    //    }
-    //    self.currentTimeLabel.text = [self timeStringFromSeconds:progress.current];
-    
-//    if (self.playerPlayTimeChanged) self.playerPlayTimeChanged(asset,currentTime,duration);
-    if ([self.controlView respondsToSelector:@selector(videoPlayer:currentTime:totalTime:)]) {
-        IRProgress * progress = [IRProgress progressFromUserInfo:notification.userInfo];
-//        if (!self.progressSilderTouching) {
-//            self.progressSilder.value = progress.percent;
-//        }
-        [self.controlView videoPlayer:self currentTime:progress.current totalTime:progress.total];
-    }
-}
-
-- (NSString *)timeStringFromSeconds:(CGFloat)seconds
-{
-    return [NSString stringWithFormat:@"%ld:%.2ld", (long)seconds / 60, (long)seconds % 60];
-}
-
-- (void)playableAction:(NSNotification *)notification
-{
-    IRPlayable * playable = [IRPlayable playableFromUserInfo:notification.userInfo];
-    NSLog(@"playable time : %f", playable.current);
-}
-
-- (void)errorAction:(NSNotification *)notification
-{
-    IRError * error = [IRError errorFromUserInfo:notification.userInfo];
-    NSLog(@"player did error : %@", error.error);
-}
-
-- (void)dealWithNotification:(NSNotification *)notification Player:(IRPlayerImp *)player {
-    IRState * state = [IRState stateFromUserInfo:notification.userInfo];
-    
-    NSString * text;
-    switch (state.current) {
-        case IRPlayerStateNone:
-            text = @"None";
-            break;
-        case IRPlayerStateBuffering:
-            text = @"Buffering...";
-            
-            self.currentPlayerManager.view.hidden = NO;
-            [self.notification addNotification];
-            [self addDeviceOrientationObserver];
-            if (self.scrollView) {
-                self.scrollView.ir_stopPlay = NO;
-            }
-            [self layoutPlayerSubViews];
-//            if (self.playerPrepareToPlay) self.playerPrepareToPlay(asset,assetURL);
-            if ([self.controlView respondsToSelector:@selector(videoPlayer:prepareToPlay:)]) {
-                [self.controlView videoPlayer:self prepareToPlay:player.contentURL];
-            }
-            
-            if ([self.controlView respondsToSelector:@selector(videoPlayer:loadStateChanged:)]) {
-                [self.controlView videoPlayer:self loadStateChanged:IRPlayerLoadStateStalled];
-            }
-            
-            break;
-        case IRPlayerStateReadyToPlay:
-            text = @"Prepare";
-            //            self.totalTimeLabel.text = [self timeStringFromSeconds:self.player.duration];
-            
-            if ([self.controlView respondsToSelector:@selector(videoPlayer:loadStateChanged:)]) {
-                [self.controlView videoPlayer:self loadStateChanged:IRPlayerLoadStatePlayable];
-            }
-//            if (self.playerReadyToPlay) self.playerReadyToPlay(asset,assetURL);
-            if (!self.customAudioSession) {
-                // Apps using this category don't mute when the phone's mute button is turned on, but play sound when the phone is silent
-                [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionAllowBluetooth error:nil];
-                [[AVAudioSession sharedInstance] setActive:YES error:nil];
-            }
-            if (self.viewControllerDisappear) self.pauseByEvent = YES;
-            
-            [player play];
-            break;
-        case IRPlayerStatePlaying:
-            text = @"Playing";
-            if ([self.controlView respondsToSelector:@selector(videoPlayer:loadStateChanged:)]) {
-                [self.controlView videoPlayer:self loadStateChanged:IRPlayerLoadStatePlaythroughOK];
-            }
-            break;
-        case IRPlayerStateSuspend:
-            text = @"Suspend";
-            break;
-        case IRPlayerStateFinished:
-            text = @"Finished";
-            break;
-        case IRPlayerStateFailed:
-            text = @"Error";
-//            if (self.playerPlayFailed) self.playerPlayFailed(asset, error);
-            if ([self.controlView respondsToSelector:@selector(videoPlayerPlayFailed:error:)]) {
-                IRError *error = [IRError errorFromUserInfo:notification.userInfo];
-                [self.controlView videoPlayerPlayFailed:self error:error];
-            }
-            break;
-    }
-    //    self.stateLabel.text = text;
-}
 
 - (void)layoutPlayerSubViews {
     if (self.containerView && self.currentPlayerManager.view) {
@@ -378,7 +276,10 @@
         _notification.willResignActive = ^(IRPlayerControllerNotification * _Nonnull registrar) {
             @strongify(self)
             if (self.isViewControllerDisappear) return;
-            if (self.pauseWhenAppResignActive && self.currentPlayerManager.state == IRPlayerStatePlaying) {
+//            if (self.pauseWhenAppResignActive && self.currentPlayerManager.state == IRPlayerStatePlaying) {
+//                self.pauseByEvent = YES;
+//            }
+            if (self.pauseWhenAppResignActive && self.currentPlayerManager.playState == IRPlayerPlayStatePlaying) {
                 self.pauseByEvent = YES;
             }
             if (self.isFullScreen && !self.isLockedScreen) self.orientationObserver.lockedScreen = YES;
@@ -388,15 +289,17 @@
                 [[AVAudioSession sharedInstance] setActive:YES error:nil];
             }
         };
+        
         _notification.didBecomeActive = ^(IRPlayerControllerNotification * _Nonnull registrar) {
             @strongify(self)
             if (self.isViewControllerDisappear) return;
             if (self.isPauseByEvent) self.pauseByEvent = NO;
             if (self.isFullScreen && !self.isLockedScreen) self.orientationObserver.lockedScreen = NO;
         };
+        
         _notification.oldDeviceUnavailable = ^(IRPlayerControllerNotification * _Nonnull registrar) {
             @strongify(self)
-            if (self.currentPlayerManager.state == IRPlayerStatePlaying) {
+            if (self.currentPlayerManager.playState == IRPlayerPlayStatePlaying) {
                 [self.currentPlayerManager play];
             }
         };
@@ -417,12 +320,14 @@
 
 - (void)setCurrentPlayerManager:(id<IRPlayerMediaPlayback>)currentPlayerManager {
     if (!currentPlayerManager) return;
-    if (_currentPlayerManager.state == IRPlayerStateReadyToPlay) {
+
+    if (_currentPlayerManager.loadState == IRPlayerLoadStatePlayable) {
         [_currentPlayerManager pause];
         [_currentPlayerManager.view removeFromSuperview];
         [self.orientationObserver removeDeviceOrientationObserver];
         [self.gestureControl removeGestureToView:self.currentPlayerManager.view];
     }
+    
     _currentPlayerManager = currentPlayerManager;
     _currentPlayerManager.view.hidden = YES;
     self.gestureControl.disableTypes = self.disableGestureTypes;
@@ -438,14 +343,18 @@
     if (self.scrollView) {
         self.scrollView.ir_containerView = containerView;
     }
+    
     if (!containerView) return;
+    
     containerView.userInteractionEnabled = YES;
     [self layoutPlayerSubViews];
 }
 
 - (void)setControlView:(UIView<IRPlayerMediaControl> *)controlView {
     _controlView = controlView;
+    
     if (!controlView) return;
+    
     controlView.player = self;
     [self layoutPlayerSubViews];
 }
@@ -484,7 +393,8 @@
 }
 
 - (void)seekToTime:(NSTimeInterval)time completionHandler:(void (^)(BOOL))completionHandler {
-    [self.currentPlayerManager seekToTime:time completeHandler:completionHandler];
+//    [self.currentPlayerManager seekToTime:time completeHandler:completionHandler];
+    [self.currentPlayerManager seekToTime:time completionHandler:completionHandler];
 }
 
 @end
@@ -644,12 +554,13 @@
     return [objc_getAssociatedObject(self, _cmd) floatValue];
 }
 
-- (IRPlayerState)playState {
-    return self.currentPlayerManager.state;
-}
+//- (IRPlayerState)playState {
+//    return self.currentPlayerManager.state;
+//}
 
 - (BOOL)isPlaying {
-    return self.currentPlayerManager.state == IRPlayerStatePlaying;
+//    return self.currentPlayerManager.state == IRPlayerStatePlaying;
+    return self.currentPlayerManager.playState == IRPlayerPlayStatePlaying;
 }
 
 - (BOOL)pauseWhenAppResignActive {
@@ -711,8 +622,8 @@
 
 - (void)setAssetURL:(NSURL *)assetURL {
     objc_setAssociatedObject(self, @selector(assetURL), assetURL, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//    self.currentPlayerManager.assetURL = assetURL;
-    [self.currentPlayerManager replaceVideoWithURL:assetURL];
+//    [self.currentPlayerManager replaceVideoWithURL:assetURL];
+    self.currentPlayerManager.assetURL = assetURL;
 }
 
 - (void)setAssetURLs:(NSArray<NSURL *> * _Nullable)assetURLs {
@@ -802,10 +713,12 @@
 - (void)setViewControllerDisappear:(BOOL)viewControllerDisappear {
     objc_setAssociatedObject(self, @selector(isViewControllerDisappear), @(viewControllerDisappear), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     if (self.scrollView) self.scrollView.ir_viewControllerDisappear = viewControllerDisappear;
-    if (!(self.currentPlayerManager.state == IRPlayerStateReadyToPlay)) return;
+//    if (!(self.currentPlayerManager.state == IRPlayerStateReadyToPlay)) return;
+    if (!(self.currentPlayerManager.loadState == IRPlayerLoadStatePlayable)) return;
     if (viewControllerDisappear) {
         [self removeDeviceOrientationObserver];
-        if (self.currentPlayerManager.state == IRPlayerStatePlaying) self.pauseByEvent = YES;
+//        if (self.currentPlayerManager.state == IRPlayerStatePlaying) self.pauseByEvent = YES;
+        if (self.currentPlayerManager.playState == IRPlayerPlayStatePlaying) self.pauseByEvent = YES;
     } else {
         if (self.isPauseByEvent) self.pauseByEvent = NO;
         [self addDeviceOrientationObserver];
