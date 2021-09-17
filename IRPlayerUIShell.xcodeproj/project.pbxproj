@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A6F4BDD26F0507900D34DC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F4BDC26F0507900D34DC0 /* Assets.xcassets */; };
 		4A8E828E26EC68FD0031E62F /* IRPlayerUIShell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E828C26EC68FD0031E62F /* IRPlayerUIShell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4A8E832026EC69520031E62F /* IRLandScapeControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82F226EC69510031E62F /* IRLandScapeControlView.m */; };
 		4A8E832126EC69520031E62F /* IRPlayerControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82F326EC69510031E62F /* IRPlayerControlView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -61,6 +62,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A6F4BDC26F0507900D34DC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A8E828926EC68FD0031E62F /* IRPlayerUIShell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRPlayerUIShell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8E828C26EC68FD0031E62F /* IRPlayerUIShell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRPlayerUIShell.h; sourceTree = "<group>"; };
 		4A8E828D26EC68FD0031E62F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -127,6 +129,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A6F4BDE26F051B700D34DC0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4A8E831726EC69520031E62F /* IROrientationObserver.h */,
+				4A8E82FD26EC69510031E62F /* IROrientationObserver.m */,
+				4A8E831326EC69520031E62F /* IRPlayerControllerNotification.h */,
+				4A8E82FF26EC69510031E62F /* IRPlayerControllerNotification.m */,
+				4A8E831D26EC69520031E62F /* IRNetworkSpeedMonitor.h */,
+				4A8E830626EC69510031E62F /* IRNetworkSpeedMonitor.m */,
+				4A8E831F26EC69520031E62F /* IRPlayerLogManager.h */,
+				4A8E830426EC69510031E62F /* IRPlayerLogManager.m */,
+				4A8E830A26EC69510031E62F /* IRReachabilityManager.h */,
+				4A8E831A26EC69520031E62F /* IRReachabilityManager.m */,
+				4A8E831C26EC69520031E62F /* IRKVOController.h */,
+				4A8E830726EC69510031E62F /* IRKVOController.m */,
+				4A8E831426EC69520031E62F /* IRUtilities.h */,
+				4A8E830126EC69510031E62F /* IRUtilities.m */,
+				4A8E830526EC69510031E62F /* IRMetamacros.h */,
+				4A8E82F826EC69510031E62F /* IRScope.h */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4A6F4BDF26F051DA00D34DC0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4A8E830926EC69510031E62F /* IRFloatView.h */,
+				4A8E831926EC69520031E62F /* IRFloatView.m */,
+				4A8E830F26EC69510031E62F /* IRSliderView.h */,
+				4A8E82FA26EC69510031E62F /* IRSliderView.m */,
+				4A8E831626EC69520031E62F /* IRLoadingView.h */,
+				4A8E82FC26EC69510031E62F /* IRLoadingView.m */,
+				4A8E831226EC69510031E62F /* IRPlayerView.h */,
+				4A8E82FE26EC69510031E62F /* IRPlayerView.m */,
+				4A8E82FB26EC69510031E62F /* IRSmallFloatControlView.h */,
+				4A8E831826EC69520031E62F /* IRSmallFloatControlView.m */,
+				4A8E831026EC69510031E62F /* IRVolumeBrightnessView.h */,
+				4A8E82F926EC69510031E62F /* IRVolumeBrightnessView.m */,
+				4A8E830E26EC69510031E62F /* IRLandScapeControlView.h */,
+				4A8E82F226EC69510031E62F /* IRLandScapeControlView.m */,
+				4A8E830826EC69510031E62F /* IRSpeedLoadingView.h */,
+				4A8E831B26EC69520031E62F /* IRSpeedLoadingView.m */,
+				4A8E830326EC69510031E62F /* IRPortraitControlView.h */,
+				4A8E831E26EC69520031E62F /* IRPortraitControlView.m */,
+				4A8E82F326EC69510031E62F /* IRPlayerControlView.h */,
+				4A8E830D26EC69510031E62F /* IRPlayerControlView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4A6F4BE026F052FB00D34DC0 /* Catagories */ = {
+			isa = PBXGroup;
+			children = (
+				4A8E82F726EC69510031E62F /* UIView+IRFrame.h */,
+				4A8E831126EC69510031E62F /* UIView+IRFrame.m */,
+				4A8E830C26EC69510031E62F /* UIScrollView+IRPlayer.h */,
+				4A8E82F426EC69510031E62F /* UIScrollView+IRPlayer.m */,
+				4A8E831526EC69520031E62F /* UIImageView+IRCache.h */,
+				4A8E830026EC69510031E62F /* UIImageView+IRCache.m */,
+			);
+			path = Catagories;
+			sourceTree = "<group>";
+		};
 		4A8E827F26EC68FD0031E62F = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +214,7 @@
 				4A8E82F126EC69510031E62F /* Classes */,
 				4A8E828C26EC68FD0031E62F /* IRPlayerUIShell.h */,
 				4A8E828D26EC68FD0031E62F /* Info.plist */,
+				4A6F4BDC26F0507900D34DC0 /* Assets.xcassets */,
 			);
 			path = IRPlayerUIShell;
 			sourceTree = "<group>";
@@ -156,53 +222,10 @@
 		4A8E82F126EC69510031E62F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4A6F4BE026F052FB00D34DC0 /* Catagories */,
+				4A6F4BDF26F051DA00D34DC0 /* Views */,
+				4A6F4BDE26F051B700D34DC0 /* Utilities */,
 				4A927A1F26EC8250004FB95E /* Controller */,
-				4A8E82F226EC69510031E62F /* IRLandScapeControlView.m */,
-				4A8E82F326EC69510031E62F /* IRPlayerControlView.h */,
-				4A8E82F426EC69510031E62F /* UIScrollView+IRPlayer.m */,
-				4A8E82F526EC69510031E62F /* IRPlayerController.m */,
-				4A8E82F626EC69510031E62F /* IRPlayerMediaControl.h */,
-				4A8E82F726EC69510031E62F /* UIView+IRFrame.h */,
-				4A8E82F826EC69510031E62F /* IRScope.h */,
-				4A8E82F926EC69510031E62F /* IRVolumeBrightnessView.m */,
-				4A8E82FA26EC69510031E62F /* IRSliderView.m */,
-				4A8E82FB26EC69510031E62F /* IRSmallFloatControlView.h */,
-				4A8E82FC26EC69510031E62F /* IRLoadingView.m */,
-				4A8E82FD26EC69510031E62F /* IROrientationObserver.m */,
-				4A8E82FE26EC69510031E62F /* IRPlayerView.m */,
-				4A8E82FF26EC69510031E62F /* IRPlayerControllerNotification.m */,
-				4A8E830026EC69510031E62F /* UIImageView+IRCache.m */,
-				4A8E830126EC69510031E62F /* IRUtilities.m */,
-				4A8E830226EC69510031E62F /* IRPlayerMediaPlayback.h */,
-				4A8E830326EC69510031E62F /* IRPortraitControlView.h */,
-				4A8E830426EC69510031E62F /* IRPlayerLogManager.m */,
-				4A8E830526EC69510031E62F /* IRMetamacros.h */,
-				4A8E830626EC69510031E62F /* IRNetworkSpeedMonitor.m */,
-				4A8E830726EC69510031E62F /* IRKVOController.m */,
-				4A8E830826EC69510031E62F /* IRSpeedLoadingView.h */,
-				4A8E830926EC69510031E62F /* IRFloatView.h */,
-				4A8E830A26EC69510031E62F /* IRReachabilityManager.h */,
-				4A8E830B26EC69510031E62F /* IRPlayerController.h */,
-				4A8E830C26EC69510031E62F /* UIScrollView+IRPlayer.h */,
-				4A8E830D26EC69510031E62F /* IRPlayerControlView.m */,
-				4A8E830E26EC69510031E62F /* IRLandScapeControlView.h */,
-				4A8E830F26EC69510031E62F /* IRSliderView.h */,
-				4A8E831026EC69510031E62F /* IRVolumeBrightnessView.h */,
-				4A8E831126EC69510031E62F /* UIView+IRFrame.m */,
-				4A8E831226EC69510031E62F /* IRPlayerView.h */,
-				4A8E831326EC69520031E62F /* IRPlayerControllerNotification.h */,
-				4A8E831426EC69520031E62F /* IRUtilities.h */,
-				4A8E831526EC69520031E62F /* UIImageView+IRCache.h */,
-				4A8E831626EC69520031E62F /* IRLoadingView.h */,
-				4A8E831726EC69520031E62F /* IROrientationObserver.h */,
-				4A8E831826EC69520031E62F /* IRSmallFloatControlView.m */,
-				4A8E831926EC69520031E62F /* IRFloatView.m */,
-				4A8E831A26EC69520031E62F /* IRReachabilityManager.m */,
-				4A8E831B26EC69520031E62F /* IRSpeedLoadingView.m */,
-				4A8E831C26EC69520031E62F /* IRKVOController.h */,
-				4A8E831D26EC69520031E62F /* IRNetworkSpeedMonitor.h */,
-				4A8E831E26EC69520031E62F /* IRPortraitControlView.m */,
-				4A8E831F26EC69520031E62F /* IRPlayerLogManager.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -210,6 +233,10 @@
 		4A927A1F26EC8250004FB95E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4A8E830226EC69510031E62F /* IRPlayerMediaPlayback.h */,
+				4A8E82F626EC69510031E62F /* IRPlayerMediaControl.h */,
+				4A8E830B26EC69510031E62F /* IRPlayerController.h */,
+				4A8E82F526EC69510031E62F /* IRPlayerController.m */,
 				4A927A2026EC8251004FB95E /* GestureController */,
 			);
 			path = Controller;
@@ -321,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A6F4BDD26F0507900D34DC0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

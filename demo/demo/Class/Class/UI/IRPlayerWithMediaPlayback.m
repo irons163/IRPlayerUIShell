@@ -33,7 +33,13 @@
 }
 
 - (void)seekToTime:(NSTimeInterval)time completionHandler:(void (^)(BOOL))completionHandler {
-    [self seekToTime:time completeHandler:completionHandler];
+    [self seekToTime:time completeHandler:^(BOOL finished) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completionHandler) {
+                completionHandler(finished);
+            }
+        });
+    }];
 }
 
 - (IRPlayerPlaybackState)playState {

@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		078349FFF7E5B3B3F0E81C03 /* Pods_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37AC3707AB0BB71DFCDB54B /* Pods_demo.framework */; };
-		4A8E835426EC6A080031E62F /* IRPlayerUIShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E835326EC69E90031E62F /* IRPlayerUIShell.framework */; };
-		4A8E835526EC6A080031E62F /* IRPlayerUIShell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E835326EC69E90031E62F /* IRPlayerUIShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4A6D639F26F0AC5100EFD36A /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6D639E26F0AC5100EFD36A /* NavigationController.m */; };
+		4A6F4BD926F04B6E00D34DC0 /* IRPlayerUIShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E835326EC69E90031E62F /* IRPlayerUIShell.framework */; };
+		4A6F4BDA26F04B6E00D34DC0 /* IRPlayerUIShell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E835326EC69E90031E62F /* IRPlayerUIShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A927A3126EC88C8004FB95E /* IRPlayerWithMediaPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A927A3026EC88C8004FB95E /* IRPlayerWithMediaPlayback.m */; };
 		B546C4B0236B370100FA283A /* IRRTSPPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C4AF236B370100FA283A /* IRRTSPPlayer.m */; };
 		B546C4B5236B38B700FA283A /* NSLayoutConstraint+Multiplier.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C4B3236B38B600FA283A /* NSLayoutConstraint+Multiplier.m */; };
@@ -24,8 +25,6 @@
 		B55E0121232A96C100B42820 /* google-help-vr.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B55E011E232A96C000B42820 /* google-help-vr.mp4 */; };
 		B55E0122232A96C100B42820 /* i-see-fire.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B55E011F232A96C000B42820 /* i-see-fire.mp4 */; };
 		B55E0123232A96C100B42820 /* fisheye-demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B55E0120232A96C000B42820 /* fisheye-demo.mp4 */; };
-		B55E0127232A96D300B42820 /* PlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B55E0125232A96D300B42820 /* PlayerViewController.xib */; };
-		B55E0128232A96D300B42820 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0126232A96D300B42820 /* PlayerViewController.m */; };
 		B571C4C52361FA5200201D41 /* IRViewWraper.m in Sources */ = {isa = PBXBuildFile; fileRef = B571C4C42361FA5200201D41 /* IRViewWraper.m */; };
 		B5AD60A824039C6900E513BA /* IRPlayerUIShellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AD60A624039C6900E513BA /* IRPlayerUIShellViewController.m */; };
 		B5AD60A924039C6900E513BA /* IRPlayerUIShellViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5AD60A724039C6900E513BA /* IRPlayerUIShellViewController.xib */; };
@@ -42,13 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4A8E835626EC6A080031E62F /* Embed Frameworks */ = {
+		4A6F4BDB26F04B6E00D34DC0 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4A8E835526EC6A080031E62F /* IRPlayerUIShell.framework in Embed Frameworks */,
+				4A6F4BDA26F04B6E00D34DC0 /* IRPlayerUIShell.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +55,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4A6D639D26F0AC5100EFD36A /* NavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		4A6D639E26F0AC5100EFD36A /* NavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		4A8E834E26EC69E80031E62F /* IRPlayerUIShell.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IRPlayerUIShell.xcodeproj; path = ../IRPlayerUIShell.xcodeproj; sourceTree = "<group>"; };
 		4A927A2F26EC88C8004FB95E /* IRPlayerWithMediaPlayback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRPlayerWithMediaPlayback.h; sourceTree = "<group>"; };
 		4A927A3026EC88C8004FB95E /* IRPlayerWithMediaPlayback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRPlayerWithMediaPlayback.m; sourceTree = "<group>"; };
@@ -81,9 +82,6 @@
 		B55E011E232A96C000B42820 /* google-help-vr.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "google-help-vr.mp4"; sourceTree = "<group>"; };
 		B55E011F232A96C000B42820 /* i-see-fire.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "i-see-fire.mp4"; sourceTree = "<group>"; };
 		B55E0120232A96C000B42820 /* fisheye-demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fisheye-demo.mp4"; sourceTree = "<group>"; };
-		B55E0124232A96D300B42820 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
-		B55E0125232A96D300B42820 /* PlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerViewController.xib; sourceTree = "<group>"; };
-		B55E0126232A96D300B42820 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		B571C4C32361FA5200201D41 /* IRViewWraper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRViewWraper.h; sourceTree = "<group>"; };
 		B571C4C42361FA5200201D41 /* IRViewWraper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IRViewWraper.m; sourceTree = "<group>"; };
 		B5AD60A524039C6900E513BA /* IRPlayerUIShellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRPlayerUIShellViewController.h; sourceTree = "<group>"; };
@@ -98,7 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				078349FFF7E5B3B3F0E81C03 /* Pods_demo.framework in Frameworks */,
-				4A8E835426EC6A080031E62F /* IRPlayerUIShell.framework in Frameworks */,
+				4A6F4BD926F04B6E00D34DC0 /* IRPlayerUIShell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,11 +191,10 @@
 				B55E011F232A96C000B42820 /* i-see-fire.mp4 */,
 				B55E0108232A93B900B42820 /* AppDelegate.h */,
 				B55E0109232A93B900B42820 /* AppDelegate.m */,
+				4A6D639D26F0AC5100EFD36A /* NavigationController.h */,
+				4A6D639E26F0AC5100EFD36A /* NavigationController.m */,
 				B55E010B232A93B900B42820 /* ViewController.h */,
 				B55E010C232A93B900B42820 /* ViewController.m */,
-				B55E0124232A96D300B42820 /* PlayerViewController.h */,
-				B55E0126232A96D300B42820 /* PlayerViewController.m */,
-				B55E0125232A96D300B42820 /* PlayerViewController.xib */,
 				B55E010E232A93B900B42820 /* Main.storyboard */,
 				B55E0111232A93BA00B42820 /* Assets.xcassets */,
 				B55E0113232A93BA00B42820 /* LaunchScreen.storyboard */,
@@ -237,7 +234,7 @@
 				B55E0102232A93B900B42820 /* Frameworks */,
 				B55E0103232A93B900B42820 /* Resources */,
 				E0B997BF6F69B7920541EC3D /* [CP] Embed Pods Frameworks */,
-				4A8E835626EC6A080031E62F /* Embed Frameworks */,
+				4A6F4BDB26F04B6E00D34DC0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -302,7 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B55E0115232A93BA00B42820 /* LaunchScreen.storyboard in Resources */,
-				B55E0127232A96D300B42820 /* PlayerViewController.xib in Resources */,
 				B555ACC4236D9BA700AA1400 /* IRPlayerViewController.xib in Resources */,
 				B55E0121232A96C100B42820 /* google-help-vr.mp4 in Resources */,
 				B55E0123232A96C100B42820 /* fisheye-demo.mp4 in Resources */,
@@ -364,12 +360,12 @@
 			files = (
 				B5AD60A824039C6900E513BA /* IRPlayerUIShellViewController.m in Sources */,
 				B55E010D232A93B900B42820 /* ViewController.m in Sources */,
-				B55E0128232A96D300B42820 /* PlayerViewController.m in Sources */,
 				B555ACC3236D9BA700AA1400 /* IRPlayerViewController.m in Sources */,
 				B546C4B5236B38B700FA283A /* NSLayoutConstraint+Multiplier.m in Sources */,
 				4A927A3126EC88C8004FB95E /* IRPlayerWithMediaPlayback.m in Sources */,
 				B546C4B0236B370100FA283A /* IRRTSPPlayer.m in Sources */,
 				B55E0118232A93BA00B42820 /* main.m in Sources */,
+				4A6D639F26F0AC5100EFD36A /* NavigationController.m in Sources */,
 				B571C4C52361FA5200201D41 /* IRViewWraper.m in Sources */,
 				B55E010A232A93B900B42820 /* AppDelegate.m in Sources */,
 			);

@@ -17,3 +17,5 @@ FOUNDATION_EXPORT const unsigned char IRPlayerUIShellVersionString[];
 
 #import <IRPlayerUIShell/IRPlayerController.h>
 #import <IRPlayerUIShell/IRPlayerControlView.h>
+#import <IRPlayerUIShell/UIImageView+IRCache.h>
+#import <IRPlayerUIShell/IRUtilities.h>

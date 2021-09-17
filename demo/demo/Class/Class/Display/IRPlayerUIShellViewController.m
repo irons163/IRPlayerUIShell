@@ -8,13 +8,7 @@
 
 #import "IRPlayerUIShellViewController.h"
 #import <IRPlayer/IRPlayer.h>
-//#import "IRPlayerControlView.h"
 #import <IRPlayerUIShell/IRPlayerUIShell.h>
-#import <IRPlayerUIShell/UIImageView+IRCache.h>
-#import <IRPlayerUIShell/IRUtilities.h>
-//#import "UIImageView+IRCache.h"
-//#import "IRUtilities.h"
-//#import "IRScope.h"
 #import <IRPlayer/IRScope.h>
 #import "IRPlayerWithMediaPlayback.h"
 
@@ -66,6 +60,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     self.player.controlView = self.controlView;
     /// 设置退到后台继续播放
     self.player.pauseWhenAppResignActive = NO;
+//    self.player.forceDeviceOrientation = YES;
     
     [self.playerImp registerPlayerNotificationTarget:self
        stateAction:@selector(stateAction:)
@@ -76,13 +71,26 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     @weakify(self)
     self.player.orientationWillChange = ^(IRPlayerController * _Nonnull player, BOOL isFullScreen) {
         @strongify(self)
-        [self setNeedsStatusBarAppearanceUpdate];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.navigationController.navigationBar setNeedsLayout];
+            [self.navigationController.navigationBar layoutIfNeeded];
+            [self.navigationController.navigationBar setNeedsDisplay];
+            [self.navigationController.navigationBar updateConstraints];
+        });
+    };
+    
+    self.player.orientationIsChanging = ^(IRPlayerController * _Nonnull player, BOOL isFullScreen) {
+
+    };
+    
+    self.player.orientationDidChanged = ^(IRPlayerController * _Nonnull player, BOOL isFullScreen) {
+        @strongify(self)
+        [self setupUI];
     };
     
     /// 播放完成
     self.player.playerDidToEnd = ^(id  _Nonnull asset) {
         @strongify(self)
-//        [self.player.currentPlayerManager replay];
         [self.player.currentPlayerManager pause];
         [self.player.currentPlayerManager play];
         
@@ -100,16 +108,17 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     self.player.viewControllerDisappear = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
     self.player.viewControllerDisappear = YES;
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
+- (void)setupUI {
     CGFloat x = 0;
     CGFloat y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
     CGFloat w = CGRectGetWidth(self.view.frame);
@@ -133,6 +142,12 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     x = (CGRectGetWidth(self.view.frame)-w)/2;
     y = CGRectGetMaxY(self.changeBtn.frame)+50;
     self.nextBtn.frame = CGRectMake(x, y, w, h);
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    [self setupUI];
 }
 
 - (void)changeVideo:(UIButton *)sender {
@@ -202,7 +217,7 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 - (UIButton *)playBtn {
     if (!_playBtn) {
         _playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playBtn setImage:[UIImage imageNamed:@"new_allPlay_44x44_"] forState:UIControlStateNormal];
+        [_playBtn setImage:IRPlayer_Image(@"new_allPlay_44x44_") forState:UIControlStateNormal];
         [_playBtn addTarget:self action:@selector(playClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playBtn;
@@ -244,43 +259,28 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
     return _assetURLs;
 }
 
-
-- (void)stateAction:(NSNotification *)notification
-{
+#pragma mark - PlayerNotification
+- (void)stateAction:(NSNotification *)notification {
     [self dealWithNotification:notification Player:self.playerImp];
 }
 
-- (void)progressAction:(NSNotification *)notification
-{
-    //    IRProgress * progress = [IRProgress progressFromUserInfo:notification.userInfo];
-    //    if (!self.progressSilderTouching) {
-    //        self.progressSilder.value = progress.percent;
-    //    }
-    //    self.currentTimeLabel.text = [self timeStringFromSeconds:progress.current];
-    
-//    if (self.playerPlayTimeChanged) self.playerPlayTimeChanged(asset,currentTime,duration);
+- (void)progressAction:(NSNotification *)notification {
     if ([self.controlView respondsToSelector:@selector(videoPlayer:currentTime:totalTime:)]) {
         IRProgress * progress = [IRProgress progressFromUserInfo:notification.userInfo];
-//        if (!self.progressSilderTouching) {
-//            self.progressSilder.value = progress.percent;
-//        }
         [self.controlView videoPlayer:self.player currentTime:progress.current totalTime:progress.total];
     }
 }
 
-- (NSString *)timeStringFromSeconds:(CGFloat)seconds
-{
+- (NSString *)timeStringFromSeconds:(CGFloat)seconds {
     return [NSString stringWithFormat:@"%ld:%.2ld", (long)seconds / 60, (long)seconds % 60];
 }
 
-- (void)playableAction:(NSNotification *)notification
-{
+- (void)playableAction:(NSNotification *)notification {
     IRPlayable * playable = [IRPlayable playableFromUserInfo:notification.userInfo];
     NSLog(@"playable time : %f", playable.current);
 }
 
-- (void)errorAction:(NSNotification *)notification
-{
+- (void)errorAction:(NSNotification *)notification {
     IRError * error = [IRError errorFromUserInfo:notification.userInfo];
     NSLog(@"player did error : %@", error.error);
 }
@@ -288,61 +288,40 @@ static NSString *kVideoCover = @"https://upload-images.jianshu.io/upload_images/
 - (void)dealWithNotification:(NSNotification *)notification Player:(IRPlayerImp *)player {
     IRState * state = [IRState stateFromUserInfo:notification.userInfo];
     
-    NSString * text;
     switch (state.current) {
         case IRPlayerStateNone:
-            text = @"None";
+            NSLog(@"None");
             break;
         case IRPlayerStateBuffering:
-            text = @"Buffering...";
+            NSLog(@"Buffering...");
             
             if (self.playerImp.playerReadyToPlay) self.playerImp.playerPrepareToPlay(self.playerImp, player.contentURL);
-            
-//            self.currentPlayerManager.view.hidden = NO;
-//            [self.notification addNotification];
-//            [self addDeviceOrientationObserver];
-//            if (self.scrollView) {
-//                self.scrollView.ir_stopPlay = NO;
-//            }
-//            [self layoutPlayerSubViews];
-////            if (self.playerPrepareToPlay) self.playerPrepareToPlay(asset,assetURL);
-//            if ([self.controlView respondsToSelector:@selector(videoPlayer:prepareToPlay:)]) {
-//                [self.controlView videoPlayer:self prepareToPlay:player.contentURL];
-//            }
-//
-//            if ([self.controlView respondsToSelector:@selector(videoPlayer:loadStateChanged:)]) {
-//                [self.controlView videoPlayer:self loadStateChanged:IRPlayerLoadStateStalled];
-//            }
-            
             break;
         case IRPlayerStateReadyToPlay:
-            text = @"Prepare";
-            //            self.totalTimeLabel.text = [self timeStringFromSeconds:self.player.duration];
+            NSLog(@"Prepare");
             
             if (self.playerImp.playerReadyToPlay) self.playerImp.playerReadyToPlay(self.playerImp, player.contentURL);
             break;
         case IRPlayerStatePlaying:
-            text = @"Playing";
+            NSLog(@"Playing");
             if ([self.controlView respondsToSelector:@selector(videoPlayer:loadStateChanged:)]) {
                 [self.controlView videoPlayer:self.player loadStateChanged:IRPlayerLoadStatePlaythroughOK];
             }
             break;
         case IRPlayerStateSuspend:
-            text = @"Suspend";
+            NSLog(@"Suspend");
             break;
         case IRPlayerStateFinished:
-            text = @"Finished";
+            NSLog(@"Finished");
             break;
         case IRPlayerStateFailed:
-            text = @"Error";
-//            if (self.playerPlayFailed) self.playerPlayFailed(asset, error);
+            NSLog(@"Error");
             if ([self.controlView respondsToSelector:@selector(videoPlayerPlayFailed:error:)]) {
                 IRError *error = [IRError errorFromUserInfo:notification.userInfo];
                 [self.controlView videoPlayerPlayFailed:self.player error:error];
             }
             break;
     }
-    //    self.stateLabel.text = text;
 }
 
 @end

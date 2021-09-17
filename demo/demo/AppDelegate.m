@@ -35,6 +35,10 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+//    [((UINavigationController*)self.window.rootViewController).navigationBar setNeedsLayout];
+//    [((UINavigationController*)self.window.rootViewController).navigationBar layoutIfNeeded];
+//    [((UINavigationController*)self.window.rootViewController).navigationBar setNeedsDisplay];
+//    [((UINavigationController*)self.window.rootViewController).navigationBar updateConstraints];
 }
 
 
@@ -46,6 +50,5 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 
 @end

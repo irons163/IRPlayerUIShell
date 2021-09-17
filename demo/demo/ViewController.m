@@ -51,8 +51,17 @@
 {
 //    IRPlayerViewController *player = [IRPlayerViewController new];
 //    player.displayMode = IRPlayerDisplayerQuadMode;
+//    self.navigationController.navigationBar.hidden = NO;
     IRPlayerUIShellViewController *player = [IRPlayerUIShellViewController new];
     [self.navigationController pushViewController:player animated:YES];
+}
+
+- (BOOL)shouldAutorotate {
+    return false;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end
