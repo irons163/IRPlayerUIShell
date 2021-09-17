@@ -177,10 +177,12 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/IRFFMpeg/IRFFMpeg.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IRPlayer/IRPlayer.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRPlayerUIShell/IRPlayerUIShell.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/IRFFMpeg/IRFFMpeg.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IRPlayer/IRPlayer.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/IRPlayerUIShell/IRPlayerUIShell.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

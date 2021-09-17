@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		078349FFF7E5B3B3F0E81C03 /* Pods_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37AC3707AB0BB71DFCDB54B /* Pods_demo.framework */; };
 		4A6D639F26F0AC5100EFD36A /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6D639E26F0AC5100EFD36A /* NavigationController.m */; };
-		4A6F4BD926F04B6E00D34DC0 /* IRPlayerUIShell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E835326EC69E90031E62F /* IRPlayerUIShell.framework */; };
-		4A6F4BDA26F04B6E00D34DC0 /* IRPlayerUIShell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8E835326EC69E90031E62F /* IRPlayerUIShell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A927A3126EC88C8004FB95E /* IRPlayerWithMediaPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A927A3026EC88C8004FB95E /* IRPlayerWithMediaPlayback.m */; };
 		B546C4B0236B370100FA283A /* IRRTSPPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C4AF236B370100FA283A /* IRRTSPPlayer.m */; };
 		B546C4B5236B38B700FA283A /* NSLayoutConstraint+Multiplier.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C4B3236B38B600FA283A /* NSLayoutConstraint+Multiplier.m */; };
@@ -39,20 +37,6 @@
 			remoteInfo = IRPlayerUIShell;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4A6F4BDB26F04B6E00D34DC0 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4A6F4BDA26F04B6E00D34DC0 /* IRPlayerUIShell.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4A6D639D26F0AC5100EFD36A /* NavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
@@ -96,7 +80,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				078349FFF7E5B3B3F0E81C03 /* Pods_demo.framework in Frameworks */,
-				4A6F4BD926F04B6E00D34DC0 /* IRPlayerUIShell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +217,6 @@
 				B55E0102232A93B900B42820 /* Frameworks */,
 				B55E0103232A93B900B42820 /* Resources */,
 				E0B997BF6F69B7920541EC3D /* [CP] Embed Pods Frameworks */,
-				4A6F4BDB26F04B6E00D34DC0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

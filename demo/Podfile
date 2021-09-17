@@ -7,4 +7,5 @@ target 'demo' do
 
   # Pods for demo
   pod 'IRPlayer'
+  pod 'IRPlayerUIShell'
 end
