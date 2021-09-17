@@ -15,7 +15,7 @@
 		4A8E832326EC69520031E62F /* IRPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82F526EC69510031E62F /* IRPlayerController.m */; };
 		4A8E832426EC69520031E62F /* IRPlayerMediaControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82F626EC69510031E62F /* IRPlayerMediaControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4A8E832526EC69520031E62F /* UIView+IRFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82F726EC69510031E62F /* UIView+IRFrame.h */; };
-		4A8E832626EC69520031E62F /* IRScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82F826EC69510031E62F /* IRScope.h */; };
+		4A8E832626EC69520031E62F /* IRScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82F826EC69510031E62F /* IRScope.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4A8E832726EC69520031E62F /* IRVolumeBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82F926EC69510031E62F /* IRVolumeBrightnessView.m */; };
 		4A8E832826EC69520031E62F /* IRSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8E82FA26EC69510031E62F /* IRSliderView.m */; };
 		4A8E832926EC69520031E62F /* IRSmallFloatControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A8E82FB26EC69510031E62F /* IRSmallFloatControlView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -278,11 +278,11 @@
 				4A8E833726EC69520031E62F /* IRFloatView.h in Headers */,
 				4A927A2726EC8251004FB95E /* IRGestureController+Private.h in Headers */,
 				4A8E834B26EC69520031E62F /* IRNetworkSpeedMonitor.h in Headers */,
+				4A8E832626EC69520031E62F /* IRScope.h in Headers */,
 				4A8E834A26EC69520031E62F /* IRKVOController.h in Headers */,
 				4A8E828E26EC68FD0031E62F /* IRPlayerUIShell.h in Headers */,
 				4A8E834026EC69520031E62F /* IRPlayerView.h in Headers */,
 				4A8E832426EC69520031E62F /* IRPlayerMediaControl.h in Headers */,
-				4A8E832626EC69520031E62F /* IRScope.h in Headers */,
 				4A8E834326EC69520031E62F /* UIImageView+IRCache.h in Headers */,
 				4A8E833D26EC69520031E62F /* IRSliderView.h in Headers */,
 				4A8E833E26EC69520031E62F /* IRVolumeBrightnessView.h in Headers */,

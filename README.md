@@ -12,24 +12,34 @@
     - Brightness
     - Volume
     - Full Screen
+- Support iOS14.
 - Has a Demo
 
 ## Future
 - Support Multi video player in one page(UITableView, UICollectionView, etc).
 - More powerful custom UI design.
-- Make a framework for this project.
 
 ## Install
 ### Git
 - Git clone this project.
+- Copy this project into your own project.
+- Add the .xcodeproj into you  project and link it as embed framework.
+#### Options
+- You can remove the `demo` and `ScreenShots` folder.
 
 ### Cocoapods
-- Not support yet.
+- Add `pod 'IRPlayerUIShell'`  in the `Podfile`
+- `pod install`
 
 ## Usage
 
 ### Basic
 - See `IRPlayerUIShellViewController` for demo.
+
+- Import framework
+```obj-c
+#import <IRPlayerUIShell/IRPlayerUIShell.h>
+```
 
 - Create a [IRPlayer](https://github.com/irons163/IRPlayer) instance.
 ```obj-c
